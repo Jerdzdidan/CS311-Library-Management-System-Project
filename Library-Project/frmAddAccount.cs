@@ -81,5 +81,10 @@ namespace Library_Project
                 }
             }
         }
+
+        private void frmAddAccount_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
