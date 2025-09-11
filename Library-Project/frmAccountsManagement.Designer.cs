@@ -34,6 +34,7 @@
             this.btndelete = new System.Windows.Forms.Button();
             this.btnupdate = new System.Windows.Forms.Button();
             this.btnreset = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             // 
             // txtsearch
             // 
-            this.txtsearch.Location = new System.Drawing.Point(375, 36);
+            this.txtsearch.Location = new System.Drawing.Point(422, 40);
             this.txtsearch.Name = "txtsearch";
             this.txtsearch.Size = new System.Drawing.Size(341, 22);
             this.txtsearch.TabIndex = 1;
@@ -61,6 +62,7 @@
             // 
             // btnadd
             // 
+            this.btnadd.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnadd.Location = new System.Drawing.Point(25, 423);
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(112, 30);
@@ -71,7 +73,8 @@
             // 
             // btndelete
             // 
-            this.btndelete.Location = new System.Drawing.Point(343, 423);
+            this.btndelete.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btndelete.Location = new System.Drawing.Point(291, 423);
             this.btndelete.Name = "btndelete";
             this.btndelete.Size = new System.Drawing.Size(112, 30);
             this.btndelete.TabIndex = 3;
@@ -81,7 +84,8 @@
             // 
             // btnupdate
             // 
-            this.btnupdate.Location = new System.Drawing.Point(180, 423);
+            this.btnupdate.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnupdate.Location = new System.Drawing.Point(160, 423);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(112, 30);
             this.btnupdate.TabIndex = 4;
@@ -91,7 +95,8 @@
             // 
             // btnreset
             // 
-            this.btnreset.Location = new System.Drawing.Point(636, 423);
+            this.btnreset.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnreset.Location = new System.Drawing.Point(651, 423);
             this.btnreset.Name = "btnreset";
             this.btnreset.Size = new System.Drawing.Size(112, 30);
             this.btnreset.TabIndex = 5;
@@ -99,11 +104,22 @@
             this.btnreset.UseVisualStyleBackColor = true;
             this.btnreset.Click += new System.EventHandler(this.btnreset_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(356, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 19);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Search:";
+            // 
             // frmAccountsManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 482);
+            this.ClientSize = new System.Drawing.Size(795, 482);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnreset);
             this.Controls.Add(this.btnupdate);
             this.Controls.Add(this.btndelete);
@@ -130,5 +146,6 @@
         private System.Windows.Forms.Button btndelete;
         private System.Windows.Forms.Button btnupdate;
         private System.Windows.Forms.Button btnreset;
+        private System.Windows.Forms.Label label1;
     }
 }

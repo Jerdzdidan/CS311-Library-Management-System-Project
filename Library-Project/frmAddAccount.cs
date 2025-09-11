@@ -66,7 +66,7 @@ namespace Library_Project
                     DialogResult dr = MessageBox.Show("Are you sure you want to add this account?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        addaccount.executeSQL("INSERT INTO tblaccounts (username, password, usertype, status, createdby, datecreated) VALUES ('" + txtusername.Text + "','" + txtpassword.Text + "','" + cmbUserType.Text.ToUpper() + "', 'ACTIVE', '" + username + "', '" + DateTime.Now.ToShortDateString() + "')");
+                        addaccount.executeSQL("INSERT INTO tbl_accounts (username, password, usertype, status, createdby, datecreated) VALUES ('" + txtusername.Text + "','" + txtpassword.Text + "','" + cmbUserType.Text.ToUpper() + "', 'ACTIVE', '" + username + "', '" + DateTime.Now.ToShortDateString() + "')");
                         if (addaccount.rowAffected > 0)
                         {
                             MessageBox.Show("New account added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -81,7 +81,6 @@ namespace Library_Project
                 }
             }
         }
-
         private void frmAddAccount_Load(object sender, EventArgs e)
         {
 

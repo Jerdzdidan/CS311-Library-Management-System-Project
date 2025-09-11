@@ -180,7 +180,10 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtusername);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmAddAccount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddAccount";
             this.Load += new System.EventHandler(this.frmAddAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

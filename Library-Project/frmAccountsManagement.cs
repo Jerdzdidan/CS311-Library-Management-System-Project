@@ -60,7 +60,14 @@ namespace Library_Project
         }
         private void btnadd_Click(object sender, EventArgs e)
         {
-            
+            frmAddAccount AddAccountForm = new frmAddAccount(username);
+
+            AddAccountForm.FormClosed += (s, args) =>
+            {
+                frmAccountsManagement_Load(sender, e);
+            };
+
+            AddAccountForm.Show();
         }
         private void btnupdate_Click(object sender, EventArgs e)
         {
