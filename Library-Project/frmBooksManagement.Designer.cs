@@ -127,9 +127,9 @@
             this.groupBox1.Controls.Add(this.btnDamage);
             this.groupBox1.Controls.Add(this.btnReplace);
             this.groupBox1.Location = new System.Drawing.Point(548, 528);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(316, 143);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
@@ -174,9 +174,9 @@
             this.groupBox2.Controls.Add(this.btnUpdateBook);
             this.groupBox2.Controls.Add(this.btnDeleteBook);
             this.groupBox2.Location = new System.Drawing.Point(20, 528);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(244, 165);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
@@ -194,6 +194,7 @@
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "frmBooksManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Management";
