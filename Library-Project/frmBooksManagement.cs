@@ -20,8 +20,6 @@ namespace Library_Project
             this.username = username;
         }
 
-        private int sample_change;
-
         Class1 books = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private void frmBooksManagement_Load_1(object sender, EventArgs e)
         {
