@@ -116,6 +116,7 @@
             // 
             // btnupdate
             // 
+            this.btnupdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnupdate.Location = new System.Drawing.Point(338, 402);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(152, 40);
@@ -138,7 +139,10 @@
             this.Controls.Add(this.cmbusertype);
             this.Controls.Add(this.txtpassword);
             this.Controls.Add(this.txtusername);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmUpdateAccount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUpdateAccount";
             this.Load += new System.EventHandler(this.frmUpdateAccount_Load);
             this.ResumeLayout(false);
