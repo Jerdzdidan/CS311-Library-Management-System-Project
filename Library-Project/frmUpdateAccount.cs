@@ -66,7 +66,7 @@ namespace Library_Project
                     if (updateaccount.rowAffected > 0)
                     {
                         MessageBox.Show("Account updated.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        updateaccount.executeSQL("INSERT tbllogs (datelog, timelog, action, module, performedto, performedby) VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
+                        updateaccount.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
                             DateTime.Now.ToShortTimeString() + "' , 'UPDATE', 'ACCOUNTS MANAGEMENT', '" + txtusername.Text + "', '" + username + "')");
                         this.Close();
                     }
