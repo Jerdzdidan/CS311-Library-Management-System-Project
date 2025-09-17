@@ -63,6 +63,7 @@
             this.cbkshow.TabIndex = 38;
             this.cbkshow.Text = "&Show Password";
             this.cbkshow.UseVisualStyleBackColor = true;
+            this.cbkshow.CheckedChanged += new System.EventHandler(this.cbkshow_CheckedChanged);
             // 
             // cmbstatus
             // 
@@ -121,12 +122,13 @@
             this.btnupdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnupdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnupdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnupdate.Location = new System.Drawing.Point(275, 376);
+            this.btnupdate.Location = new System.Drawing.Point(275, 361);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(102, 31);
             this.btnupdate.TabIndex = 32;
             this.btnupdate.Text = "&Update";
             this.btnupdate.UseVisualStyleBackColor = false;
+            this.btnupdate.Click += new System.EventHandler(this.btnupdate_Click_1);
             // 
             // cmbusertype
             // 
@@ -134,8 +136,8 @@
             this.cmbusertype.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbusertype.FormattingEnabled = true;
             this.cmbusertype.Items.AddRange(new object[] {
-            "Administrator",
-            "User"});
+            "ADMINISTRATOR",
+            "USER"});
             this.cmbusertype.Location = new System.Drawing.Point(82, 251);
             this.cmbusertype.Name = "cmbusertype";
             this.cmbusertype.Size = new System.Drawing.Size(278, 30);

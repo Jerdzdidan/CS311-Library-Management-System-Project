@@ -42,6 +42,13 @@ namespace Library_Project
             }
         }
 
+        private void bookLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBookLogs booklogsform = new frmBookLogs(username);
+            booklogsform.MdiParent = this;
+            booklogsform.Show();
+        }
+
         private void bookManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmBooksManagement bookmanagementform = new frmBooksManagement(username);

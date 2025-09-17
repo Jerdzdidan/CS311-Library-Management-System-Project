@@ -33,5 +33,10 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on frmBooksManagement_Load", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnAddBook_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

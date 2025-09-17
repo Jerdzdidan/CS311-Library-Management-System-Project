@@ -78,6 +78,7 @@
             this.bookLogsToolStripMenuItem.Name = "bookLogsToolStripMenuItem";
             this.bookLogsToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.bookLogsToolStripMenuItem.Text = "Book logs";
+            this.bookLogsToolStripMenuItem.Click += new System.EventHandler(this.bookLogsToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 

@@ -61,7 +61,6 @@
             this.cmbUserType.FormattingEnabled = true;
             this.cmbUserType.Items.AddRange(new object[] {
             "ADMINISTRATOR",
-            "TECHNICAL",
             "STAFF"});
             this.cmbUserType.Location = new System.Drawing.Point(91, 284);
             this.cmbUserType.Margin = new System.Windows.Forms.Padding(4);
@@ -92,6 +91,7 @@
             this.cbkshow.TabIndex = 36;
             this.cbkshow.Text = "&Show Password";
             this.cbkshow.UseVisualStyleBackColor = true;
+            this.cbkshow.CheckedChanged += new System.EventHandler(this.cbkshow_CheckedChanged);
             // 
             // txtpassword
             // 

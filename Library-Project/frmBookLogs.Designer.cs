@@ -31,6 +31,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtsearch = new System.Windows.Forms.TextBox();
             this.btnsearch = new System.Windows.Forms.Button();
+            this.btnreset = new System.Windows.Forms.Button();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,14 +49,14 @@
             // 
             // txtsearch
             // 
-            this.txtsearch.Location = new System.Drawing.Point(12, 25);
+            this.txtsearch.Location = new System.Drawing.Point(254, 22);
             this.txtsearch.Name = "txtsearch";
             this.txtsearch.Size = new System.Drawing.Size(522, 22);
             this.txtsearch.TabIndex = 1;
             // 
             // btnsearch
             // 
-            this.btnsearch.Location = new System.Drawing.Point(540, 25);
+            this.btnsearch.Location = new System.Drawing.Point(782, 22);
             this.btnsearch.Name = "btnsearch";
             this.btnsearch.Size = new System.Drawing.Size(75, 23);
             this.btnsearch.TabIndex = 3;
@@ -63,15 +65,37 @@
             this.btnsearch.Click += new System.EventHandler(this.btnsearch_Click);
             this.btnsearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnsearch_KeyPress);
             // 
+            // btnreset
+            // 
+            this.btnreset.Location = new System.Drawing.Point(750, 415);
+            this.btnreset.Name = "btnreset";
+            this.btnreset.Size = new System.Drawing.Size(122, 32);
+            this.btnreset.TabIndex = 4;
+            this.btnreset.Text = "Refresh";
+            this.btnreset.UseVisualStyleBackColor = true;
+            this.btnreset.Click += new System.EventHandler(this.btnreset_Click);
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.Location = new System.Drawing.Point(37, 23);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpDate.TabIndex = 5;
+            // 
             // frmBookLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 443);
+            this.ClientSize = new System.Drawing.Size(887, 457);
+            this.Controls.Add(this.dtpDate);
+            this.Controls.Add(this.btnreset);
             this.Controls.Add(this.btnsearch);
             this.Controls.Add(this.txtsearch);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmBookLogs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Logs";
             this.Load += new System.EventHandler(this.frmBookLogs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -85,5 +109,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtsearch;
         private System.Windows.Forms.Button btnsearch;
+        private System.Windows.Forms.Button btnreset;
+        private System.Windows.Forms.DateTimePicker dtpDate;
     }
 }

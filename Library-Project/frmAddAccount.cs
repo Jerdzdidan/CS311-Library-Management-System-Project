@@ -85,5 +85,16 @@ namespace Library_Project
         {
 
         }
+        private void cbkshow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbkshow.Checked)
+            {
+                txtpassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtpassword.PasswordChar = '*';
+            }
+        }
     }
 }

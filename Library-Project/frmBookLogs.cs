@@ -8,15 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ticket_management;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Library_Project
 {
     public partial class frmBookLogs : Form
     {
         Class1 booklogs = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
-        public frmBookLogs()
+        private string username;
+        public frmBookLogs(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
         private void frmBookLogs_Load(object sender, EventArgs e)
         {
@@ -68,7 +71,14 @@ namespace Library_Project
               {
                 MessageBox.Show(error.Message, "ERROR on txtsearch_TextChanged", MessageBoxButtons.OK, MessageBoxIcon.Error);
               }
-        }   
+        }
+
+        private void btnreset_Click(object sender, EventArgs e)
+        {
+            txtsearch.Clear();
+            dtpDate.Value = DateTime.Now;
+            LoadAllLogs();
+        }
     }
 }
 
