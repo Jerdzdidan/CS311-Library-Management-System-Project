@@ -64,6 +64,7 @@ namespace Library_Project
         {
             try
             {
+                string sql = "SELECT * FROM tbl_logs WHERE 1=1 ";
                 string keyword = txtSearch.Text.Trim();
                 string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
                                "FROM tbl_logs " +
@@ -73,6 +74,9 @@ namespace Library_Project
                                "OR module LIKE '%" + keyword + "%' " +
                                "ORDER BY datelog DESC, timelog DESC";
 
+                string selectedDate = dtpDate.Value.ToString("MM/dd/yyyy");
+                sql += "AND datelog = '" + selectedDate + "' ";
+                sql += "ORDER BY datelog DESC, timelog DESC";
                 DataTable dt = booklogs.GetData(query);
                 dataGridView1.DataSource = dt;
             }
@@ -110,7 +114,7 @@ namespace Library_Project
                 {
                     MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+        }
     }
 }
 

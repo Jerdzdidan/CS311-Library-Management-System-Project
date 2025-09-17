@@ -34,8 +34,6 @@ namespace Library_Project
             }
         }
 
-
-        private string BookID;
         private void btnAddBook_Click(object sender, EventArgs e)
         {
             frmAddBooks addBookForm = new frmAddBooks(username);
@@ -86,8 +84,6 @@ namespace Library_Project
                             OR author LIKE '%" + searchText + @"%' 
                             OR category LIKE '%" + searchText + @"%'
                          ORDER BY BookID";
-                
-
 
                 DataTable dt = books.GetData(query);
                 dataGridView1.DataSource = dt;
@@ -100,22 +96,17 @@ namespace Library_Project
 
       
             private void btnDeleteBook_Click(object sender, EventArgs e)
-        {
+            {
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a book to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Get selected row
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             string bookID = row.Cells["BookID"].Value.ToString();
 
-            DialogResult dr = MessageBox.Show("Are you sure you want to delete this book?",
-                                              "Confirm Delete",
-                                              MessageBoxButtons.YesNo,
-                                              MessageBoxIcon.Question);
-
+            DialogResult dr = MessageBox.Show("Are you sure you want to delete this book?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 try
@@ -124,6 +115,11 @@ namespace Library_Project
 
                     if (books.rowAffected > 0)
                     {
+                        books.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
+                            DateTime.Now.ToString("yyyy/MM/dd") + "' , '" +
+                            DateTime.Now.ToShortTimeString() + "', 'DELETE', 'BOOKS MANAGEMENT', '" +
+                            bookID + "', '" + username + "')");
+
                         MessageBox.Show("Book deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         frmBooksManagement_Load_1(sender, e); // Refresh DataGridView
                     }

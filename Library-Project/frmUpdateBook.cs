@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ticket_management;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Library_Project
 {
@@ -89,18 +90,13 @@ namespace Library_Project
                     DialogResult dr = MessageBox.Show("Are you sure you want to update this book?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        bookUpdate.executeSQL(
-                            "UPDATE tbl_books SET " +
-                            "title = '" + txtTitle.Text + "', " +
-                            "author = '" + txtAuthor.Text + "', " +
-                            "category = '" + cmbCategory.Text + "', " +
-                            "status = '" + cmbStatus.Text + "', " +
-                            "borroweddate = '" + dtpDate.Text + "' " +
-                            "WHERE BookID = '" + bookID + "'");
-
+                        bookUpdate.executeSQL("UPDATE tbl_books SET " + "title = '" + txtTitle.Text + "', " + "author = '" + txtAuthor.Text + "', " + "category = '" + cmbCategory.Text + "', " +
+                            "status = '" + cmbStatus.Text + "', " + "borroweddate = '" + dtpDate.Text + "' " + "WHERE BookID = '" + bookID + "'");
                         if (bookUpdate.rowAffected > 0)
                         {
                             MessageBox.Show("Book updated successfully.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            bookUpdate.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
+                            DateTime.Now.ToShortTimeString() + "' , 'UPDATE', 'BOOKS MANAGEMENT', '" + txtBookCode.Text + "', '" + bookID + "')");
                             this.Close();
                         }
                         else

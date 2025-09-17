@@ -122,7 +122,7 @@
             this.btnupdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnupdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnupdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnupdate.Location = new System.Drawing.Point(275, 361);
+            this.btnupdate.Location = new System.Drawing.Point(292, 364);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(102, 31);
             this.btnupdate.TabIndex = 32;

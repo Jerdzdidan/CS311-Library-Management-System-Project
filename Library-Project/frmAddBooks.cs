@@ -83,7 +83,6 @@ namespace Library_Project
                             this.Close();
                         }
                     }
-
                 }
                 catch (Exception error)
                 {
@@ -102,9 +101,6 @@ namespace Library_Project
                 txtBookCode.Text = "LIB-" + categoryCode + "-" + yearCode + "-" + dateCode;
             }
         }
-
-        
-
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.Close();
