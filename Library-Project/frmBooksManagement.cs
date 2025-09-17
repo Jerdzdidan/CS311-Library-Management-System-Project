@@ -63,7 +63,7 @@ namespace Library_Project
             string borrowedDate = row.Cells["borroweddate"].Value.ToString();
 
             // Open Update Form
-            frmUpdateBook frm = new frmUpdateBook(bookID, title, author, category, status, borrowedDate);
+            frmUpdateBook frm = new frmUpdateBook(bookID, title, author, category, status, borrowedDate, username);
             
             frm.BookUpdated += (s, args) =>
             {

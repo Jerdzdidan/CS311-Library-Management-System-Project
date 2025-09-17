@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,6 +70,11 @@ namespace Library_Project
                         addaccount.executeSQL("INSERT INTO tbl_accounts (username, password, usertype, status, createdby, datecreated) VALUES ('" + txtusername.Text + "','" + txtpassword.Text + "','" + cmbUserType.Text.ToUpper() + "', 'ACTIVE', '" + username + "', '" + DateTime.Now.ToShortDateString() + "')");
                         if (addaccount.rowAffected > 0)
                         {
+                            addaccount.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
+                            DateTime.Now.ToString("yyyy/MM/dd") + "' , '" +
+                            DateTime.Now.ToShortTimeString() + "', 'ADDED NEW ACCOUNT', 'ACCOUNTS MANAGEMENT', '" +
+                            username + "', '" + username + "')");
+
                             MessageBox.Show("New account added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }

@@ -47,7 +47,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(875, 341);
+            this.dataGridView1.Size = new System.Drawing.Size(861, 341);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -74,7 +74,7 @@
             // 
             // btnreset
             // 
-            this.btnreset.Location = new System.Drawing.Point(749, 415);
+            this.btnreset.Location = new System.Drawing.Point(750, 414);
             this.btnreset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnreset.Name = "btnreset";
             this.btnreset.Size = new System.Drawing.Size(123, 32);
@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 457);
+            this.ClientSize = new System.Drawing.Size(891, 457);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btnreset);
             this.Controls.Add(this.btnsearch);

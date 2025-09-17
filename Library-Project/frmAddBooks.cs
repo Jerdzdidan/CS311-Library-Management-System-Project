@@ -65,21 +65,13 @@ namespace Library_Project
                             "'" + txtAuthor.Text + "', " +
                             "'" + cmbCategory.Text + "', " +
                             "'AVAILABLE', " + // ✅ default status
-                            "'" + dtpDate.Value.ToString("yyyy-MM-dd") + "')");
+                            "'" + dtpDate.Value.ToString("yyyy/MM/dd") + "')");
 
                         if (addaccount.rowAffected > 0)
                         {
-                            MessageBox.Show("New Book added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // ✅ Insert log
-                            addaccount.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
-                                                  "VALUES ('" + DateTime.Now.ToString("yyyy-MM-dd") + "', " +
-                                                  "'" + DateTime.Now.ToString("HH:mm:ss") + "', " +
-                                                  "'Added new book: " + txtTitle.Text + "', " +
-                                                  "'Add Books', " +
-                                                  "'" + txtBookCode.Text + "', " +
-                                                  "'" + username + "')");
-
+                            MessageBox.Show("New Book Added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            addaccount.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " + "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', " + "'" + DateTime.Now.ToShortTimeString() + "', " +
+                                                  "'ADDED NEW BOOK: " + txtTitle.Text + "', " + "'BOOKS MANAGEMENT', " + "'" + txtBookCode.Text + "', " + "'" + username + "')");
                             this.Close();
                         }
                     }
