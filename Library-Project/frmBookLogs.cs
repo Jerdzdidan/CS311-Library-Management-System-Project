@@ -20,7 +20,7 @@ namespace Library_Project
         }
         private void frmBookLogs_Load(object sender, EventArgs e)
         {
-           LoadAllLogs();
+            LoadAllLogs();
         }
         private void LoadAllLogs()
         {
@@ -49,14 +49,26 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on datagridview1_CellContentClick", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnsearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
                 btnsearch_Click(sender, e);
             }
         }
+
+        private void btnsearch_Click(object sender, EventArgs e)
+        {
+            try
+              {
+                DataTable dt = booklogs.GetData("SELECT * FROM tblaccounts WHERE username LIKE '%" + txtsearch.Text + "%' OR usertype LIKE '%" + txtsearch.Text + "%' ORDER BY username");
+                dataGridView1.DataSource = dt;
+              }
+            catch (Exception error)
+              {
+                MessageBox.Show(error.Message, "ERROR on txtsearch_TextChanged", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              }
+        }   
     }
 }
 

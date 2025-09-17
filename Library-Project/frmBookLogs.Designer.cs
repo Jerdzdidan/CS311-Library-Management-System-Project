@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtsearch = new System.Windows.Forms.TextBox();
             this.btnsearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -45,13 +45,12 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // textBox1
+            // txtsearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(522, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.txtsearch.Location = new System.Drawing.Point(12, 25);
+            this.txtsearch.Name = "txtsearch";
+            this.txtsearch.Size = new System.Drawing.Size(522, 22);
+            this.txtsearch.TabIndex = 1;
             // 
             // btnsearch
             // 
@@ -61,6 +60,8 @@
             this.btnsearch.TabIndex = 3;
             this.btnsearch.Text = "Search";
             this.btnsearch.UseVisualStyleBackColor = true;
+            this.btnsearch.Click += new System.EventHandler(this.btnsearch_Click);
+            this.btnsearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnsearch_KeyPress);
             // 
             // frmBookLogs
             // 
@@ -68,7 +69,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 443);
             this.Controls.Add(this.btnsearch);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtsearch);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmBookLogs";
             this.Text = "Book Logs";
@@ -82,7 +83,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtsearch;
         private System.Windows.Forms.Button btnsearch;
     }
 }
