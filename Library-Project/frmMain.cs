@@ -48,7 +48,6 @@ namespace Library_Project
             booklogsform.MdiParent = this;
             booklogsform.Show();
         }
-
         private void bookManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmBooksManagement bookmanagementform = new frmBooksManagement(username);
