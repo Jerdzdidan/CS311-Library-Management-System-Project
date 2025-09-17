@@ -29,12 +29,12 @@ namespace Library_Project
         {
             try
             {
-                DataTable dt = booklogs.GetData("SELECT * FROM tbl_logs ORDER BY datelog DESC, timelog DESC");
+                DataTable dt = booklogs.GetData("SELECT datelog, timelog, action, module, performedto, performedby FROM tbl_logs ORDER BY datelog DESC, timelog DESC");
                 dataGridView1.DataSource = dt;
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "ERROR on LoadAllLogs", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error.Message, "ERROR loading logs", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private int row;
@@ -63,22 +63,54 @@ namespace Library_Project
         private void btnsearch_Click(object sender, EventArgs e)
         {
             try
-              {
-                DataTable dt = booklogs.GetData("SELECT * FROM tblaccounts WHERE username LIKE '%" + txtsearch.Text + "%' OR usertype LIKE '%" + txtsearch.Text + "%' ORDER BY username");
+            {
+                string keyword = txtSearch.Text.Trim();
+                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
+                               "FROM tbl_logs " +
+                               "WHERE performedto LIKE '%" + keyword + "%' " +
+                               "OR performedby LIKE '%" + keyword + "%' " +
+                               "OR action LIKE '%" + keyword + "%' " +
+                               "OR module LIKE '%" + keyword + "%' " +
+                               "ORDER BY datelog DESC, timelog DESC";
+
+                DataTable dt = booklogs.GetData(query);
                 dataGridView1.DataSource = dt;
-              }
+            }
             catch (Exception error)
-              {
-                MessageBox.Show(error.Message, "ERROR on txtsearch_TextChanged", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              }
+            {
+                MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnreset_Click(object sender, EventArgs e)
         {
-            txtsearch.Clear();
+            txtSearch.Clear();
             dtpDate.Value = DateTime.Now;
             LoadAllLogs();
         }
+
+        private void txtsearch_TextChanged(object sender, EventArgs e)
+        {
+           
+                try
+                {
+                    string keyword = txtSearch.Text.Trim();
+                    string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
+                                   "FROM tbl_logs " +
+                                   "WHERE performedto LIKE '%" + keyword + "%' " +
+                                   "OR performedby LIKE '%" + keyword + "%' " +
+                                   "OR action LIKE '%" + keyword + "%' " +
+                                   "OR module LIKE '%" + keyword + "%' " +
+                                   "ORDER BY datelog DESC, timelog DESC";
+
+                    DataTable dt = booklogs.GetData(query); // ✅ fixed: use booklogs not logs
+                    dataGridView1.DataSource = dt;
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
     }
 }
 

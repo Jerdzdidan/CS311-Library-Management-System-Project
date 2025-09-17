@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Library_Project
     public partial class frmAddBooks : Form
     {
         Class1 addaccount = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
+
         private string username;
         public frmAddBooks(string username)
         {
@@ -21,5 +23,109 @@ namespace Library_Project
             this.username = username;
         }
         private int errorcount;
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            errorcount = 0;
+            if (string.IsNullOrEmpty(txtTitle.Text))
+            {
+                errorProvider1.SetError(txtTitle, "Title is empty.");
+                errorcount++;
+            }
+            if (string.IsNullOrEmpty(txtAuthor.Text))
+            {
+                errorProvider1.SetError(txtAuthor, "Author is empty.");
+                errorcount++;
+            }
+            if (cmbCategory.SelectedIndex < 0)
+            {
+                errorProvider1.SetError(cmbCategory, "Select category.");
+                errorcount++;
+            }
+            if (dtpDate.Value == null)
+            {
+                errorProvider1.SetError(dtpDate, "Please select a date.");
+                errorcount++;
+            }
+
+            if (errorcount == 0)
+            {
+                try
+                {
+         
+
+                    DialogResult dr = MessageBox.Show("Are you sure you want to add this book?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        addaccount.executeSQL(
+                            "INSERT INTO tbl_books (BookID, title, author, category, status, borroweddate) " +
+                            "VALUES ('" + txtBookCode.Text + "', " +
+                            "'" + txtTitle.Text + "', " +
+                            "'" + txtAuthor.Text + "', " +
+                            "'" + cmbCategory.Text + "', " +
+                            "'AVAILABLE', " + // ✅ default status
+                            "'" + dtpDate.Value.ToString("yyyy-MM-dd") + "')");
+
+                        if (addaccount.rowAffected > 0)
+                        {
+                            MessageBox.Show("New Book added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // ✅ Insert log
+                            addaccount.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
+                                                  "VALUES ('" + DateTime.Now.ToString("yyyy-MM-dd") + "', " +
+                                                  "'" + DateTime.Now.ToString("HH:mm:ss") + "', " +
+                                                  "'Added new book: " + txtTitle.Text + "', " +
+                                                  "'Add Books', " +
+                                                  "'" + txtBookCode.Text + "', " +
+                                                  "'" + username + "')");
+
+                            this.Close();
+                        }
+                    }
+
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message, "ERROR on adding new book", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void GenerateBookCode()
+        {
+            if (cmbCategory.SelectedIndex >= 0)
+            {
+                string categoryCode = cmbCategory.Text.Length >= 7 ? cmbCategory.Text.Substring(0, 7).ToUpper() : cmbCategory.Text.ToUpper();
+                string yearCode = dtpDate.Value.Year.ToString(); // use selected year
+                string dateCode = DateTime.Now.ToString("MMddyyyyHHmmss");
+
+                txtBookCode.Text = "LIB-" + categoryCode + "-" + yearCode + "-" + dateCode;
+            }
+        }
+
+        
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtDate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GenerateBookCode();
+        }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            GenerateBookCode();
+        }
     }
 }
