@@ -53,8 +53,8 @@
             // bookToolStripMenuItem
             // 
             this.bookToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bookManagementToolStripMenuItem,
-            this.accountManagementToolStripMenuItem});
+            this.accountManagementToolStripMenuItem,
+            this.bookManagementToolStripMenuItem});
             this.bookToolStripMenuItem.Name = "bookToolStripMenuItem";
             this.bookToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
             this.bookToolStripMenuItem.Text = "Library Management";

@@ -49,7 +49,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 74);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 58);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -61,7 +61,7 @@
             // btnAddBook
             // 
             this.btnAddBook.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddBook.Location = new System.Drawing.Point(77, 42);
+            this.btnAddBook.Location = new System.Drawing.Point(27, 21);
             this.btnAddBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddBook.Name = "btnAddBook";
             this.btnAddBook.Size = new System.Drawing.Size(107, 30);
@@ -71,16 +71,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(89, 36);
+            this.textBox1.Location = new System.Drawing.Point(118, 20);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(773, 22);
+            this.textBox1.Size = new System.Drawing.Size(722, 22);
             this.textBox1.TabIndex = 2;
             // 
             // btnDeleteBook
             // 
             this.btnDeleteBook.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDeleteBook.Location = new System.Drawing.Point(77, 113);
+            this.btnDeleteBook.Location = new System.Drawing.Point(27, 109);
             this.btnDeleteBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteBook.Name = "btnDeleteBook";
             this.btnDeleteBook.Size = new System.Drawing.Size(107, 30);
@@ -91,7 +91,7 @@
             // btnDamage
             // 
             this.btnDamage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDamage.Location = new System.Drawing.Point(181, 32);
+            this.btnDamage.Location = new System.Drawing.Point(27, 173);
             this.btnDamage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDamage.Name = "btnDamage";
             this.btnDamage.Size = new System.Drawing.Size(107, 30);
@@ -113,12 +113,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 39);
+            this.label1.Location = new System.Drawing.Point(14, 23);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 16);
+            this.label1.Size = new System.Drawing.Size(94, 16);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Search:";
+            this.label1.Text = "Search books:";
             // 
             // groupBox1
             // 
@@ -126,11 +126,11 @@
             this.groupBox1.Controls.Add(this.btnew);
             this.groupBox1.Controls.Add(this.btnDamage);
             this.groupBox1.Controls.Add(this.btnReplace);
-            this.groupBox1.Location = new System.Drawing.Point(548, 528);
+            this.groupBox1.Location = new System.Drawing.Point(900, 242);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(316, 143);
+            this.groupBox1.Size = new System.Drawing.Size(158, 218);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Status Actions";
@@ -138,7 +138,7 @@
             // button2
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(27, 90);
+            this.button2.Location = new System.Drawing.Point(27, 119);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(107, 30);
@@ -149,7 +149,7 @@
             // btnew
             // 
             this.btnew.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnew.Location = new System.Drawing.Point(181, 90);
+            this.btnew.Location = new System.Drawing.Point(27, 76);
             this.btnew.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnew.Name = "btnew";
             this.btnew.Size = new System.Drawing.Size(107, 30);
@@ -160,7 +160,7 @@
             // btnUpdateBook
             // 
             this.btnUpdateBook.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdateBook.Location = new System.Drawing.Point(77, 76);
+            this.btnUpdateBook.Location = new System.Drawing.Point(27, 65);
             this.btnUpdateBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdateBook.Name = "btnUpdateBook";
             this.btnUpdateBook.Size = new System.Drawing.Size(107, 30);
@@ -173,11 +173,11 @@
             this.groupBox2.Controls.Add(this.btnAddBook);
             this.groupBox2.Controls.Add(this.btnUpdateBook);
             this.groupBox2.Controls.Add(this.btnDeleteBook);
-            this.groupBox2.Location = new System.Drawing.Point(20, 528);
+            this.groupBox2.Location = new System.Drawing.Point(900, 58);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(244, 165);
+            this.groupBox2.Size = new System.Drawing.Size(158, 147);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Actions";
@@ -186,7 +186,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 730);
+            this.ClientSize = new System.Drawing.Size(1090, 508);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);

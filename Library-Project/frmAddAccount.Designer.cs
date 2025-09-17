@@ -47,11 +47,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(138, 149);
+            this.label5.Location = new System.Drawing.Point(131, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(218, 33);
+            this.label5.Size = new System.Drawing.Size(229, 33);
             this.label5.TabIndex = 39;
-            this.label5.Text = "Add New Account";
+            this.label5.Text = "Add New Librarian";
             // 
             // cmbUserType
             // 
@@ -63,7 +63,7 @@
             "ADMINISTRATOR",
             "TECHNICAL",
             "STAFF"});
-            this.cmbUserType.Location = new System.Drawing.Point(98, 401);
+            this.cmbUserType.Location = new System.Drawing.Point(91, 284);
             this.cmbUserType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbUserType.Name = "cmbUserType";
             this.cmbUserType.Size = new System.Drawing.Size(287, 30);
@@ -73,7 +73,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(66, 375);
+            this.label3.Location = new System.Drawing.Point(59, 258);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 22);
@@ -85,7 +85,7 @@
             this.cbkshow.AutoSize = true;
             this.cbkshow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbkshow.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbkshow.Location = new System.Drawing.Point(272, 352);
+            this.cbkshow.Location = new System.Drawing.Point(265, 235);
             this.cbkshow.Margin = new System.Windows.Forms.Padding(4);
             this.cbkshow.Name = "cbkshow";
             this.cbkshow.Size = new System.Drawing.Size(160, 26);
@@ -96,7 +96,7 @@
             // txtpassword
             // 
             this.txtpassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpassword.Location = new System.Drawing.Point(98, 314);
+            this.txtpassword.Location = new System.Drawing.Point(91, 197);
             this.txtpassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
@@ -108,7 +108,7 @@
             this.btnClear.BackColor = System.Drawing.Color.Silver;
             this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(280, 460);
+            this.btnClear.Location = new System.Drawing.Point(273, 343);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(152, 36);
@@ -120,7 +120,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(66, 288);
+            this.label2.Location = new System.Drawing.Point(59, 171);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 22);
@@ -132,7 +132,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(49, 460);
+            this.btnAdd.Location = new System.Drawing.Point(42, 343);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(152, 36);
@@ -145,7 +145,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(66, 217);
+            this.label1.Location = new System.Drawing.Point(59, 100);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 22);
@@ -155,7 +155,7 @@
             // txtusername
             // 
             this.txtusername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtusername.Location = new System.Drawing.Point(98, 243);
+            this.txtusername.Location = new System.Drawing.Point(91, 126);
             this.txtusername.Margin = new System.Windows.Forms.Padding(4);
             this.txtusername.Name = "txtusername";
             this.txtusername.Size = new System.Drawing.Size(281, 30);
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 531);
+            this.ClientSize = new System.Drawing.Size(455, 393);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbUserType);
             this.Controls.Add(this.label3);

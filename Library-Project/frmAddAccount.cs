@@ -48,7 +48,7 @@ namespace Library_Project
 
             try
             {
-                DataTable dt = addaccount.GetData("SELECT * FROM tblaccounts WHERE username = '" + txtusername.Text + "'");
+                DataTable dt = addaccount.GetData("SELECT * FROM tbl_accounts WHERE username = '" + txtusername.Text + "'");
                 if (dt.Rows.Count > 0)
                 {
                     errorProvider1.SetError(txtusername, "Username is already in use.");
