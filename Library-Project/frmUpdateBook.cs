@@ -8,22 +8,19 @@ namespace Library_Project
     {
         Class1 bookUpdate = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
 
-        private string username; // ✅ keep as username (same as UpdateAccount)
+        private string username;
         private int errorcount;
 
         public frmUpdateBook(string bookID, string title, string author, string category, string status, string borrowedDate, string username)
         {
             InitializeComponent();
-
-            this.username = username; // ✅ we store the username just like in UpdateAccount
-
+            this.username = username; 
             txtBookCode.Text = bookID;
             txtTitle.Text = title;
             txtAuthor.Text = author;
             cmbCategory.Text = category;
             cmbStatus.Text = status;
 
-            // Convert string date to DateTime
             if (DateTime.TryParse(borrowedDate, out DateTime parsedDate))
             {
                 dtpDate.Value = parsedDate;
@@ -33,7 +30,6 @@ namespace Library_Project
                 dtpDate.Value = DateTime.Now;
             }
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();

@@ -33,7 +33,6 @@
             this.btnsearch = new System.Windows.Forms.Button();
             this.btnreset = new System.Windows.Forms.Button();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.btndelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,22 +91,11 @@
             this.dtpDate.Size = new System.Drawing.Size(200, 22);
             this.dtpDate.TabIndex = 5;
             // 
-            // btndelete
-            // 
-            this.btndelete.Location = new System.Drawing.Point(650, 414);
-            this.btndelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(110, 32);
-            this.btndelete.TabIndex = 6;
-            this.btndelete.Text = "Delete";
-            this.btndelete.UseVisualStyleBackColor = true;
-            // 
             // frmBookLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 457);
-            this.Controls.Add(this.btndelete);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btnreset);
             this.Controls.Add(this.btnsearch);
@@ -133,6 +121,5 @@
         private System.Windows.Forms.Button btnsearch;
         private System.Windows.Forms.Button btnreset;
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.Button btndelete;
     }
 }

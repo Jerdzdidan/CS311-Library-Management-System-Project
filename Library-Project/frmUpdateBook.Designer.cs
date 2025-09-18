@@ -52,7 +52,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(404, 244);
+            this.label7.Location = new System.Drawing.Point(436, 242);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 19);
@@ -63,7 +63,7 @@
             // 
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(110, 306);
+            this.btnCancel.Location = new System.Drawing.Point(128, 306);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(116, 36);
@@ -84,9 +84,9 @@
             "UNAVAILABLE",
             "DAMAGED"});
             this.cmbStatus.Location = new System.Drawing.Point(128, 236);
-            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(247, 27);
+            this.cmbStatus.Size = new System.Drawing.Size(274, 27);
             this.cmbStatus.TabIndex = 28;
             // 
             // cmbCategory
@@ -99,16 +99,16 @@
             "FICTION",
             "NON-FICTION"});
             this.cmbCategory.Location = new System.Drawing.Point(128, 179);
-            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(247, 27);
+            this.cmbCategory.Size = new System.Drawing.Size(274, 27);
             this.cmbCategory.TabIndex = 27;
             // 
             // txtAuthor
             // 
-            this.txtAuthor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtAuthor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtAuthor.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAuthor.Location = new System.Drawing.Point(458, 179);
+            this.txtAuthor.Location = new System.Drawing.Point(490, 177);
             this.txtAuthor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(248, 27);
@@ -122,7 +122,7 @@
             this.txtBookCode.Location = new System.Drawing.Point(126, 121);
             this.txtBookCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookCode.Name = "txtBookCode";
-            this.txtBookCode.Size = new System.Drawing.Size(248, 27);
+            this.txtBookCode.Size = new System.Drawing.Size(275, 27);
             this.txtBookCode.TabIndex = 25;
             // 
             // label6
@@ -149,7 +149,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(391, 182);
+            this.label3.Location = new System.Drawing.Point(423, 180);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 22;
@@ -169,7 +169,7 @@
             // 
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(547, 306);
+            this.btnUpdate.Location = new System.Drawing.Point(558, 306);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(116, 36);
@@ -180,9 +180,9 @@
             // 
             // txtTitle
             // 
-            this.txtTitle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtTitle.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitle.Location = new System.Drawing.Point(458, 121);
+            this.txtTitle.Location = new System.Drawing.Point(490, 119);
             this.txtTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(248, 27);
@@ -192,7 +192,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(407, 127);
+            this.label1.Location = new System.Drawing.Point(439, 125);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 19);
             this.label1.TabIndex = 18;
@@ -200,10 +200,11 @@
             // 
             // dtpDate
             // 
+            this.dtpDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpDate.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(458, 238);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDate.Location = new System.Drawing.Point(490, 236);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(245, 27);
             this.dtpDate.TabIndex = 31;
@@ -226,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 375);
+            this.ClientSize = new System.Drawing.Size(764, 368);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.label7);
@@ -243,7 +244,7 @@
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmUpdateBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

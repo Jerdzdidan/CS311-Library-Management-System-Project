@@ -59,7 +59,6 @@ namespace Library_Project
                 btnsearch_Click(sender, e);
             }
         }
-
         private void btnsearch_Click(object sender, EventArgs e)
         {
             try
@@ -85,7 +84,6 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnreset_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
@@ -106,56 +104,6 @@ namespace Library_Project
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void btndelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a book log to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (MessageBox.Show("Are you sure you want to delete this log entry?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
-                {
-                    // Get the row index
-                    int selectedRowIndex = dataGridView1.SelectedRows[0].Index;
-
-                    // Get fresh data from database
-                    DataTable dt = booklogs.GetData("SELECT datelog, timelog, action, module, performedto, performedby FROM tbl_logs ORDER BY datelog DESC, timelog DESC");
-
-                    if (selectedRowIndex < dt.Rows.Count)
-                    {
-                        DataRow rowToDelete = dt.Rows[selectedRowIndex];
-
-                        // Delete using all fields to ensure exact match
-                        string query = $"DELETE FROM tbl_logs WHERE " +
-                                     $"datelog = '{rowToDelete["datelog"]}' AND " +
-                                     $"timelog = '{rowToDelete["timelog"]}' AND " +
-                                     $"action = '{rowToDelete["action"]}' AND " +
-                                     $"module = '{rowToDelete["module"]}' AND " +
-                                     $"performedto = '{rowToDelete["performedto"]}' AND " +
-                                     $"performedby = '{rowToDelete["performedby"]}' LIMIT 1";
-
-                        booklogs.executeSQL(query);
-
-                        if (booklogs.rowAffected > 0)
-                        {
-                            MessageBox.Show("Log deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadAllLogs();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to delete the log entry.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
     }

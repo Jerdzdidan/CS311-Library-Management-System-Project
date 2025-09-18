@@ -80,6 +80,12 @@
     <Compile Include="frmBooksManagement.Designer.cs">
       <DependentUpon>frmBooksManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBorrowBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrowBooks.Designer.cs">
+      <DependentUpon>frmBorrowBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmlogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBooksManagement.resx">
       <DependentUpon>frmBooksManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBorrowBooks.resx">
+      <DependentUpon>frmBorrowBooks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmlogin.resx">
       <DependentUpon>frmlogin.cs</DependentUpon>

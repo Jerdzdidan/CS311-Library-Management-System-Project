@@ -59,7 +59,7 @@
             this.btnadd.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnadd.Location = new System.Drawing.Point(17, 29);
             this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(112, 30);
+            this.btnadd.Size = new System.Drawing.Size(138, 30);
             this.btnadd.TabIndex = 2;
             this.btnadd.Text = "&Add Account";
             this.btnadd.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@
             this.btndelete.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndelete.Location = new System.Drawing.Point(17, 130);
             this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(112, 30);
+            this.btndelete.Size = new System.Drawing.Size(138, 30);
             this.btndelete.TabIndex = 3;
             this.btndelete.Text = "&Delete Account";
             this.btndelete.UseVisualStyleBackColor = true;
@@ -79,9 +79,9 @@
             // btnupdate
             // 
             this.btnupdate.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnupdate.Location = new System.Drawing.Point(17, 81);
+            this.btnupdate.Location = new System.Drawing.Point(17, 80);
             this.btnupdate.Name = "btnupdate";
-            this.btnupdate.Size = new System.Drawing.Size(112, 30);
+            this.btnupdate.Size = new System.Drawing.Size(138, 30);
             this.btnupdate.TabIndex = 4;
             this.btnupdate.Text = "&Update Account";
             this.btnupdate.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@
             // btnreset
             // 
             this.btnreset.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnreset.Location = new System.Drawing.Point(785, 341);
+            this.btnreset.Location = new System.Drawing.Point(797, 340);
             this.btnreset.Name = "btnreset";
             this.btnreset.Size = new System.Drawing.Size(112, 30);
             this.btnreset.TabIndex = 5;
@@ -105,7 +105,7 @@
             this.groupBox1.Controls.Add(this.btndelete);
             this.groupBox1.Location = new System.Drawing.Point(768, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(143, 169);
+            this.groupBox1.Size = new System.Drawing.Size(173, 169);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Action Buttons:";
@@ -130,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 400);
+            this.ClientSize = new System.Drawing.Size(953, 400);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtsearch);
             this.Controls.Add(this.groupBox1);

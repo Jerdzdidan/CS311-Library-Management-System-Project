@@ -43,7 +43,7 @@ namespace Library_Project
             };
             addBookForm.Show();
         }
-
+        private int row;
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -52,25 +52,19 @@ namespace Library_Project
                 return;
             }
 
-            // Get selected row
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            string bookID = dataGridView1.Rows[row].Cells[0].Value.ToString();
+            string title = dataGridView1.Rows[row].Cells[1].Value.ToString();
+            string author = dataGridView1.Rows[row].Cells[2].Value.ToString(); ;
+            string category = dataGridView1.Rows[row].Cells[3].Value.ToString();
+            string status = dataGridView1.Rows[row].Cells[4].Value.ToString();
+            string borrowedDate = dataGridView1.Rows[row].Cells[5].Value.ToString();
+            frmUpdateBook updateBook = new frmUpdateBook(bookID, title, author, category, status, borrowedDate, username);
 
-            string bookID = row.Cells["BookID"].Value.ToString();
-            string title = row.Cells["title"].Value.ToString();
-            string author = row.Cells["author"].Value.ToString();
-            string category = row.Cells["category"].Value.ToString();
-            string status = row.Cells["status"].Value.ToString();
-            string borrowedDate = row.Cells["borroweddate"].Value.ToString();
-
-            // Open Update Form
-            frmUpdateBook frm = new frmUpdateBook(bookID, title, author, category, status, borrowedDate, username);
-            
-
-            frm.BookUpdated += (s, args) =>
+            updateBook.FormClosed += (s, args) =>
             {
-                frmBooksManagement_Load_1(sender, e); // reload DataGridView
+                frmBooksManagement_Load_1(sender, e);
             };
-            frm.ShowDialog();
+            updateBook.Show();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -78,14 +72,8 @@ namespace Library_Project
             try
             {
                 string searchText = txtSearch.Text.Trim();
-
-                string query = @"SELECT * FROM tbl_books
-                         WHERE BookID LIKE '%" + searchText + @"%'
-                            OR title LIKE '%" + searchText + @"%' 
-                            OR author LIKE '%" + searchText + @"%' 
-                            OR category LIKE '%" + searchText + @"%'
-                         ORDER BY BookID";
-
+                string query = @"SELECT * FROM tbl_books WHERE BookID LIKE '%" + searchText + @"%' OR title LIKE '%" + searchText + @"%' OR author LIKE '%" + searchText + @"%' 
+                                OR category LIKE '%" + searchText + @"%' ORDER BY BookID";
                 DataTable dt = books.GetData(query);
                 dataGridView1.DataSource = dt;
             }
@@ -94,8 +82,6 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on txtSearch", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-      
             private void btnDeleteBook_Click(object sender, EventArgs e)
             {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -122,7 +108,7 @@ namespace Library_Project
                             bookID + "', '" + username + "')");
 
                         MessageBox.Show("Book deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        frmBooksManagement_Load_1(sender, e); // Refresh DataGridView
+                        frmBooksManagement_Load_1(sender, e);
                     }
                     else
                     {
@@ -143,12 +129,9 @@ namespace Library_Project
                 return;
             }
 
-            // Get selected book info
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             string bookID = row.Cells["BookID"].Value.ToString();
             string currentStatus = row.Cells["status"].Value.ToString();
-
-            // Validation rules
             if (currentStatus == "REPLACED")
             {
                 MessageBox.Show("You cannot change the status of a replaced book.", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -167,12 +150,7 @@ namespace Library_Project
                 return;
             }
 
-            // Ask for confirmation
-            DialogResult dr = MessageBox.Show($"Are you sure you want to change status from {currentStatus} to {newStatus}?",
-                                              "Confirm Status Update",
-                                              MessageBoxButtons.YesNo,
-                                              MessageBoxIcon.Question);
-
+            DialogResult dr = MessageBox.Show($"Are you sure you want to change status from {currentStatus} to {newStatus}?", "Confirm Status Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
                 try
@@ -195,12 +173,6 @@ namespace Library_Project
                 }
             }
         }
-
-        private void btnReplace_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("REPLACE");
-        }
-
         private void btnAvailable_Click(object sender, EventArgs e)
         {
             UpdateStatus("AVAILABLE");
@@ -214,6 +186,11 @@ namespace Library_Project
         private void btnDamage_Click(object sender, EventArgs e)
         {
             UpdateStatus("DAMAGED");
+        }
+
+        private void btnBorrow_Click(object sender, EventArgs e)
+        {
+            UpdateStatus("Borrowed");
         }
     }
 }

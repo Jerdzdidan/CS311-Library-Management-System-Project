@@ -51,11 +51,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(60, 171);
+            this.label1.Location = new System.Drawing.Point(25, 173);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 19);
+            this.label1.Size = new System.Drawing.Size(86, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Title:";
+            this.label1.Text = "Book Title:";
             // 
             // txtTitle
             // 
@@ -64,14 +64,14 @@
             this.txtTitle.Location = new System.Drawing.Point(122, 170);
             this.txtTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(248, 27);
+            this.txtTitle.Size = new System.Drawing.Size(275, 27);
             this.txtTitle.TabIndex = 2;
             // 
             // btnAdd
             // 
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(257, 350);
+            this.btnAdd.Location = new System.Drawing.Point(283, 347);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(130, 37);
@@ -126,7 +126,7 @@
             this.txtBookCode.Location = new System.Drawing.Point(122, 130);
             this.txtBookCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookCode.Name = "txtBookCode";
-            this.txtBookCode.Size = new System.Drawing.Size(248, 27);
+            this.txtBookCode.Size = new System.Drawing.Size(275, 27);
             this.txtBookCode.TabIndex = 11;
             // 
             // txtAuthor
@@ -136,7 +136,7 @@
             this.txtAuthor.Location = new System.Drawing.Point(122, 209);
             this.txtAuthor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAuthor.Name = "txtAuthor";
-            this.txtAuthor.Size = new System.Drawing.Size(248, 27);
+            this.txtAuthor.Size = new System.Drawing.Size(275, 27);
             this.txtAuthor.TabIndex = 12;
             // 
             // cmbCategory
@@ -146,12 +146,18 @@
             this.cmbCategory.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategory.FormattingEnabled = true;
             this.cmbCategory.Items.AddRange(new object[] {
+            "MATHEMATICS",
+            "SCIENCE",
+            "FILIPINO",
+            "ENGLISH",
+            "MAPEH",
+            "MAGAZINE",
             "FICTION",
             "NON-FICTION"});
             this.cmbCategory.Location = new System.Drawing.Point(123, 248);
-            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(247, 27);
+            this.cmbCategory.Size = new System.Drawing.Size(274, 27);
             this.cmbCategory.TabIndex = 13;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
@@ -159,10 +165,10 @@
             // 
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(49, 350);
+            this.btnCancel.Location = new System.Drawing.Point(49, 347);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(130, 37);
+            this.btnCancel.Size = new System.Drawing.Size(145, 37);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -176,7 +182,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(59, 300);
+            this.label7.Location = new System.Drawing.Point(60, 298);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 19);
@@ -188,9 +194,9 @@
             this.dtpDate.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDate.Location = new System.Drawing.Point(122, 292);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(244, 27);
+            this.dtpDate.Size = new System.Drawing.Size(271, 27);
             this.dtpDate.TabIndex = 17;
             this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
@@ -208,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 418);
+            this.ClientSize = new System.Drawing.Size(443, 418);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.label7);
