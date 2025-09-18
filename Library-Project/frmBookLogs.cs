@@ -29,8 +29,9 @@ namespace Library_Project
         {
             try
             {
-                DataTable dt = booklogs.GetData("SELECT datelog, timelog, action, module, performedto, performedby FROM tbl_logs ORDER BY datelog DESC, timelog DESC");
+                DataTable dt = booklogs.GetData("SELECT logID, datelog, timelog, action, module, performedto, performedby FROM tbl_logs ORDER BY datelog DESC, timelog DESC");
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns["logID"].Visible = false;
             }
             catch (Exception error)
             {
@@ -95,25 +96,60 @@ namespace Library_Project
 
         private void txtsearch_TextChanged(object sender, EventArgs e)
         {
-           
-                try
-                {
-                    string keyword = txtSearch.Text.Trim();
-                    string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
-                                   "FROM tbl_logs " +
-                                   "WHERE performedto LIKE '%" + keyword + "%' " +
-                                   "OR performedby LIKE '%" + keyword + "%' " +
-                                   "OR action LIKE '%" + keyword + "%' " +
-                                   "OR module LIKE '%" + keyword + "%' " +
-                                   "ORDER BY datelog DESC, timelog DESC";
+            try
+            {
+                string keyword = txtSearch.Text.Trim();
+                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
+                               "FROM tbl_logs " +
+                               "WHERE performedto LIKE '%" + keyword + "%' " +
+                               "OR performedby LIKE '%" + keyword + "%' " +
+                               "OR action LIKE '%" + keyword + "%' " +
+                               "OR module LIKE '%" + keyword + "%' " +
+                               "ORDER BY datelog DESC, timelog DESC";
 
-                    DataTable dt = booklogs.GetData(query); // ✅ fixed: use booklogs not logs
-                    dataGridView1.DataSource = dt;
-                }
-                catch (Exception error)
+                DataTable dt = booklogs.GetData(query); // ✅ fixed: use booklogs not logs
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btndelete_Click(object sender, EventArgs e)
+        {
+            {
+                if (dataGridView1.SelectedRows.Count == 0)
                 {
-                    MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please select a book log to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                DataGridViewRow row = dataGridView1.SelectedRows[0];
+                string bookLogs = row.Cells["logID"].Value.ToString();
+
+                DialogResult dr = MessageBox.Show("Are you sure you want to delete this book log?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    try
+                    {
+                        booklogs.executeSQL("DELETE FROM tbl_logs WHERE logID = '" + bookLogs + "'");
+
+                        if (booklogs.rowAffected > 0)
+                        {
+                            MessageBox.Show("Book log deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            frmBookLogs_Load(sender, e); // Refresh DataGridView
+                        }
+                        else
+                        {
+                            MessageBox.Show("No book deleted. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception error)
+                    {
+                        MessageBox.Show(error.Message, "ERROR on delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

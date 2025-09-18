@@ -50,14 +50,14 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(763, 328);
+            this.dataGridView1.Size = new System.Drawing.Size(740, 328);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnadd
             // 
             this.btnadd.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.Location = new System.Drawing.Point(26, 32);
+            this.btnadd.Location = new System.Drawing.Point(17, 29);
             this.btnadd.Name = "btnadd";
             this.btnadd.Size = new System.Drawing.Size(112, 30);
             this.btnadd.TabIndex = 2;
@@ -68,7 +68,7 @@
             // btndelete
             // 
             this.btndelete.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btndelete.Location = new System.Drawing.Point(26, 133);
+            this.btndelete.Location = new System.Drawing.Point(17, 130);
             this.btndelete.Name = "btndelete";
             this.btndelete.Size = new System.Drawing.Size(112, 30);
             this.btndelete.TabIndex = 3;
@@ -79,7 +79,7 @@
             // btnupdate
             // 
             this.btnupdate.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnupdate.Location = new System.Drawing.Point(26, 84);
+            this.btnupdate.Location = new System.Drawing.Point(17, 81);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(112, 30);
             this.btnupdate.TabIndex = 4;
@@ -90,7 +90,7 @@
             // btnreset
             // 
             this.btnreset.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnreset.Location = new System.Drawing.Point(825, 341);
+            this.btnreset.Location = new System.Drawing.Point(785, 341);
             this.btnreset.Name = "btnreset";
             this.btnreset.Size = new System.Drawing.Size(112, 30);
             this.btnreset.TabIndex = 5;
@@ -103,9 +103,9 @@
             this.groupBox1.Controls.Add(this.btnadd);
             this.groupBox1.Controls.Add(this.btnupdate);
             this.groupBox1.Controls.Add(this.btndelete);
-            this.groupBox1.Location = new System.Drawing.Point(799, 53);
+            this.groupBox1.Location = new System.Drawing.Point(768, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(155, 169);
+            this.groupBox1.Size = new System.Drawing.Size(143, 169);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Action Buttons:";
@@ -114,7 +114,7 @@
             // 
             this.txtsearch.Location = new System.Drawing.Point(125, 22);
             this.txtsearch.Name = "txtsearch";
-            this.txtsearch.Size = new System.Drawing.Size(647, 22);
+            this.txtsearch.Size = new System.Drawing.Size(609, 22);
             this.txtsearch.TabIndex = 8;
             // 
             // label1
@@ -130,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 400);
+            this.ClientSize = new System.Drawing.Size(923, 400);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtsearch);
             this.Controls.Add(this.groupBox1);

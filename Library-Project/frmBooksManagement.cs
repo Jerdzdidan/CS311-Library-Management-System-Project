@@ -65,6 +65,7 @@ namespace Library_Project
             // Open Update Form
             frmUpdateBook frm = new frmUpdateBook(bookID, title, author, category, status, borrowedDate, username);
             
+
             frm.BookUpdated += (s, args) =>
             {
                 frmBooksManagement_Load_1(sender, e); // reload DataGridView
