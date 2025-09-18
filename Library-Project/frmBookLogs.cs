@@ -99,14 +99,8 @@ namespace Library_Project
             try
             {
                 string keyword = txtSearch.Text.Trim();
-                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
-                               "FROM tbl_logs " +
-                               "WHERE performedto LIKE '%" + keyword + "%' " +
-                               "OR performedby LIKE '%" + keyword + "%' " +
-                               "OR action LIKE '%" + keyword + "%' " +
-                               "OR module LIKE '%" + keyword + "%' " +
-                               "ORDER BY datelog DESC, timelog DESC";
-
+                string query = "SELECT datelog, timelog, action, module, performedto, performedby " + "FROM tbl_logs " + "WHERE performedto LIKE '%" + keyword + "%' " + "OR performedby LIKE '%" + keyword + "%' " +
+                               "OR action LIKE '%" + keyword + "%' " + "OR module LIKE '%" + keyword + "%' " + "ORDER BY datelog DESC, timelog DESC";
                 DataTable dt = booklogs.GetData(query); // ✅ fixed: use booklogs not logs
                 dataGridView1.DataSource = dt;
             }
