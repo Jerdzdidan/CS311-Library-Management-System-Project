@@ -31,16 +31,26 @@ namespace Library_Project
         {
             try
             {
-                DialogResult dr = MessageBox.Show("Are you sure want to edit this account?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show("Are you sure want to edit this account?",
+                                                  "Confirmation",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
-                    updateaccount.executeSQL("UPDATE tbl_accounts SET password = '" + txtpassword.Text + "' , usertype = '" + cmbusertype.Text.ToUpper() + "' , status = '" +
-                        cmbstatus.Text.ToUpper() + "' WHERE username = '" + txtusername.Text + "'");
+                    updateaccount.executeSQL("UPDATE tbl_accounts SET password = '" + txtpassword.Text +
+                        "' , usertype = '" + cmbusertype.Text.ToUpper() +
+                        "' , status = '" + cmbstatus.Text.ToUpper() +
+                        "' WHERE username = '" + txtusername.Text + "'");
+
                     if (updateaccount.rowAffected > 0)
                     {
                         MessageBox.Show("Account updated.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        updateaccount.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
-                            DateTime.Now.ToShortTimeString() + "' , 'UPDATE', 'ACCOUNTS MANAGEMENT', '" + txtusername.Text + "', '" + username + "')");
+                        updateaccount.executeSQL(
+                            "INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
+                            "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
+                            DateTime.Now.ToShortTimeString() + "', 'UPDATE', 'ACCOUNTS MANAGEMENT', '" +
+                            txtusername.Text + "', '" + username + "')");
+
                         this.Close();
                     }
                 }

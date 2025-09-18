@@ -83,8 +83,6 @@ namespace Library_Project
                         if (bookUpdate.rowAffected > 0)
                         {
                             MessageBox.Show("Book updated.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // ✅ FIX: Log performedby using username (same as UpdateAccount)
                             bookUpdate.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
                                 DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
                                 DateTime.Now.ToShortTimeString() + "', 'UPDATE', 'BOOKS MANAGEMENT', '" +

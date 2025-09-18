@@ -101,7 +101,6 @@
             this.btndelete.TabIndex = 6;
             this.btndelete.Text = "Delete";
             this.btndelete.UseVisualStyleBackColor = true;
-            this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
             // 
             // frmBookLogs
             // 
