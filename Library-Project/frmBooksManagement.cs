@@ -195,7 +195,51 @@ namespace Library_Project
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a book to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            string bookID = selectedRow.Cells["BookID"].Value.ToString();
+            string currentStatus = selectedRow.Cells["status"].Value.ToString();
+
+            if (currentStatus == "AVAILABLE")
+            {
+                MessageBox.Show("This book is already available.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DialogResult dr = MessageBox.Show("Are you sure you want to return this book?",
+                                              "Confirm Return", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+            {
+                try
+                {
+                    books.executeSQL("UPDATE tbl_books SET status = 'AVAILABLE' WHERE BookID = '" + bookID + "'");
+                    books.executeSQL("UPDATE tbl_transac SET returndate = '" + DateTime.Now.ToString("yyyy-MM-dd") +
+                                     "', status = 'RETURNED' WHERE bookCode = '" + bookID + "' AND status = 'BORROWED'");
+                    books.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
+                                     "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
+                                     DateTime.Now.ToShortTimeString() + "', 'RETURN', 'BOOKS MANAGEMENT', '" +
+                                     bookID + "', '" + username + "')");
+                    if (books.rowAffected > 0)
+                    {
+                        MessageBox.Show("Book successfully returned.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        frmBooksManagement_Load_1(null, null); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("No changes were made. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message, "ERROR on book return", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         private void btnBorrow_Click(object sender, EventArgs e)
         {

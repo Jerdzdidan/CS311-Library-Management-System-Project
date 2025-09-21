@@ -33,7 +33,6 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnDeleteBook = new System.Windows.Forms.Button();
             this.btnDamage = new System.Windows.Forms.Button();
-            this.btnBorrowed = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnUnavaliable = new System.Windows.Forms.Button();
@@ -98,7 +97,7 @@
             // btnDamage
             // 
             this.btnDamage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDamage.Location = new System.Drawing.Point(27, 174);
+            this.btnDamage.Location = new System.Drawing.Point(27, 124);
             this.btnDamage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDamage.Name = "btnDamage";
             this.btnDamage.Size = new System.Drawing.Size(107, 30);
@@ -106,18 +105,6 @@
             this.btnDamage.Text = "&Damage";
             this.btnDamage.UseVisualStyleBackColor = true;
             this.btnDamage.Click += new System.EventHandler(this.btnDamage_Click);
-            // 
-            // btnBorrowed
-            // 
-            this.btnBorrowed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrowed.Location = new System.Drawing.Point(27, 32);
-            this.btnBorrowed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBorrowed.Name = "btnBorrowed";
-            this.btnBorrowed.Size = new System.Drawing.Size(107, 30);
-            this.btnBorrowed.TabIndex = 5;
-            this.btnBorrowed.Text = "&Borrowed";
-            this.btnBorrowed.UseVisualStyleBackColor = true;
-            this.btnBorrowed.Click += new System.EventHandler(this.btnBorrowed_Click);
             // 
             // label1
             // 
@@ -134,12 +121,11 @@
             this.groupBox1.Controls.Add(this.btnUnavaliable);
             this.groupBox1.Controls.Add(this.btnAvailable);
             this.groupBox1.Controls.Add(this.btnDamage);
-            this.groupBox1.Controls.Add(this.btnBorrowed);
             this.groupBox1.Location = new System.Drawing.Point(900, 212);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(157, 218);
+            this.groupBox1.Size = new System.Drawing.Size(157, 182);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Book Status";
@@ -147,7 +133,7 @@
             // btnUnavaliable
             // 
             this.btnUnavaliable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUnavaliable.Location = new System.Drawing.Point(27, 126);
+            this.btnUnavaliable.Location = new System.Drawing.Point(27, 77);
             this.btnUnavaliable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUnavaliable.Name = "btnUnavaliable";
             this.btnUnavaliable.Size = new System.Drawing.Size(107, 30);
@@ -159,7 +145,7 @@
             // btnAvailable
             // 
             this.btnAvailable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAvailable.Location = new System.Drawing.Point(27, 76);
+            this.btnAvailable.Location = new System.Drawing.Point(27, 31);
             this.btnAvailable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAvailable.Name = "btnAvailable";
             this.btnAvailable.Size = new System.Drawing.Size(107, 30);
@@ -198,7 +184,7 @@
             // 
             this.groupBox3.Controls.Add(this.btnReturn);
             this.groupBox3.Controls.Add(this.btnBorrow);
-            this.groupBox3.Location = new System.Drawing.Point(900, 438);
+            this.groupBox3.Location = new System.Drawing.Point(900, 420);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
@@ -265,7 +251,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnDeleteBook;
         private System.Windows.Forms.Button btnDamage;
-        private System.Windows.Forms.Button btnBorrowed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnAvailable;

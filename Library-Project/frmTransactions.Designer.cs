@@ -46,13 +46,13 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1293, 387);
+            this.dataGridView1.Size = new System.Drawing.Size(1259, 387);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(1170, 448);
+            this.btnReset.Location = new System.Drawing.Point(1143, 451);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(115, 36);
             this.btnReset.TabIndex = 1;
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1317, 496);
+            this.ClientSize = new System.Drawing.Size(1287, 496);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.label1);
