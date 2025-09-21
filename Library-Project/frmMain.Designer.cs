@@ -43,40 +43,44 @@
             this.bookToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.accountManagementToolStripMenuItem,
             this.bookManagementToolStripMenuItem});
+            this.bookToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.bookToolStripMenuItem.Name = "bookToolStripMenuItem";
-            this.bookToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
+            this.bookToolStripMenuItem.Size = new System.Drawing.Size(141, 21);
             this.bookToolStripMenuItem.Text = "Library Management";
             // 
             // accountManagementToolStripMenuItem
             // 
+            this.accountManagementToolStripMenuItem.BackColor = System.Drawing.SystemColors.Highlight;
             this.accountManagementToolStripMenuItem.Name = "accountManagementToolStripMenuItem";
-            this.accountManagementToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
+            this.accountManagementToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.accountManagementToolStripMenuItem.Text = "Account Management";
             this.accountManagementToolStripMenuItem.Click += new System.EventHandler(this.accountManagementToolStripMenuItem_Click);
             // 
             // bookManagementToolStripMenuItem
             // 
+            this.bookManagementToolStripMenuItem.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.bookManagementToolStripMenuItem.Name = "bookManagementToolStripMenuItem";
-            this.bookManagementToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
+            this.bookManagementToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.bookManagementToolStripMenuItem.Text = "Resources Management";
             this.bookManagementToolStripMenuItem.Click += new System.EventHandler(this.bookManagementToolStripMenuItem_Click);
             // 
             // bookLogsToolStripMenuItem
             // 
             this.bookLogsToolStripMenuItem.Name = "bookLogsToolStripMenuItem";
-            this.bookLogsToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
+            this.bookLogsToolStripMenuItem.Size = new System.Drawing.Size(141, 21);
             this.bookLogsToolStripMenuItem.Text = "Book logs";
             this.bookLogsToolStripMenuItem.Click += new System.EventHandler(this.bookLogsToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(141, 21);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuStrip1.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
@@ -88,27 +92,29 @@
             this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(177, 443);
+            this.menuStrip1.Size = new System.Drawing.Size(146, 360);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // transactionsToolStripMenuItem
             // 
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
-            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
+            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(141, 21);
             this.transactionsToolStripMenuItem.Text = "Transactions";
             this.transactionsToolStripMenuItem.Click += new System.EventHandler(this.transactionsToolStripMenuItem_Click);
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 443);
+            this.ClientSize = new System.Drawing.Size(670, 360);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
