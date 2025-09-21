@@ -33,7 +33,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnDeleteBook = new System.Windows.Forms.Button();
             this.btnDamage = new System.Windows.Forms.Button();
-            this.btnBorrow = new System.Windows.Forms.Button();
+            this.btnBorrowed = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnUnavaliable = new System.Windows.Forms.Button();
@@ -41,8 +41,8 @@
             this.btnUpdateBook = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.btnBorrow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -107,17 +107,17 @@
             this.btnDamage.UseVisualStyleBackColor = true;
             this.btnDamage.Click += new System.EventHandler(this.btnDamage_Click);
             // 
-            // btnBorrow
+            // btnBorrowed
             // 
-            this.btnBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrow.Location = new System.Drawing.Point(27, 32);
-            this.btnBorrow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBorrow.Name = "btnBorrow";
-            this.btnBorrow.Size = new System.Drawing.Size(107, 30);
-            this.btnBorrow.TabIndex = 5;
-            this.btnBorrow.Text = "&Borrowed";
-            this.btnBorrow.UseVisualStyleBackColor = true;
-            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
+            this.btnBorrowed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrowed.Location = new System.Drawing.Point(27, 32);
+            this.btnBorrowed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBorrowed.Name = "btnBorrowed";
+            this.btnBorrowed.Size = new System.Drawing.Size(107, 30);
+            this.btnBorrowed.TabIndex = 5;
+            this.btnBorrowed.Text = "&Borrowed";
+            this.btnBorrowed.UseVisualStyleBackColor = true;
+            this.btnBorrowed.Click += new System.EventHandler(this.btnBorrowed_Click);
             // 
             // label1
             // 
@@ -134,7 +134,7 @@
             this.groupBox1.Controls.Add(this.btnUnavaliable);
             this.groupBox1.Controls.Add(this.btnAvailable);
             this.groupBox1.Controls.Add(this.btnDamage);
-            this.groupBox1.Controls.Add(this.btnBorrow);
+            this.groupBox1.Controls.Add(this.btnBorrowed);
             this.groupBox1.Location = new System.Drawing.Point(900, 212);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -196,8 +196,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.btnReturn);
+            this.groupBox3.Controls.Add(this.btnBorrow);
             this.groupBox3.Location = new System.Drawing.Point(900, 438);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
@@ -207,27 +207,29 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Actions";
             // 
-            // button2
+            // btnReturn
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(27, 76);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 30);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "&Return";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReturn.Location = new System.Drawing.Point(27, 76);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(107, 30);
+            this.btnReturn.TabIndex = 6;
+            this.btnReturn.Text = "&Return";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // button4
+            // btnBorrow
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Location = new System.Drawing.Point(27, 32);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(107, 30);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "&Borrow";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrow.Location = new System.Drawing.Point(27, 32);
+            this.btnBorrow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBorrow.Name = "btnBorrow";
+            this.btnBorrow.Size = new System.Drawing.Size(107, 30);
+            this.btnBorrow.TabIndex = 5;
+            this.btnBorrow.Text = "&Borrow";
+            this.btnBorrow.UseVisualStyleBackColor = true;
+            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
             // frmBooksManagement
             // 
@@ -263,7 +265,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnDeleteBook;
         private System.Windows.Forms.Button btnDamage;
-        private System.Windows.Forms.Button btnBorrow;
+        private System.Windows.Forms.Button btnBorrowed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnAvailable;
@@ -271,8 +273,8 @@
         private System.Windows.Forms.Button btnUpdateBook;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.Button btnBorrow;
     }
 }
 

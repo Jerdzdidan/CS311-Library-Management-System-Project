@@ -14,13 +14,20 @@ namespace Library_Project
         public frmUpdateBook(string bookID, string title, string author, string category, string status, string borrowedDate, string username)
         {
             InitializeComponent();
-            this.username = username; 
+            this.username = username;
             txtBookCode.Text = bookID;
             txtTitle.Text = title;
             txtAuthor.Text = author;
             cmbCategory.Text = category;
-            cmbStatus.Text = status;
 
+            if (cmbStatus.Items.Contains(status))
+            {
+                cmbStatus.SelectedItem = status;
+            }
+            else
+            {
+                cmbStatus.Text = status;
+            }
             if (DateTime.TryParse(borrowedDate, out DateTime parsedDate))
             {
                 dtpDate.Value = parsedDate;

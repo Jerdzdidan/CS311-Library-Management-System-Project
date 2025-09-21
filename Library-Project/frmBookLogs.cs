@@ -90,7 +90,6 @@ namespace Library_Project
             dtpDate.Value = DateTime.Now;
             LoadAllLogs();
         }
-
         private void txtsearch_TextChanged(object sender, EventArgs e)
         {
             try
@@ -103,8 +102,13 @@ namespace Library_Project
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            btnsearch_Click(sender, e);
         }
     }
 }

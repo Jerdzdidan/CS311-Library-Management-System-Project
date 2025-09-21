@@ -71,8 +71,8 @@
             this.cmbstatus.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbstatus.FormattingEnabled = true;
             this.cmbstatus.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
+            "ACTIVE",
+            "INACTIVE"});
             this.cmbstatus.Location = new System.Drawing.Point(82, 314);
             this.cmbstatus.Name = "cmbstatus";
             this.cmbstatus.Size = new System.Drawing.Size(278, 30);

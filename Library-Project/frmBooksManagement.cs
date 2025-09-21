@@ -188,9 +188,38 @@ namespace Library_Project
             UpdateStatus("DAMAGED");
         }
 
+        private void btnBorrowed_Click(object sender, EventArgs e)
+        {
+            UpdateStatus("BORROWED");
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnBorrow_Click(object sender, EventArgs e)
         {
-            UpdateStatus("Borrowed");
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a book first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+
+            string bookCode = row.Cells["BookID"].Value.ToString();
+            string bookTitle = row.Cells["title"].Value.ToString();
+            string author = row.Cells["author"].Value.ToString();
+            string category = row.Cells["category"].Value.ToString();
+
+            frmBorrowBooks borrowForm = new frmBorrowBooks(bookCode, bookTitle, author, category, username);
+
+            borrowForm.FormClosed += (s, args) =>
+            {
+                frmBooksManagement_Load_1(sender, e); // Refresh after borrowing
+            };
+
+            borrowForm.ShowDialog();
         }
     }
 }

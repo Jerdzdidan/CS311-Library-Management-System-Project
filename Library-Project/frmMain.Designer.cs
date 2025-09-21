@@ -50,15 +50,15 @@
             // accountManagementToolStripMenuItem
             // 
             this.accountManagementToolStripMenuItem.Name = "accountManagementToolStripMenuItem";
-            this.accountManagementToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.accountManagementToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
             this.accountManagementToolStripMenuItem.Text = "Account Management";
             this.accountManagementToolStripMenuItem.Click += new System.EventHandler(this.accountManagementToolStripMenuItem_Click);
             // 
             // bookManagementToolStripMenuItem
             // 
             this.bookManagementToolStripMenuItem.Name = "bookManagementToolStripMenuItem";
-            this.bookManagementToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
-            this.bookManagementToolStripMenuItem.Text = "Book Management";
+            this.bookManagementToolStripMenuItem.Size = new System.Drawing.Size(264, 26);
+            this.bookManagementToolStripMenuItem.Text = "Resources Management";
             this.bookManagementToolStripMenuItem.Click += new System.EventHandler(this.bookManagementToolStripMenuItem_Click);
             // 
             // bookLogsToolStripMenuItem
@@ -98,6 +98,7 @@
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(170, 24);
             this.transactionsToolStripMenuItem.Text = "Transactions";
+            this.transactionsToolStripMenuItem.Click += new System.EventHandler(this.transactionsToolStripMenuItem_Click);
             // 
             // frmMain
             // 

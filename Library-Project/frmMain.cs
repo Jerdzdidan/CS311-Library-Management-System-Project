@@ -22,14 +22,6 @@ namespace Library_Project
             this.usertype = usertype;
         }
         Class1 main = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
-
-        private void accountManagementToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmAccountsManagement accountsmanagementform = new frmAccountsManagement(username);
-            accountsmanagementform.MdiParent = this;
-            accountsmanagementform.Show();
-        }
-
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you sure you want to logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -41,12 +33,23 @@ namespace Library_Project
                 this.Hide();
             }
         }
-
+        private void accountManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAccountsManagement accountsmanagementform = new frmAccountsManagement(username);
+            accountsmanagementform.MdiParent = this;
+            accountsmanagementform.Show();
+        }
         private void bookLogsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmBookLogs booklogsform = new frmBookLogs(username);
             booklogsform.MdiParent = this;
             booklogsform.Show();
+        }
+        private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTransactions transactionsform = new frmTransactions(username);
+            transactionsform.MdiParent = this;
+            transactionsform.Show();
         }
         private void bookManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
