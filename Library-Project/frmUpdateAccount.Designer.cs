@@ -137,7 +137,7 @@
             this.cmbusertype.FormattingEnabled = true;
             this.cmbusertype.Items.AddRange(new object[] {
             "ADMINISTRATOR",
-            "USER"});
+            "STAFF"});
             this.cmbusertype.Location = new System.Drawing.Point(82, 251);
             this.cmbusertype.Name = "cmbusertype";
             this.cmbusertype.Size = new System.Drawing.Size(278, 30);

@@ -219,7 +219,7 @@ namespace Library_Project
                 try
                 {
                     books.executeSQL("UPDATE tbl_books SET status = 'AVAILABLE' WHERE BookID = '" + bookID + "'");
-                    books.executeSQL("UPDATE tbl_transac SET returndate = '" + DateTime.Now.ToString("yyyy-MM-dd") +
+                    books.executeSQL("UPDATE tbl_transac SET returndate = '" + DateTime.Now.ToString("yyyy/MM/dd") +
                                      "', status = 'RETURNED' WHERE bookCode = '" + bookID + "' AND status = 'BORROWED'");
                     books.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
                                      "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
@@ -248,9 +248,7 @@ namespace Library_Project
                 MessageBox.Show("Please select a book first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             DataGridViewRow row = dataGridView1.SelectedRows[0];
-
             string bookCode = row.Cells["BookID"].Value.ToString();
             string bookTitle = row.Cells["title"].Value.ToString();
             string author = row.Cells["author"].Value.ToString();
@@ -262,7 +260,6 @@ namespace Library_Project
             {
                 frmBooksManagement_Load_1(sender, e); // Refresh after borrowing
             };
-
             borrowForm.ShowDialog();
         }
     }

@@ -69,7 +69,7 @@ namespace Library_Project
             {
                 cmbusertype.SelectedIndex = 0;
             }
-            else if (editusertype == "USER")
+            else if (editusertype == "STAFF")
             {
                 cmbusertype.SelectedIndex = 1;
             }
