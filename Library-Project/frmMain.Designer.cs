@@ -56,7 +56,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(208, 996);
+            this.panel1.Size = new System.Drawing.Size(208, 540);
             this.panel1.TabIndex = 2;
             // 
             // btntransac
@@ -86,7 +86,7 @@
             this.btnlogout.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnlogout.Image = ((System.Drawing.Image)(resources.GetObject("btnlogout.Image")));
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(26, 947);
+            this.btnlogout.Location = new System.Drawing.Point(26, 484);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(163, 37);
             this.btnlogout.TabIndex = 8;
@@ -200,11 +200,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 996);
+            this.ClientSize = new System.Drawing.Size(838, 540);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
