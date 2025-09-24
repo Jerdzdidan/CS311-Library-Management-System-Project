@@ -16,6 +16,8 @@ namespace Library_Project
         Class1 updateaccount = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string editusername, editpassword, editusertype, editstatus, username;
 
+        
+
         private void cbkshow_CheckedChanged(object sender, EventArgs e)
         {
             if (cbkshow.Checked)
