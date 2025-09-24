@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ticket_management;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
 namespace Library_Project
 {
     public partial class frmMain : Form
@@ -24,7 +23,6 @@ namespace Library_Project
             ApplyUserAccess();
         }
         Class1 main = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
-
         private void ApplyUserAccess()
         {
             if (usertype.ToUpper() == "STAFF")
@@ -53,14 +51,12 @@ namespace Library_Project
             booklogsform.MdiParent = this;
             booklogsform.Show();
         }
-
         private void btnresources_Click(object sender, EventArgs e)
         {
             frmBooksManagement bookmanagementform = new frmBooksManagement(username);
             bookmanagementform.MdiParent = this;
             bookmanagementform.Show();
         }
-
         private void btnaccounts_Click(object sender, EventArgs e)
         {
             frmAccountsManagement accountsmanagementform = new frmAccountsManagement(username);
@@ -78,6 +74,12 @@ namespace Library_Project
                 login.Show();
                 this.Hide();
             }
+        }
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            frmAbout aboutfrm = new frmAbout(username);
+            aboutfrm.MdiParent = this;
+            aboutfrm.Show();
         }
         private void btntransac_Click(object sender, EventArgs e)
         {
