@@ -80,17 +80,17 @@
     <Compile Include="frmAddStudent.Designer.cs">
       <DependentUpon>frmAddStudent.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSystemLogs.cs">
+    <Compile Include="frmBookLogs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmSystemLogs.Designer.cs">
-      <DependentUpon>frmSystemLogs.cs</DependentUpon>
+    <Compile Include="frmBookLogs.Designer.cs">
+      <DependentUpon>frmBookLogs.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmResourcesManagement.cs">
+    <Compile Include="frmBooksManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmResourcesManagement.Designer.cs">
-      <DependentUpon>frmResourcesManagement.cs</DependentUpon>
+    <Compile Include="frmBooksManagement.Designer.cs">
+      <DependentUpon>frmBooksManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="frmBorrowBooks.cs">
       <SubType>Form</SubType>
@@ -154,11 +154,11 @@
     <EmbeddedResource Include="frmAddBooks.resx">
       <DependentUpon>frmAddBooks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSystemLogs.resx">
-      <DependentUpon>frmSystemLogs.cs</DependentUpon>
+    <EmbeddedResource Include="frmBookLogs.resx">
+      <DependentUpon>frmBookLogs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmResourcesManagement.resx">
-      <DependentUpon>frmResourcesManagement.cs</DependentUpon>
+    <EmbeddedResource Include="frmBooksManagement.resx">
+      <DependentUpon>frmBooksManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBorrowBooks.resx">
       <DependentUpon>frmBorrowBooks.cs</DependentUpon>

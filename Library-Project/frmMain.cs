@@ -49,13 +49,13 @@ namespace Library_Project
         }
         private void btnlogs_Click(object sender, EventArgs e)
         {
-            frmSystemLogs logs = new frmSystemLogs(username);
+            frmBookLogs logs = new frmBookLogs(username);
             logs.MdiParent = this;
             logs.Show();
         }
         private void btnresources_Click(object sender, EventArgs e)
         {
-            frmResourcesManagement books = new frmResourcesManagement(username);
+            frmBooksManagement books = new frmBooksManagement(username);
             books.MdiParent = this;
             books.Show();
         }

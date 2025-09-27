@@ -12,11 +12,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Library_Project
 {
-    public partial class frmSystemLogs : Form
+    public partial class frmBookLogs : Form
     {
         Class1 booklogs = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
-        public frmSystemLogs(string username)
+        public frmBookLogs(string username)
         {
             InitializeComponent();
             this.username = username;
@@ -32,9 +32,9 @@ namespace Library_Project
                 DataTable dt = booklogs.GetData("SELECT datelog, timelog, action, module, performedto, performedby FROM tbl_logs ORDER BY datelog DESC, timelog DESC");
                 dataGridView1.DataSource = dt;
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                MessageBox.Show(error.Message, "ERROR loading logs", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("LoadAllLogs error: " + ex.Message);
             }
         }
         private int row;
@@ -52,19 +52,12 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on datagridview1_CellContentClick", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnsearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                btnsearch_Click(sender, e);
-            }
-        }
         private void btnsearch_Click(object sender, EventArgs e)
         {
             try
             {
                 string sql = "SELECT * FROM tbl_logs WHERE 1=1 ";
-                string keyword = txtSearch.Text.Trim();
+                string keyword = txtsearch.Text.Trim();
                 string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
                                "FROM tbl_logs " +
                                "WHERE performedto LIKE '%" + keyword + "%' " +
@@ -84,19 +77,24 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnreset_Click(object sender, EventArgs e)
-        {
-            txtSearch.Clear();
-            dtpDate.Value = DateTime.Now;
-            LoadAllLogs();
-        }
         private void txtsearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                string keyword = txtSearch.Text.Trim();
-                string query = "SELECT datelog, timelog, action, module, performedto, performedby " + "FROM tbl_logs " + "WHERE performedto LIKE '%" + keyword + "%' " + "OR performedby LIKE '%" + keyword + "%' " +
-                               "OR action LIKE '%" + keyword + "%' " + "OR module LIKE '%" + keyword + "%' " + "ORDER BY datelog DESC, timelog DESC";
+                string keyword = txtsearch.Text.Trim();
+                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
+                               "FROM tbl_logs ";
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    query += "WHERE performedto LIKE '%" + keyword + "%' " +
+                             "OR performedby LIKE '%" + keyword + "%' " +
+                             "OR action LIKE '%" + keyword + "%' " +
+                             "OR module LIKE '%" + keyword + "%' ";
+                }
+
+                query += "ORDER BY datelog DESC, timelog DESC";
+
                 DataTable dt = booklogs.GetData(query);
                 dataGridView1.DataSource = dt;
             }
@@ -105,10 +103,11 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
-            btnsearch_Click(sender, e);
+            txtsearch.Clear();                   
+            dtpDate.Value = DateTime.Now;        
+            LoadAllLogs();
         }
     }
 }

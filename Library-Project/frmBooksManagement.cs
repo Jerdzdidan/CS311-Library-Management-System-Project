@@ -11,10 +11,10 @@ using ticket_management;
 
 namespace Library_Project
 {
-    public partial class frmResourcesManagement : Form
+    public partial class frmBooksManagement : Form
     {
         private string username;
-        public frmResourcesManagement(string username)
+        public frmBooksManagement(string username)
         {
             InitializeComponent();
             this.username = username;
