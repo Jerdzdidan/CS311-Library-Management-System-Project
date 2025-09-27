@@ -12,11 +12,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Library_Project
 {
-    public partial class frmBookLogs : Form
+    public partial class frmSystemLogs : Form
     {
         Class1 booklogs = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
-        public frmBookLogs(string username)
+        public frmSystemLogs(string username)
         {
             InitializeComponent();
             this.username = username;

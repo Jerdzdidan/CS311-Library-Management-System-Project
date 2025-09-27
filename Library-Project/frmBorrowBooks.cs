@@ -25,6 +25,66 @@ namespace Library_Project
             this.category = category;
             this.username = username;
         }
+
+        private void txtname_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchText = txtname.Text.Trim();
+
+                if (searchText.Length < 2) // avoid querying for 1 letter
+                {
+                    lstSearchResults.Visible = false;
+                    return;
+                }
+
+                DataTable dt = bookborrow.GetData(
+                    "SELECT student_id, name, grade, section FROM students " +
+                    "WHERE name LIKE '%" + searchText + "%' LIMIT 10"
+                );
+
+                if (dt.Rows.Count > 0)
+                {
+                    lstSearchResults.Items.Clear();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        lstSearchResults.Items.Add(row["name"].ToString() +
+                            " (" + row["grade"] + "-" + row["section"] + ")");
+                    }
+                    lstSearchResults.Tag = dt; // store DataTable for reference
+                    lstSearchResults.Visible = true;
+                }
+                else
+                {
+                    lstSearchResults.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error searching students: " + ex.Message);
+            }
+        }
+
+        private void lstSearchResults_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstSearchResults.SelectedIndex >= 0)
+            {
+                DataTable dt = lstSearchResults.Tag as DataTable;
+                DataRow selectedRow = dt.Rows[lstSearchResults.SelectedIndex];
+
+                txtname.Text = selectedRow["name"].ToString();
+                txtGRSC.Text = selectedRow["grade"].ToString() + "-" + selectedRow["section"].ToString();
+                rbStudent.Checked = true;
+
+                lstSearchResults.Visible = false; // hide the list
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void frmBorrowBooks_Load(object sender, EventArgs e)
         {
             dtpDate.Text = DateTime.Now.ToString("yyyy/MM/dd");

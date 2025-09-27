@@ -58,50 +58,30 @@
                 dtpDate.Value = DateTime.Now;
                 LoadAllTransactions();
             }
-            private void btnSearch_Click(object sender, EventArgs e)
-            {
-                try
-                {
-                    string keyword = txtSearch.Text.Trim();
-                    string selectedDate = dtpDate.Value.ToString("yyyy/MM/dd");
-
-                    string query = "SELECT bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
-                                    "FROM tbl_transac " + "WHERE (bookCode LIKE '%" + keyword + "%' " + "OR bookTitle LIKE '%" + keyword + "%' " + "OR author LIKE '%" + keyword + "%' " +
-                                    "OR category LIKE '%" + keyword + "%' " + "OR borrower LIKE '%" + keyword + "%' " + "OR borrowerType LIKE '%" + keyword + "%' " + "OR grade_section LIKE '%" + keyword + "%' " +
-                                    "OR borrowdate LIKE '%" + keyword + "%' " + "OR returndate LIKE '%" + keyword + "%') " + "AND borrowdate = '" + selectedDate + "' " + "ORDER BY borrowdate DESC";
-                DataTable dt = booktransac.GetData(query);
-                    dataGridView1.DataSource = dt;
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
             private void dtpDate_ValueChanged(object sender, EventArgs e)
             {
-                btnSearch_Click(sender, e);
+                txtSearch_TextChanged(sender, e);
             }
             private void txtSearch_TextChanged(object sender, EventArgs e)
             {
                 try
                 {
                     string keyword = txtSearch.Text.Trim();
-                string selectedDate = dtpDate.Value.ToString("yyyy/MM/dd");
-                string query = "SELECT bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
-                                "FROM tbl_transac " +
-                                "WHERE (bookCode LIKE '%" + keyword + "%' " +
-                                "OR bookTitle LIKE '%" + keyword + "%' " +
-                                "OR author LIKE '%" + keyword + "%' " +
-                                "OR category LIKE '%" + keyword + "%' " +
-                                "OR borrower LIKE '%" + keyword + "%' " +
-                                "OR borrowerType LIKE '%" + keyword + "%' " +
-                                "OR grade_section LIKE '%" + keyword + "%' " +
-                                "OR borrowdate LIKE '%" + keyword + "%' " +      
-                                "OR returndate LIKE '%" + keyword + "%') " +   
-                                "AND borrowdate = '" + selectedDate + "' " +
-                                "ORDER BY borrowdate DESC";
+                    string query = "SELECT bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
+                                    "FROM tbl_transac " +
+                                    "WHERE (bookCode LIKE '%" + keyword + "%' " +
+                                    "OR bookTitle LIKE '%" + keyword + "%' " +
+                                    "OR author LIKE '%" + keyword + "%' " +
+                                    "OR status LIKE '%" + keyword + "%' " +
+                                    "OR category LIKE '%" + keyword + "%' " +
+                                    "OR borrower LIKE '%" + keyword + "%' " +
+                                    "OR borrowerType LIKE '%" + keyword + "%' " +
+                                    "OR grade_section LIKE '%" + keyword + "%' " +
+                                    "OR borrowdate LIKE '%" + keyword + "%' " +
+                                    "OR returndate LIKE '%" + keyword + "%') " +
+                                    "ORDER BY borrowdate DESC";
 
-                DataTable dt = booktransac.GetData(query);
+                    DataTable dt = booktransac.GetData(query);
                     dataGridView1.DataSource = dt;
                 }
                 catch (Exception error)

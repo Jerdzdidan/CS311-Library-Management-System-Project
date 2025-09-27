@@ -19,10 +19,12 @@ namespace Library_Project
             InitializeComponent();
             this.username = username;
             this.usertype = usertype;
-
-            ApplyUserAccess();
         }
         Class1 main = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            ApplyUserAccess();
+        }
         private void ApplyUserAccess()
         {
             if (usertype.ToUpper() == "STAFF")
@@ -33,37 +35,48 @@ namespace Library_Project
                 btnlogs.Enabled = true;
 
                 btnaccounts.Enabled = false;
-                btnaccounts.Visible = false;  
+                btnaccounts.Visible = false;
             }
             else
             {
                 btntransac.Enabled = true;
                 btnresources.Enabled = true;
                 btnlogout.Enabled = true;
-                btnlogs.Enabled = true; 
+                btnlogs.Enabled = true;
                 btnaccounts.Enabled = true;
                 btnaccounts.Visible = true;
             }
         }
         private void btnlogs_Click(object sender, EventArgs e)
         {
-            frmBookLogs booklogsform = new frmBookLogs(username);
-            booklogsform.MdiParent = this;
-            booklogsform.Show();
+            frmSystemLogs logs = new frmSystemLogs(username);
+            logs.MdiParent = this;
+            logs.Show();
         }
         private void btnresources_Click(object sender, EventArgs e)
         {
-            frmBooksManagement bookmanagementform = new frmBooksManagement(username);
-            bookmanagementform.MdiParent = this;
-            bookmanagementform.Show();
+            frmResourcesManagement books = new frmResourcesManagement(username);
+            books.MdiParent = this;
+            books.Show();
         }
         private void btnaccounts_Click(object sender, EventArgs e)
         {
-            frmAccountsManagement accountsmanagementform = new frmAccountsManagement(username);
-            accountsmanagementform.MdiParent = this;
-            accountsmanagementform.Show();
+            frmAccountsManagement accounts = new frmAccountsManagement(username);
+            accounts.MdiParent = this;
+            accounts.Show();
         }
-
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            frmAbout about = new frmAbout(username);
+            about.MdiParent = this;
+            about.Show();
+        }
+        private void btntransac_Click(object sender, EventArgs e)
+        {
+            frmTransactions transac = new frmTransactions(username);
+            transac.MdiParent = this;
+            transac.Show();
+        }
         private void btnlogout_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you sure you want to logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -74,18 +87,6 @@ namespace Library_Project
                 login.Show();
                 this.Hide();
             }
-        }
-        private void btnAbout_Click(object sender, EventArgs e)
-        {
-            frmAbout aboutfrm = new frmAbout(username);
-            aboutfrm.MdiParent = this;
-            aboutfrm.Show();
-        }
-        private void btntransac_Click(object sender, EventArgs e)
-        {
-            frmTransactions transactionsform = new frmTransactions(username);
-            transactionsform.MdiParent = this;
-            transactionsform.Show();
         }
     }
 }
