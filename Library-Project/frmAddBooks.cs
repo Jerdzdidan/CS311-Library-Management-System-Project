@@ -23,7 +23,36 @@ namespace Library_Project
             this.username = username;
         }
         private int errorcount;
+        private void GenerateBookCode()
+        {
+            if (cmbCategory.SelectedIndex >= 0)
+            {
+                string categoryCode = cmbCategory.Text.Length >= 7 ? cmbCategory.Text.Substring(0, 7).ToUpper() : cmbCategory.Text.ToUpper();
+                string yearCode = dtpDate.Value.Year.ToString();
+                string dateCode = DateTime.Now.ToString("MMddyyyyHHmmss");
 
+                txtBookCode.Text = "LIB-" + categoryCode + "-" + yearCode + "-" + dateCode;
+            }
+        }
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void txtDate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GenerateBookCode();
+        }
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            GenerateBookCode();
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
@@ -53,18 +82,16 @@ namespace Library_Project
             {
                 try
                 {
-         
-
                     DialogResult dr = MessageBox.Show("Are you sure you want to add this book?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
                         addaccount.executeSQL(
-                            "INSERT INTO tbl_books (BookID, title, author, category, status, borroweddate) " +
+                            "INSERT INTO tbl_books (BookID, title, author, category, status, Added_date) " +
                             "VALUES ('" + txtBookCode.Text + "', " +
                             "'" + txtTitle.Text + "', " +
                             "'" + txtAuthor.Text + "', " +
                             "'" + cmbCategory.Text + "', " +
-                            "'AVAILABLE', " + // ✅ default status
+                            "'AVAILABLE', " +
                             "'" + dtpDate.Value.ToString("yyyy/MM/dd") + "')");
 
                         if (addaccount.rowAffected > 0)
@@ -81,39 +108,6 @@ namespace Library_Project
                     MessageBox.Show(error.Message, "ERROR on adding new book", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-        private void GenerateBookCode()
-        {
-            if (cmbCategory.SelectedIndex >= 0)
-            {
-                string categoryCode = cmbCategory.Text.Length >= 7 ? cmbCategory.Text.Substring(0, 7).ToUpper() : cmbCategory.Text.ToUpper();
-                string yearCode = dtpDate.Value.Year.ToString(); // use selected year
-                string dateCode = DateTime.Now.ToString("MMddyyyyHHmmss");
-
-                txtBookCode.Text = "LIB-" + categoryCode + "-" + yearCode + "-" + dateCode;
-            }
-        }
-        private void btnCancel_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void txtDate_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GenerateBookCode();
-        }
-
-        private void dtpDate_ValueChanged(object sender, EventArgs e)
-        {
-            GenerateBookCode();
         }
     }
 }

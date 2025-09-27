@@ -91,25 +91,19 @@ namespace Library_Project
         {
             if (row >= 0)
             {
-                string id = dgvStudents.Rows[row].Cells["student_id"].Value.ToString();
-                string name = dgvStudents.Rows[row].Cells["name"].Value.ToString();
-                string grade = dgvStudents.Rows[row].Cells["grade"].Value.ToString();
-                string section = dgvStudents.Rows[row].Cells["section"].Value.ToString();
+                string editID = dgvStudents.Rows[row].Cells[0].Value.ToString();
+                string editname = dgvStudents.Rows[row].Cells[1].Value.ToString();
+                string editgrade = dgvStudents.Rows[row].Cells[2].Value.ToString();
+                string editsection = dgvStudents.Rows[row].Cells[3].Value.ToString();
 
-                frmUpdateStudent updateForm = new frmUpdateStudent(id, name, grade, section, username);
+                frmUpdateStudent updateForm = new frmUpdateStudent(editID, editname, editgrade, editsection, username);
                 updateForm.FormClosed += (s, args) =>
                 {
-                    LoadTodayStudents();
-                    LogAction("UPDATE", "STUDENT MANAGEMENT", $"Updated student {name}");
+                    frmStudentManagement_Load(sender, e);
                 };
-                updateForm.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Please select a student to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                updateForm.Show();
             }
         }
-
         private void btndelete_Click(object sender, EventArgs e)
         {
             if (row >= 0)

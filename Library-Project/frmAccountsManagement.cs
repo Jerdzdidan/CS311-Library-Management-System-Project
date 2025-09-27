@@ -71,6 +71,11 @@ namespace Library_Project
         }
         private void btnupdate_Click(object sender, EventArgs e)
         {
+            if (row < 0 || row >= dataGridView1.Rows.Count)
+{
+    MessageBox.Show("Please select a valid row to update.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    return;
+}
             string editusername = dataGridView1.Rows[row].Cells[0].Value.ToString();
             string editpassword = dataGridView1.Rows[row].Cells[1].Value.ToString();
             string editusertype = dataGridView1.Rows[row].Cells[2].Value.ToString();
@@ -81,7 +86,6 @@ namespace Library_Project
             {
                 frmAccountsManagement_Load(sender, e);
             };
-
             updateaccountform.Show();
         }
         private void btndelete_Click(object sender, EventArgs e)

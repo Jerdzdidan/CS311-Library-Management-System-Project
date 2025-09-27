@@ -271,7 +271,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(235, 259);
+            this.groupBox3.Size = new System.Drawing.Size(235, 140);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Actions";
@@ -369,7 +369,7 @@
             this.panel2.Location = new System.Drawing.Point(931, 95);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(277, 849);
+            this.panel2.Size = new System.Drawing.Size(277, 718);
             this.panel2.TabIndex = 12;
             // 
             // panel3
@@ -382,7 +382,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 95);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(931, 849);
+            this.panel3.Size = new System.Drawing.Size(931, 718);
             this.panel3.TabIndex = 13;
             // 
             // button1
@@ -406,7 +406,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 944);
+            this.ClientSize = new System.Drawing.Size(1208, 813);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

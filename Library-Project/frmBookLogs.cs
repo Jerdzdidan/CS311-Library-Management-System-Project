@@ -66,7 +66,7 @@ namespace Library_Project
                                "OR module LIKE '%" + keyword + "%' " +
                                "ORDER BY datelog DESC, timelog DESC";
 
-                string selectedDate = dtpDate.Value.ToString("MM/dd/yyyy");
+                string selectedDate = dtpDate.Value.ToString("yyyy/dd/MM");
                 sql += "AND datelog = '" + selectedDate + "' ";
                 sql += "ORDER BY datelog DESC, timelog DESC";
                 DataTable dt = booklogs.GetData(query);
@@ -103,10 +103,10 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnReset_Click(object sender, EventArgs e)
+        private void btnReset_Click_1(object sender, EventArgs e)
         {
-            txtsearch.Clear();                   
-            dtpDate.Value = DateTime.Now;        
+            txtsearch.Clear();
+            dtpDate.Value = DateTime.Now;
             LoadAllLogs();
         }
     }

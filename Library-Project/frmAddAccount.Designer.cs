@@ -60,7 +60,6 @@
             this.cmbUserType.Name = "cmbUserType";
             this.cmbUserType.Size = new System.Drawing.Size(319, 30);
             this.cmbUserType.TabIndex = 38;
-            this.cmbUserType.SelectedIndexChanged += new System.EventHandler(this.cmbUserType_SelectedIndexChanged);
             // 
             // cbkshow
             // 

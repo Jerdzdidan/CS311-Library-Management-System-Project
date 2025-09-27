@@ -11,7 +11,7 @@ namespace Library_Project
         private string username;
         private int errorcount;
 
-        public frmUpdateBook(string bookID, string title, string author, string category, string status, string borrowedDate, string username)
+        public frmUpdateBook(string bookID, string title, string author, string category, string status, string Added_date, string username)
         {
             InitializeComponent();
             this.username = username;
@@ -28,7 +28,7 @@ namespace Library_Project
             {
                 cmbStatus.Text = status;
             }
-            if (DateTime.TryParse(borrowedDate, out DateTime parsedDate))
+            if (DateTime.TryParse(Added_date, out DateTime parsedDate))
             {
                 dtpDate.Value = parsedDate;
             }
@@ -80,7 +80,7 @@ namespace Library_Project
                             "author = '" + txtAuthor.Text + "', " +
                             "category = '" + cmbCategory.Text + "', " +
                             "status = '" + cmbStatus.Text + "', " +
-                            "borroweddate = '" + dtpDate.Text + "' " +
+                            "Added_date = '" + dtpDate.Text + "' " +
                             "WHERE BookID = '" + txtBookCode.Text + "'");
 
                         if (bookUpdate.rowAffected > 0)

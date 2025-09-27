@@ -80,10 +80,7 @@ namespace Library_Project
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancel_Click(object sender, EventArgs e) => this.Close();
 
         private void frmBorrowBooks_Load(object sender, EventArgs e)
         {

@@ -13,6 +13,7 @@ namespace Library_Project
 {
     public partial class frmBooksManagement : Form
     {
+        Class1 books = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
         public frmBooksManagement(string username)
         {
@@ -22,8 +23,6 @@ namespace Library_Project
             dataGridView1.DataBindingComplete += dataGridView1_DataBindingComplete;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
         }
-
-        Class1 books = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private void frmBooksManagement_Load_1(object sender, EventArgs e)
         {
             try
@@ -97,8 +96,8 @@ namespace Library_Project
             string author = dataGridView1.Rows[row].Cells[2].Value.ToString(); ;
             string category = dataGridView1.Rows[row].Cells[3].Value.ToString();
             string status = dataGridView1.Rows[row].Cells[4].Value.ToString();
-            string borrowedDate = dataGridView1.Rows[row].Cells[5].Value.ToString();
-            frmUpdateBook updateBook = new frmUpdateBook(bookID, title, author, category, status, borrowedDate, username);
+            string Added_date = dataGridView1.Rows[row].Cells[5].Value.ToString();
+            frmUpdateBook updateBook = new frmUpdateBook(bookID, title, author, category, status, Added_date, username);
 
             updateBook.FormClosed += (s, args) =>
             {

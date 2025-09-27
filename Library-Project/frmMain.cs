@@ -77,6 +77,14 @@ namespace Library_Project
             transac.MdiParent = this;
             transac.Show();
         }
+
+        private void btnStudentsManagement_Click(object sender, EventArgs e)
+        {
+            frmStudentManagement studentmanagement = new frmStudentManagement(username);
+            studentmanagement.MdiParent = this;
+            studentmanagement.Show();
+        }
+
         private void btnlogout_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you sure you want to logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
