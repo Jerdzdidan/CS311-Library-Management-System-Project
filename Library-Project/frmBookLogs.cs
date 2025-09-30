@@ -26,6 +26,12 @@ namespace Library_Project
         private void frmBookLogs_Load(object sender, EventArgs e)
         {
             LoadAllLogs();
+            dataGridView1.Columns[0].HeaderText = "Date Log";
+            dataGridView1.Columns[1].HeaderText = "Time Log";
+            dataGridView1.Columns[2].HeaderText = "Action";
+            dataGridView1.Columns[3].HeaderText = "Module";
+            dataGridView1.Columns[4].HeaderText = "Performed To";
+            dataGridView1.Columns[5].HeaderText = "Performed By";
         }
         private void LoadAllLogs()
         {
@@ -134,6 +140,26 @@ namespace Library_Project
             catch (Exception ex)
             {
                 MessageBox.Show("Error filtering logs: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedDate = dtpDate.Value.ToString("yyyy-MM-dd"); // correct format
+
+                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
+                               "FROM tbl_logs " +
+                               "WHERE datelog = '" + selectedDate + "' " +
+                               "ORDER BY datelog DESC, timelog DESC";
+
+                DataTable dt = booklogs.GetData(query);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering by date: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

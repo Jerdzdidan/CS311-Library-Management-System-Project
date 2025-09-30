@@ -27,6 +27,16 @@ namespace Library_Project
         private void frmTransac_Load(object sender, EventArgs e)
         {
             LoadAllTransactions();
+            dataGridView1.Columns[0].HeaderText = "Book Code";
+            dataGridView1.Columns[1].HeaderText = "Book Title";
+            dataGridView1.Columns[2].HeaderText = "Author";
+            dataGridView1.Columns[3].HeaderText = "Catergory";
+            dataGridView1.Columns[4].HeaderText = "Borrowed Date";
+            dataGridView1.Columns[5].HeaderText = "Return Date";
+            dataGridView1.Columns[6].HeaderText = "Status";
+            dataGridView1.Columns[7].HeaderText = "Borrower";
+            dataGridView1.Columns[8].HeaderText = "Borrower Type";
+            dataGridView1.Columns[9].HeaderText = "Grade And Section";
         }
         private void ApplyRowColorTransactions()
         {
