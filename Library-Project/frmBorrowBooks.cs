@@ -103,8 +103,6 @@ namespace Library_Project
                 string borrowerName = txtname.Text.Trim();
                 string borrowerType = rbStudent.Checked ? "STUDENT" : "TEACHER";
                 string grsc = rbStudent.Checked ? txtGRSC.Text.Trim() : "";
-
-                // Validation
                 if (string.IsNullOrWhiteSpace(borrowerName))
                 {
                     MessageBox.Show("Please enter borrower name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -157,36 +155,24 @@ namespace Library_Project
                     MessageBox.Show("This book is out of stock. No copies available to borrow.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // Borrow date only - return date will be set when book is returned
                 DateTime borrowDate = DateTime.Now;
-
-                // Insert transaction WITHOUT return date (NULL)
                 bookborrow.executeSQL(
                     "INSERT INTO tbl_transac (bookCode, bookTitle, author, category, borrowdate, status, borrower, borrowerType, grade_section) " +
                     "VALUES ('" + bookCode + "', '" + bookTitle + "', '" + author + "', '" + category + "', " +
                     "'" + borrowDate.ToString("yyyy/MM/dd") + "', " +
                     "'BORROWED', '" + borrowerName + "', '" + borrowerType + "', '" + grsc + "')"
                 );
-
-                // Decrease quantity
                 bookborrow.executeSQL("UPDATE tbl_books SET quantity = quantity - 1 WHERE BookID = '" + bookCode + "'");
-
-                // Check new quantity
                 DataTable dtNewQuantity = bookborrow.GetData("SELECT quantity FROM tbl_books WHERE BookID = '" + bookCode + "'");
                 int newQuantity = 0;
                 if (dtNewQuantity.Rows.Count > 0)
                 {
                     int.TryParse(dtNewQuantity.Rows[0]["quantity"].ToString(), out newQuantity);
                 }
-
-                // If quantity reaches 0, mark book as BORROWED
                 if (newQuantity == 0)
                 {
                     bookborrow.executeSQL("UPDATE tbl_books SET status = 'BORROWED' WHERE BookID = '" + bookCode + "'");
                 }
-
-                // Log the transaction
                 bookborrow.executeSQL(
                     "INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
                     "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" + DateTime.Now.ToShortTimeString() + "', " +
@@ -201,7 +187,6 @@ namespace Library_Project
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
-
                 this.Close();
             }
             catch (Exception ex)
