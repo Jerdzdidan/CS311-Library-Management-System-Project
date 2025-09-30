@@ -34,6 +34,7 @@ namespace Library_Project
                 btnresources.Enabled = true;
                 btnlogout.Enabled = true;
                 btnlogs.Enabled = true;
+                btnStudentsManagement.Enabled = true;
 
                 btnaccounts.Enabled = false;
                 btnaccounts.Visible = false;
@@ -44,6 +45,7 @@ namespace Library_Project
                 btnresources.Enabled = true;
                 btnlogout.Enabled = true;
                 btnlogs.Enabled = true;
+                btnStudentsManagement.Enabled = true;
                 btnaccounts.Enabled = true;
                 btnaccounts.Visible = true;
             }

@@ -20,6 +20,5 @@ namespace Library_Project
             InitializeComponent();
             this.username = username;
         }
-
     }
 }

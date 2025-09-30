@@ -45,10 +45,10 @@
             this.btntransac = new System.Windows.Forms.Button();
             this.btnBorrow = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cmbList = new System.Windows.Forms.ComboBox();
             this.dtpFilterDate = new System.Windows.Forms.DateTimePicker();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -70,7 +70,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 80);
+            this.dataGridView1.Location = new System.Drawing.Point(17, 76);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -84,7 +84,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(197, 34);
+            this.txtSearch.Location = new System.Drawing.Point(197, 27);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(807, 22);
@@ -95,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 33);
+            this.label1.Location = new System.Drawing.Point(16, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 22);
@@ -325,47 +325,8 @@
             this.panel2.Location = new System.Drawing.Point(1496, 116);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(277, 800);
+            this.panel2.Size = new System.Drawing.Size(277, 781);
             this.panel2.TabIndex = 12;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.LightYellow;
-            this.panel3.Controls.Add(this.cmbList);
-            this.panel3.Controls.Add(this.dtpFilterDate);
-            this.panel3.Controls.Add(this.dataGridView1);
-            this.panel3.Controls.Add(this.txtSearch);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 116);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1496, 800);
-            this.panel3.TabIndex = 13;
-            // 
-            // cmbList
-            // 
-            this.cmbList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbList.FormattingEnabled = true;
-            this.cmbList.Items.AddRange(new object[] {
-            "ALL",
-            "AVAILABLE",
-            "UNAVAILABLE",
-            "DAMAGED"});
-            this.cmbList.Location = new System.Drawing.Point(1010, 34);
-            this.cmbList.Name = "cmbList";
-            this.cmbList.Size = new System.Drawing.Size(190, 24);
-            this.cmbList.TabIndex = 8;
-            this.cmbList.SelectedIndexChanged += new System.EventHandler(this.cmbList_SelectedIndexChanged);
-            // 
-            // dtpFilterDate
-            // 
-            this.dtpFilterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFilterDate.Location = new System.Drawing.Point(1206, 34);
-            this.dtpFilterDate.Name = "dtpFilterDate";
-            this.dtpFilterDate.Size = new System.Drawing.Size(200, 22);
-            this.dtpFilterDate.TabIndex = 7;
-            this.dtpFilterDate.ValueChanged += new System.EventHandler(this.dtpFilterDate_ValueChanged);
             // 
             // btnRefresh
             // 
@@ -383,6 +344,45 @@
             this.btnRefresh.Text = "&Refresh  ";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightYellow;
+            this.panel3.Controls.Add(this.cmbList);
+            this.panel3.Controls.Add(this.dtpFilterDate);
+            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.txtSearch);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 116);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1496, 781);
+            this.panel3.TabIndex = 13;
+            // 
+            // cmbList
+            // 
+            this.cmbList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbList.FormattingEnabled = true;
+            this.cmbList.Items.AddRange(new object[] {
+            "ALL",
+            "AVAILABLE",
+            "UNAVAILABLE",
+            "DAMAGED"});
+            this.cmbList.Location = new System.Drawing.Point(1010, 27);
+            this.cmbList.Name = "cmbList";
+            this.cmbList.Size = new System.Drawing.Size(190, 24);
+            this.cmbList.TabIndex = 8;
+            this.cmbList.SelectedIndexChanged += new System.EventHandler(this.cmbList_SelectedIndexChanged);
+            // 
+            // dtpFilterDate
+            // 
+            this.dtpFilterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFilterDate.Location = new System.Drawing.Point(1206, 27);
+            this.dtpFilterDate.Name = "dtpFilterDate";
+            this.dtpFilterDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpFilterDate.TabIndex = 7;
+            this.dtpFilterDate.ValueChanged += new System.EventHandler(this.dtpFilterDate_ValueChanged);
             // 
             // label2
             // 
@@ -437,7 +437,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1773, 916);
+            this.ClientSize = new System.Drawing.Size(1773, 897);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

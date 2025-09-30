@@ -39,7 +39,8 @@ namespace Library_Project
 
                 DataTable dt = bookborrow.GetData(
                     "SELECT student_ID, name, grade, section FROM tbl_students " +
-                    "WHERE name LIKE '%" + searchText + "%' LIMIT 10"
+                    "WHERE DATE(date_in) = CURDATE() " +  
+                    "AND name LIKE '%" + searchText + "%' LIMIT 10"
                 );
 
                 if (dt.Rows.Count > 0)
@@ -113,8 +114,6 @@ namespace Library_Project
                     MessageBox.Show("Please enter Grade & Section for student borrowers.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // ✅ CHECK: Does this borrower already have a borrowed book?
                 try
                 {
                     string checkQuery = "SELECT bookCode FROM tbl_transac WHERE borrower = '" + borrowerName + "' AND status = 'BORROWED' LIMIT 1";
@@ -140,16 +139,12 @@ namespace Library_Project
                     MessageBox.Show("Error checking borrower status: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                // Check quantity first
                 DataTable dtQuantity = bookborrow.GetData("SELECT quantity FROM tbl_books WHERE BookID = '" + bookCode + "'");
                 int currentQuantity = 0;
-
                 if (dtQuantity.Rows.Count > 0)
                 {
                     int.TryParse(dtQuantity.Rows[0]["quantity"].ToString(), out currentQuantity);
                 }
-
                 if (currentQuantity <= 0)
                 {
                     MessageBox.Show("This book is out of stock. No copies available to borrow.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
