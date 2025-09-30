@@ -32,13 +32,14 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtsearch = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbList = new System.Windows.Forms.ComboBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -48,8 +49,7 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -76,6 +76,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightYellow;
+            this.panel1.Controls.Add(this.cmbList);
             this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dataGridView1);
@@ -87,6 +88,44 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1121, 615);
             this.panel1.TabIndex = 6;
+            // 
+            // cmbList
+            // 
+            this.cmbList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbList.FormattingEnabled = true;
+            this.cmbList.Items.AddRange(new object[] {
+            "RESOURCES MANAGEMENT",
+            "ACCOUNTS MANAGEMENT",
+            "STUDENT MANAGEMENT",
+            "BORROW",
+            "RETURN",
+            "DELETE",
+            "ADD"});
+            this.cmbList.Location = new System.Drawing.Point(664, 127);
+            this.cmbList.Name = "cmbList";
+            this.cmbList.Size = new System.Drawing.Size(249, 24);
+            this.cmbList.TabIndex = 9;
+            this.cmbList.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnReset.Image = ((System.Drawing.Image)(resources.GetObject("btnReset.Image")));
+            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReset.Location = new System.Drawing.Point(973, 568);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(108, 36);
+            this.btnReset.TabIndex = 8;
+            this.btnReset.Text = "&Refresh";
+            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click_1);
             // 
             // label1
             // 
@@ -103,7 +142,7 @@
             this.dtpDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpDate.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(824, 126);
+            this.dtpDate.Location = new System.Drawing.Point(946, 129);
             this.dtpDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(135, 23);
@@ -158,26 +197,6 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "SYSTEM LOGS";
             // 
-            // btnReset
-            // 
-            this.btnReset.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnReset.Image = ((System.Drawing.Image)(resources.GetObject("btnReset.Image")));
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(973, 568);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(108, 36);
-            this.btnReset.TabIndex = 8;
-            this.btnReset.Text = "&Refresh";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click_1);
-            // 
             // frmBookLogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -185,7 +204,7 @@
             this.ClientSize = new System.Drawing.Size(1121, 615);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmBookLogs";
@@ -215,5 +234,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.ComboBox cmbList;
     }
 }

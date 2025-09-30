@@ -27,36 +27,22 @@ namespace Library_Project
                 DataTable dt = accounts.GetData("SELECT * FROM tbl_accounts ORDER BY username");
                 dataGridView1.DataSource = dt;
                 dataGridView1.Columns["password"].Visible = false;
+                dataGridView1.Columns[0].HeaderText = "Username";
+                dataGridView1.Columns[1].HeaderText = "Password";
+                dataGridView1.Columns[2].HeaderText = "User Type";
+                dataGridView1.Columns[3].HeaderText = "Status";
+                dataGridView1.Columns[4].HeaderText = "Created By";
+                dataGridView1.Columns[5].HeaderText = "Date Created";
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "ERROR on frmAccountsManagement_load", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void txtsearch_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DataTable dt = accounts.GetData("SELECT * FROM tbl_accounts WHERE username LIKE '%" + txtsearch.Text + "%' OR usertype LIKE '%" + txtsearch.Text + "%' ORDER BY username");
-                dataGridView1.DataSource = dt;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "ERROR on txtsearch_TextChanged", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private int row;
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                row = (int)e.RowIndex;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "ERROR on datagridview1_cellclick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+             row = e.RowIndex;
         }
         private void btnadd_Click(object sender, EventArgs e)
         {
@@ -72,10 +58,10 @@ namespace Library_Project
         private void btnupdate_Click(object sender, EventArgs e)
         {
             if (row < 0 || row >= dataGridView1.Rows.Count)
-{
-    MessageBox.Show("Please select a valid row to update.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    return;
-}
+            {
+                MessageBox.Show("Please select a valid row to update.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             string editusername = dataGridView1.Rows[row].Cells[0].Value.ToString();
             string editpassword = dataGridView1.Rows[row].Cells[1].Value.ToString();
             string editusertype = dataGridView1.Rows[row].Cells[2].Value.ToString();
@@ -119,6 +105,17 @@ namespace Library_Project
             txtsearch.Clear();
         }
 
-    
+        private void txtsearch_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = accounts.GetData("SELECT * FROM tbl_accounts WHERE username LIKE '%" + txtsearch.Text + "%' OR usertype LIKE '%" + txtsearch.Text + "%' ORDER BY username");
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "ERROR on txtsearch_TextChanged", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

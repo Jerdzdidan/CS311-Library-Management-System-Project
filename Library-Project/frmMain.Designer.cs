@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDashboard = new System.Windows.Forms.Button();
+            this.btnStudentsManagement = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btntransac = new System.Windows.Forms.Button();
             this.btnlogout = new System.Windows.Forms.Button();
@@ -40,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnStudentsManagement = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -49,6 +50,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel1.Controls.Add(this.btnDashboard);
             this.panel1.Controls.Add(this.btnStudentsManagement);
             this.panel1.Controls.Add(this.btnAbout);
             this.panel1.Controls.Add(this.btntransac);
@@ -61,8 +63,48 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(277, 734);
+            this.panel1.Size = new System.Drawing.Size(277, 614);
             this.panel1.TabIndex = 2;
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDashboard.FlatAppearance.BorderSize = 0;
+            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDashboard.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
+            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDashboard.Location = new System.Drawing.Point(35, 139);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(217, 46);
+            this.btnDashboard.TabIndex = 12;
+            this.btnDashboard.Tag = "";
+            this.btnDashboard.Text = "Dashboard                      ";
+            this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDashboard.UseVisualStyleBackColor = true;
+            this.btnDashboard.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnStudentsManagement
+            // 
+            this.btnStudentsManagement.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStudentsManagement.FlatAppearance.BorderSize = 0;
+            this.btnStudentsManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudentsManagement.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentsManagement.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnStudentsManagement.Image = ((System.Drawing.Image)(resources.GetObject("btnStudentsManagement.Image")));
+            this.btnStudentsManagement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudentsManagement.Location = new System.Drawing.Point(35, 239);
+            this.btnStudentsManagement.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStudentsManagement.Name = "btnStudentsManagement";
+            this.btnStudentsManagement.Size = new System.Drawing.Size(217, 46);
+            this.btnStudentsManagement.TabIndex = 11;
+            this.btnStudentsManagement.Tag = "";
+            this.btnStudentsManagement.Text = "Students Management   ";
+            this.btnStudentsManagement.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStudentsManagement.UseVisualStyleBackColor = true;
+            this.btnStudentsManagement.Click += new System.EventHandler(this.btnStudentsManagement_Click);
             // 
             // btnAbout
             // 
@@ -74,7 +116,7 @@
             this.btnAbout.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAbout.Image = ((System.Drawing.Image)(resources.GetObject("btnAbout.Image")));
             this.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAbout.Location = new System.Drawing.Point(0, 642);
+            this.btnAbout.Location = new System.Drawing.Point(0, 522);
             this.btnAbout.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(277, 46);
@@ -93,7 +135,7 @@
             this.btntransac.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btntransac.Image = ((System.Drawing.Image)(resources.GetObject("btntransac.Image")));
             this.btntransac.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btntransac.Location = new System.Drawing.Point(35, 328);
+            this.btntransac.Location = new System.Drawing.Point(35, 391);
             this.btntransac.Margin = new System.Windows.Forms.Padding(4);
             this.btntransac.Name = "btntransac";
             this.btntransac.Size = new System.Drawing.Size(217, 46);
@@ -113,7 +155,7 @@
             this.btnlogout.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnlogout.Image = ((System.Drawing.Image)(resources.GetObject("btnlogout.Image")));
             this.btnlogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogout.Location = new System.Drawing.Point(0, 688);
+            this.btnlogout.Location = new System.Drawing.Point(0, 568);
             this.btnlogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnlogout.Name = "btnlogout";
             this.btnlogout.Size = new System.Drawing.Size(277, 46);
@@ -132,7 +174,7 @@
             this.btnlogs.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnlogs.Image = ((System.Drawing.Image)(resources.GetObject("btnlogs.Image")));
             this.btnlogs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogs.Location = new System.Drawing.Point(35, 274);
+            this.btnlogs.Location = new System.Drawing.Point(35, 337);
             this.btnlogs.Margin = new System.Windows.Forms.Padding(4);
             this.btnlogs.Name = "btnlogs";
             this.btnlogs.Size = new System.Drawing.Size(217, 46);
@@ -151,7 +193,7 @@
             this.btnresources.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnresources.Image = ((System.Drawing.Image)(resources.GetObject("btnresources.Image")));
             this.btnresources.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnresources.Location = new System.Drawing.Point(35, 220);
+            this.btnresources.Location = new System.Drawing.Point(35, 283);
             this.btnresources.Margin = new System.Windows.Forms.Padding(4);
             this.btnresources.Name = "btnresources";
             this.btnresources.Size = new System.Drawing.Size(217, 46);
@@ -171,7 +213,7 @@
             this.btnaccounts.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnaccounts.Image = ((System.Drawing.Image)(resources.GetObject("btnaccounts.Image")));
             this.btnaccounts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnaccounts.Location = new System.Drawing.Point(35, 130);
+            this.btnaccounts.Location = new System.Drawing.Point(35, 193);
             this.btnaccounts.Margin = new System.Windows.Forms.Padding(4);
             this.btnaccounts.Name = "btnaccounts";
             this.btnaccounts.Size = new System.Drawing.Size(217, 46);
@@ -231,31 +273,11 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // btnStudentsManagement
-            // 
-            this.btnStudentsManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStudentsManagement.FlatAppearance.BorderSize = 0;
-            this.btnStudentsManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStudentsManagement.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStudentsManagement.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnStudentsManagement.Image = ((System.Drawing.Image)(resources.GetObject("btnStudentsManagement.Image")));
-            this.btnStudentsManagement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStudentsManagement.Location = new System.Drawing.Point(35, 176);
-            this.btnStudentsManagement.Margin = new System.Windows.Forms.Padding(4);
-            this.btnStudentsManagement.Name = "btnStudentsManagement";
-            this.btnStudentsManagement.Size = new System.Drawing.Size(217, 46);
-            this.btnStudentsManagement.TabIndex = 11;
-            this.btnStudentsManagement.Tag = "";
-            this.btnStudentsManagement.Text = "Students Management   ";
-            this.btnStudentsManagement.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnStudentsManagement.UseVisualStyleBackColor = true;
-            this.btnStudentsManagement.Click += new System.EventHandler(this.btnStudentsManagement_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1117, 734);
+            this.ClientSize = new System.Drawing.Size(1174, 614);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
@@ -286,5 +308,6 @@
         private System.Windows.Forms.Button btnresources;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Button btnStudentsManagement;
+        private System.Windows.Forms.Button btnDashboard;
     }
 }

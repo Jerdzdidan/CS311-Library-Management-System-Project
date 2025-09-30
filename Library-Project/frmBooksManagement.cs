@@ -27,51 +27,94 @@ namespace Library_Project
         {
             try
             {
+                dtpFilterDate.ValueChanged += dtpFilterDate_ValueChanged;
                 DataTable dt = books.GetData("SELECT * FROM tbl_books ORDER BY BookID");
                 dataGridView1.DataSource = dt;
                 ApplyRowColor();          
-                UpdateButtonStates();     
+                UpdateButtonStates();
+                dataGridView1.Columns[0].HeaderText = "Book ID";
+                dataGridView1.Columns[1].HeaderText = "Title";
+                dataGridView1.Columns[2].HeaderText = "Author";
+                dataGridView1.Columns[3].HeaderText = "Category";
+                dataGridView1.Columns[4].HeaderText = "Status";
+                dataGridView1.Columns[5].HeaderText = "Added Date";
+                dataGridView1.Columns[6].HeaderText = "Quantity";
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "ERROR on frmBooksManagement_Load", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private int GetQuantityFromRow(DataGridViewRow row)
+        {
+            string qtyString = "";
 
+            if (dataGridView1.Columns.Contains("quantity"))
+                qtyString = row.Cells["quantity"].Value?.ToString() ?? "0";
+            else if (row.Cells.Count > 6)
+                qtyString = row.Cells[6].Value?.ToString() ?? "0";
+
+            int qty;
+            if (!int.TryParse(qtyString, out qty))
+                qty = 0;
+
+            return qty;
+        }
         private void UpdateButtonStates()
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                btnAvailable.Enabled = btnUnavaliable.Enabled = btnDamage.Enabled =
-                btnBorrow.Enabled = btnReturn.Enabled = btnReplace.Enabled = false;
+                btnAvailable.Enabled = false;
+                btnUnavaliable.Enabled = false;
+                btnDamage.Enabled = false;
+                btnBorrow.Enabled = false;
+                btnReplace.Enabled = false;
                 return;
             }
 
             DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
             string status = string.Empty;
+            int quantity = 0;
+
             if (dataGridView1.Columns.Contains("status"))
                 status = selectedRow.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
-            else
-                status = selectedRow.Cells.Count > 4 ? selectedRow.Cells[4].Value?.ToString()?.ToUpperInvariant() ?? string.Empty : string.Empty;
+            else if (selectedRow.Cells.Count > 4)
+                status = selectedRow.Cells[4].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
 
-            if (status == "DAMAGED")
+            if (dataGridView1.Columns.Contains("quantity"))
+                int.TryParse(selectedRow.Cells["quantity"].Value?.ToString(), out quantity);
+            else if (selectedRow.Cells.Count > 6)
+                int.TryParse(selectedRow.Cells[6].Value?.ToString(), out quantity);
+
+            btnAvailable.Enabled = false;
+            btnUnavaliable.Enabled = false;
+            btnDamage.Enabled = false;
+            btnBorrow.Enabled = false;
+            btnReplace.Enabled = false;
+
+            switch (status)
             {
-                btnReplace.Enabled = true;
-                btnAvailable.Enabled = false;
-                btnUnavaliable.Enabled = false;
-                btnDamage.Enabled = false;
-                btnBorrow.Enabled = false;
-                btnReturn.Enabled = false;
-            }
-            else
-            {
-                btnReplace.Enabled = false;
-                btnAvailable.Enabled = true;
-                btnUnavaliable.Enabled = true;
-                btnDamage.Enabled = true;
-                btnBorrow.Enabled = true;
-                btnReturn.Enabled = true;
-            }
+                case "AVAILABLE":
+                    btnBorrow.Enabled = (quantity > 0);
+                    btnUnavaliable.Enabled = true;
+                    btnDamage.Enabled = true;
+                    btnReplace.Enabled = false;
+                    btnAvailable.Enabled = false;
+                    break;
+
+                case "UNAVAILABLE":
+                    btnAvailable.Enabled = true;  
+                    btnDamage.Enabled = true;
+                    btnReplace.Enabled = true;    
+                    break;
+
+                case "DAMAGED":
+                    btnReplace.Enabled = true;  
+                    break;
+
+                default:
+                    break;
+            }                  
         }
         private void btnAddBook_Click(object sender, EventArgs e)
         {
@@ -141,10 +184,9 @@ namespace Library_Project
 
                         if (books.rowAffected > 0)
                         {
-                            // fixed: INSERT INTO (was missing INTO before)
                             books.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
                                 DateTime.Now.ToString("yyyy/MM/dd") + "' , '" +
-                                DateTime.Now.ToShortTimeString() + "', 'DELETE', 'BOOKS MANAGEMENT', '" +
+                                DateTime.Now.ToShortTimeString() + "', 'DELETE', 'RESOURCES MANAGEMENT', '" +
                                 bookID + "', '" + username + "')");
 
                             MessageBox.Show("Book deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -263,7 +305,7 @@ namespace Library_Project
                     {
                         books.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
                             "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
-                            DateTime.Now.ToShortTimeString() + "', 'REPLACED', 'BOOKS MANAGEMENT', '" +
+                            DateTime.Now.ToShortTimeString() + "', 'REPLACED', 'RESOURCES MANAGEMENT', '" +
                             bookID + "', '" + username + "')");
 
                         MessageBox.Show("Book successfully replaced and set to AVAILABLE.", "Replaced", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -280,62 +322,6 @@ namespace Library_Project
                 }
             }
         }
-
-        private void btnReturn_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a book to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            string bookID = selectedRow.Cells["BookID"].Value.ToString();
-            string currentStatus = selectedRow.Cells["status"].Value.ToString();
-
-            if (currentStatus == "AVAILABLE")
-            {
-                MessageBox.Show("This book is already available.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            DialogResult dr = MessageBox.Show("Are you sure you want to return this book?",
-                                              "Confirm Return", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dr == DialogResult.Yes)
-            {
-                try
-                {
-                    // 1️⃣ Update the book status
-                    books.executeSQL($"UPDATE tbl_books SET status = 'AVAILABLE' WHERE BookID = '{bookID}'");
-                    int affectedBooks = books.rowAffected;
-
-                    // 2️⃣ Update the transaction table
-                    books.executeSQL($"UPDATE tbl_transac SET returndate = '{DateTime.Now:yyyy/MM/dd}', status = 'RETURNED' " +
-                                     $"WHERE bookCode = '{bookID}' AND status = 'BORROWED'");
-                    int affectedTransac = books.rowAffected;
-
-                    if (affectedBooks > 0 || affectedTransac > 0)
-                    {
-                        // 3️⃣ Log the action
-                        books.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
-                                         $"VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now:hh\\:mm tt}', 'RETURN', " +
-                                         $"'BOOKS MANAGEMENT', '{bookID}', '{username}')");
-
-                        MessageBox.Show("Book successfully returned.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        frmBooksManagement_Load_1(null, null); // refresh table
-                    }
-                    else
-                    {
-                        MessageBox.Show("No matching borrowed record found for this book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show(error.Message, "ERROR on book return", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
         private void btnBorrow_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -343,14 +329,34 @@ namespace Library_Project
                 MessageBox.Show("Please select a book first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             string bookCode = row.Cells["BookID"].Value.ToString();
             string bookTitle = row.Cells["title"].Value.ToString();
             string author = row.Cells["author"].Value.ToString();
             string category = row.Cells["category"].Value.ToString();
+            string status = row.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
 
+            int quantity = GetQuantityFromRow(row);
+
+            if (status != "AVAILABLE")
+            {
+                MessageBox.Show($"This book cannot be borrowed.\nCurrent Status: {status}\n\nOnly books with AVAILABLE status can be borrowed.",
+                               "Book Not Available",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (quantity <= 0)
+            {
+                MessageBox.Show("This book is out of stock. No copies are available to borrow.",
+                               "Out of Stock",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
             frmBorrowBooks borrowForm = new frmBorrowBooks(bookCode, bookTitle, author, category, username);
-
             borrowForm.FormClosed += (s, args) =>
             {
                 frmBooksManagement_Load_1(sender, e);
@@ -366,29 +372,46 @@ namespace Library_Project
                 if (r.IsNewRow) continue;
 
                 DataGridViewCell statusCell = null;
+                DataGridViewCell quantityCell = null;
+
                 if (dataGridView1.Columns.Contains("status"))
                     statusCell = r.Cells["status"];
                 else if (dataGridView1.Columns.Count > 4)
                     statusCell = r.Cells[4];
 
+                if (dataGridView1.Columns.Contains("quantity"))
+                    quantityCell = r.Cells["quantity"];
+                else if (dataGridView1.Columns.Count > 6)
+                    quantityCell = r.Cells[6];
+
                 string status = statusCell?.Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
+                int quantity = 0;
+                int.TryParse(quantityCell?.Value?.ToString(), out quantity);
 
                 switch (status)
                 {
                     case "AVAILABLE":
                     case "REPLACED":
-                        r.DefaultCellStyle.BackColor = Color.LightGreen;
-                        r.DefaultCellStyle.ForeColor = Color.Black;
+                        if (quantity > 0)
+                        {
+                            r.DefaultCellStyle.BackColor = Color.Honeydew;
+                            r.DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            r.DefaultCellStyle.BackColor = Color.LemonChiffon;
+                            r.DefaultCellStyle.ForeColor = Color.Black;
+                        }
                         break;
 
                     case "BORROWED":
-                        r.DefaultCellStyle.BackColor = Color.Orange;
+                        r.DefaultCellStyle.BackColor = Color.Moccasin;
                         r.DefaultCellStyle.ForeColor = Color.Black;
                         break;
 
                     case "DAMAGED":
-                        r.DefaultCellStyle.BackColor = Color.Red;
-                        r.DefaultCellStyle.ForeColor = Color.White;
+                        r.DefaultCellStyle.BackColor = Color.LightPink;
+                        r.DefaultCellStyle.ForeColor = Color.Black;
                         break;
 
                     default:
@@ -401,6 +424,7 @@ namespace Library_Project
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             UpdateButtonStates();
+            row = e.RowIndex;
         }
 
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -418,6 +442,70 @@ namespace Library_Project
         {
             frmBooksManagement_Load_1(sender, e);
             txtSearch.Clear();
+        }
+
+        private void btntransac_Click(object sender, EventArgs e)
+        {
+            frmTransac transactions = new frmTransac(username);
+            transactions.FormClosed += (s, args) => frmBooksManagement_Load_1(null, null);
+            transactions.Show(); 
+        }
+
+        private void dtpFilterDate_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedDate = dtpFilterDate.Value.ToString("yyyy/MM/dd");
+                string query = "SELECT * FROM tbl_books WHERE DATE(Added_date) = '" + selectedDate + "' ORDER BY BookID";
+                DataTable dt = books.GetData(query);
+
+                dataGridView1.DataSource = dt;
+                ApplyRowColor();
+                UpdateButtonStates();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Error filtering by date", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void cmbList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedStatus = cmbList.SelectedItem?.ToString()?.Trim();
+
+                if (string.IsNullOrWhiteSpace(selectedStatus) || selectedStatus == "ALL")
+                {
+                    frmBooksManagement_Load_1(null, null);
+                    return;
+                }
+
+                string query = "SELECT * FROM tbl_books WHERE status = '" + selectedStatus + "' ORDER BY BookID";
+                DataTable dt = books.GetData(query);
+
+                dataGridView1.DataSource = dt;
+                ApplyRowColor();
+                UpdateButtonStates();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering by status: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBooksManagement_Load_1(sender, e);
+                txtSearch.Clear();
+                if (cmbList.Items.Count > 0)
+                    cmbList.SelectedIndex = -1;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "ERROR on Refresh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

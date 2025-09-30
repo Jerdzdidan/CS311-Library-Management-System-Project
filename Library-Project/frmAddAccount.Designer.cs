@@ -56,7 +56,7 @@
             "ADMINISTRATOR",
             "STAFF"});
             this.cmbUserType.Location = new System.Drawing.Point(440, 188);
-            this.cmbUserType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbUserType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbUserType.Name = "cmbUserType";
             this.cmbUserType.Size = new System.Drawing.Size(319, 30);
             this.cmbUserType.TabIndex = 38;
@@ -68,7 +68,7 @@
             this.cbkshow.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbkshow.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.cbkshow.Location = new System.Drawing.Point(208, 303);
-            this.cbkshow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbkshow.Margin = new System.Windows.Forms.Padding(4);
             this.cbkshow.Name = "cbkshow";
             this.cbkshow.Size = new System.Drawing.Size(160, 26);
             this.cbkshow.TabIndex = 36;
@@ -80,7 +80,7 @@
             // 
             this.txtpassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtpassword.Location = new System.Drawing.Point(57, 263);
-            this.txtpassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtpassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
             this.txtpassword.Size = new System.Drawing.Size(319, 30);
@@ -98,13 +98,14 @@
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClear.Location = new System.Drawing.Point(440, 263);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(152, 36);
             this.btnClear.TabIndex = 34;
-            this.btnClear.Text = "&Clear   ";
+            this.btnClear.Text = "   &Cancel         ";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnAdd
             // 
@@ -118,7 +119,7 @@
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(608, 263);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(152, 36);
             this.btnAdd.TabIndex = 32;
@@ -131,7 +132,7 @@
             // 
             this.txtusername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtusername.Location = new System.Drawing.Point(57, 190);
-            this.txtusername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtusername.Margin = new System.Windows.Forms.Padding(4);
             this.txtusername.Name = "txtusername";
             this.txtusername.Size = new System.Drawing.Size(320, 30);
             this.txtusername.TabIndex = 30;
@@ -158,7 +159,7 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(805, 123);
             this.panel1.TabIndex = 40;
@@ -227,7 +228,6 @@
             this.Name = "frmAddAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add account";
-            this.Load += new System.EventHandler(this.frmAddAccount_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -33,7 +33,6 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtBookCode = new System.Windows.Forms.TextBox();
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
@@ -46,6 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +55,7 @@
             // 
             this.txtTitle.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtTitle.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitle.Location = new System.Drawing.Point(55, 260);
+            this.txtTitle.Location = new System.Drawing.Point(55, 229);
             this.txtTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(295, 27);
@@ -70,7 +71,7 @@
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(625, 334);
+            this.btnAdd.Location = new System.Drawing.Point(423, 342);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(131, 37);
@@ -87,27 +88,19 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(51, 158);
+            this.label2.Location = new System.Drawing.Point(51, 149);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 19);
             this.label2.TabIndex = 4;
             this.label2.Text = "       Book Code:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 294);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 16);
-            this.label4.TabIndex = 8;
-            // 
             // txtBookCode
             // 
             this.txtBookCode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtBookCode.Enabled = false;
             this.txtBookCode.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBookCode.Location = new System.Drawing.Point(55, 180);
+            this.txtBookCode.Location = new System.Drawing.Point(55, 171);
             this.txtBookCode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBookCode.Name = "txtBookCode";
             this.txtBookCode.Size = new System.Drawing.Size(295, 27);
@@ -117,7 +110,7 @@
             // 
             this.txtAuthor.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtAuthor.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAuthor.Location = new System.Drawing.Point(55, 334);
+            this.txtAuthor.Location = new System.Drawing.Point(55, 293);
             this.txtAuthor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(295, 27);
@@ -138,8 +131,8 @@
             "MAGAZINE",
             "FICTION",
             "NON-FICTION"});
-            this.cmbCategory.Location = new System.Drawing.Point(460, 178);
-            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCategory.Location = new System.Drawing.Point(460, 169);
+            this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(295, 27);
             this.cmbCategory.TabIndex = 13;
@@ -155,7 +148,7 @@
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(460, 334);
+            this.btnCancel.Location = new System.Drawing.Point(258, 342);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(145, 37);
@@ -174,8 +167,8 @@
             this.dtpDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpDate.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(460, 261);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDate.Location = new System.Drawing.Point(460, 229);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(295, 27);
             this.dtpDate.TabIndex = 17;
@@ -187,7 +180,7 @@
             this.panel1.Controls.Add(this.label8);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(819, 123);
             this.panel1.TabIndex = 41;
@@ -211,7 +204,7 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
             this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label6.Location = new System.Drawing.Point(51, 238);
+            this.label6.Location = new System.Drawing.Point(51, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 19);
             this.label6.TabIndex = 42;
@@ -225,7 +218,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(51, 311);
+            this.label1.Location = new System.Drawing.Point(51, 270);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 19);
             this.label1.TabIndex = 43;
@@ -239,7 +232,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(456, 155);
+            this.label3.Location = new System.Drawing.Point(456, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 19);
             this.label3.TabIndex = 44;
@@ -253,12 +246,39 @@
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label9.Image = ((System.Drawing.Image)(resources.GetObject("label9.Image")));
             this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label9.Location = new System.Drawing.Point(459, 238);
+            this.label9.Location = new System.Drawing.Point(459, 206);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 19);
             this.label9.TabIndex = 45;
             this.label9.Text = "       Date:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
+            this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Location = new System.Drawing.Point(456, 270);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 19);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "      Quantity:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtQuantity.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuantity.Location = new System.Drawing.Point(460, 293);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtQuantity.MaxLength = 5;
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(295, 27);
+            this.txtQuantity.TabIndex = 46;
+            this.txtQuantity.Text = "1";
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // frmAddBooks
             // 
@@ -266,6 +286,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(819, 400);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -276,7 +298,6 @@
             this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.txtAuthor);
             this.Controls.Add(this.txtBookCode);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtTitle);
@@ -298,7 +319,6 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtBookCode;
         private System.Windows.Forms.TextBox txtAuthor;
         private System.Windows.Forms.ComboBox cmbCategory;
@@ -311,5 +331,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtQuantity;
     }
 }

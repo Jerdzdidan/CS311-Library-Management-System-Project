@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ticket_management;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Library_Project
@@ -108,6 +110,31 @@ namespace Library_Project
             txtsearch.Clear();
             dtpDate.Value = DateTime.Now;
             LoadAllLogs();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedFilter = cmbList.SelectedItem?.ToString();
+                if (string.IsNullOrWhiteSpace(selectedFilter))
+                {
+                    LoadAllLogs();
+                    return;
+                }
+                string esc = selectedFilter.Replace("'", "''");
+                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
+                               "FROM tbl_logs " +
+                               "WHERE action = '" + esc + "' OR module = '" + esc + "' " +
+                               "ORDER BY datelog DESC, timelog DESC";
+
+                DataTable dt = booklogs.GetData(query);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering logs: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

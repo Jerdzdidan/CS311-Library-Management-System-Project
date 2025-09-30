@@ -42,7 +42,7 @@
             this.btnUpdateBook = new System.Windows.Forms.Button();
             this.btnDeleteBook = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnReturn = new System.Windows.Forms.Button();
+            this.btntransac = new System.Windows.Forms.Button();
             this.btnBorrow = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -50,7 +50,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cmbList = new System.Windows.Forms.ComboBox();
+            this.dtpFilterDate = new System.Windows.Forms.DateTimePicker();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -64,19 +66,19 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 79);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 80);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(905, 576);
+            this.dataGridView1.Size = new System.Drawing.Size(1462, 694);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -85,7 +87,7 @@
             this.txtSearch.Location = new System.Drawing.Point(197, 34);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(673, 22);
+            this.txtSearch.Size = new System.Drawing.Size(807, 22);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -262,8 +264,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.btnReturn);
+            this.groupBox3.Controls.Add(this.btntransac);
             this.groupBox3.Controls.Add(this.btnBorrow);
             this.groupBox3.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -276,22 +277,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Actions";
             // 
-            // btnReturn
+            // btntransac
             // 
-            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReturn.FlatAppearance.BorderSize = 0;
-            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReturn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
-            this.btnReturn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturn.Location = new System.Drawing.Point(13, 76);
-            this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(208, 46);
-            this.btnReturn.TabIndex = 6;
-            this.btnReturn.Text = "&Return  ";
-            this.btnReturn.UseVisualStyleBackColor = true;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            this.btntransac.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btntransac.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btntransac.FlatAppearance.BorderSize = 0;
+            this.btntransac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btntransac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btntransac.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btntransac.Image = ((System.Drawing.Image)(resources.GetObject("btntransac.Image")));
+            this.btntransac.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btntransac.Location = new System.Drawing.Point(13, 78);
+            this.btntransac.Margin = new System.Windows.Forms.Padding(4);
+            this.btntransac.Name = "btntransac";
+            this.btntransac.Size = new System.Drawing.Size(208, 46);
+            this.btntransac.TabIndex = 14;
+            this.btntransac.Tag = "";
+            this.btntransac.Text = "Transactions";
+            this.btntransac.UseVisualStyleBackColor = false;
+            this.btntransac.Click += new System.EventHandler(this.btntransac_Click);
             // 
             // btnBorrow
             // 
@@ -320,14 +324,14 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1208, 95);
+            this.panel1.Size = new System.Drawing.Size(1773, 117);
             this.panel1.TabIndex = 11;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Library_Project.Properties.Resources.Au;
-            this.pictureBox2.Location = new System.Drawing.Point(136, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(149, 16);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(131, 84);
@@ -339,7 +343,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(5, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(18, 16);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(131, 84);
@@ -352,7 +356,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(268, 20);
+            this.label2.Location = new System.Drawing.Point(281, 32);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(634, 51);
@@ -362,55 +366,81 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel2.Controls.Add(this.btnRefresh);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.groupBox3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(931, 95);
+            this.panel2.Location = new System.Drawing.Point(1496, 117);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(277, 718);
+            this.panel2.Size = new System.Drawing.Size(277, 799);
             this.panel2.TabIndex = 12;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightYellow;
+            this.panel3.Controls.Add(this.cmbList);
+            this.panel3.Controls.Add(this.dtpFilterDate);
             this.panel3.Controls.Add(this.dataGridView1);
             this.panel3.Controls.Add(this.txtSearch);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 95);
+            this.panel3.Location = new System.Drawing.Point(0, 117);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(931, 718);
+            this.panel3.Size = new System.Drawing.Size(1496, 799);
             this.panel3.TabIndex = 13;
             // 
-            // button1
+            // cmbList
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(13, 26);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(208, 46);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "&Available            ";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.cmbList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbList.FormattingEnabled = true;
+            this.cmbList.Items.AddRange(new object[] {
+            "ALL",
+            "AVAILABLE",
+            "UNAVAILABLE",
+            "DAMAGED"});
+            this.cmbList.Location = new System.Drawing.Point(1010, 34);
+            this.cmbList.Name = "cmbList";
+            this.cmbList.Size = new System.Drawing.Size(190, 24);
+            this.cmbList.TabIndex = 8;
+            this.cmbList.SelectedIndexChanged += new System.EventHandler(this.cmbList_SelectedIndexChanged);
+            // 
+            // dtpFilterDate
+            // 
+            this.dtpFilterDate.Location = new System.Drawing.Point(1206, 34);
+            this.dtpFilterDate.Name = "dtpFilterDate";
+            this.dtpFilterDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpFilterDate.TabIndex = 7;
+            this.dtpFilterDate.ValueChanged += new System.EventHandler(this.dtpFilterDate_ValueChanged);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefresh.Location = new System.Drawing.Point(33, 728);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(208, 46);
+            this.btnRefresh.TabIndex = 15;
+            this.btnRefresh.Text = "&Refresh  ";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // frmBooksManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 813);
+            this.ClientSize = new System.Drawing.Size(1773, 916);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmBooksManagement";
@@ -446,7 +476,6 @@
         private System.Windows.Forms.Button btnUpdateBook;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Button btnBorrow;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
@@ -455,7 +484,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnReplace;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btntransac;
+        private System.Windows.Forms.DateTimePicker dtpFilterDate;
+        private System.Windows.Forms.ComboBox cmbList;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

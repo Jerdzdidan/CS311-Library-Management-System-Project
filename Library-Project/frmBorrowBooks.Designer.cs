@@ -61,7 +61,7 @@
             this.dtpDate.Enabled = false;
             this.dtpDate.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(83, 492);
+            this.dtpDate.Location = new System.Drawing.Point(88, 467);
             this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(271, 27);
@@ -104,7 +104,7 @@
             // 
             this.txtname.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtname.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtname.Location = new System.Drawing.Point(83, 168);
+            this.txtname.Location = new System.Drawing.Point(90, 220);
             this.txtname.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtname.Name = "txtname";
             this.txtname.Size = new System.Drawing.Size(275, 27);
@@ -115,7 +115,7 @@
             // 
             this.txtGRSC.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtGRSC.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGRSC.Location = new System.Drawing.Point(82, 412);
+            this.txtGRSC.Location = new System.Drawing.Point(87, 387);
             this.txtGRSC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtGRSC.Name = "txtGRSC";
             this.txtGRSC.Size = new System.Drawing.Size(275, 27);
@@ -125,7 +125,7 @@
             // 
             this.groupBox1.Controls.Add(this.rbTeacher);
             this.groupBox1.Controls.Add(this.rbStudent);
-            this.groupBox1.Location = new System.Drawing.Point(83, 316);
+            this.groupBox1.Location = new System.Drawing.Point(88, 291);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -203,9 +203,9 @@
             this.lstSearchResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstSearchResults.FormattingEnabled = true;
             this.lstSearchResults.ItemHeight = 16;
-            this.lstSearchResults.Location = new System.Drawing.Point(83, 200);
+            this.lstSearchResults.Location = new System.Drawing.Point(88, 247);
             this.lstSearchResults.Name = "lstSearchResults";
-            this.lstSearchResults.Size = new System.Drawing.Size(275, 82);
+            this.lstSearchResults.Size = new System.Drawing.Size(279, 82);
             this.lstSearchResults.TabIndex = 2;
             this.lstSearchResults.Visible = false;
             this.lstSearchResults.SelectedIndexChanged += new System.EventHandler(this.lstSearchResults_SelectedIndexChanged);
@@ -217,7 +217,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(79, 390);
+            this.label3.Location = new System.Drawing.Point(83, 365);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(148, 19);
             this.label3.TabIndex = 57;
@@ -231,7 +231,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(79, 145);
+            this.label1.Location = new System.Drawing.Point(87, 197);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 19);
             this.label1.TabIndex = 56;
@@ -245,7 +245,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(79, 294);
+            this.label2.Location = new System.Drawing.Point(83, 269);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 19);
             this.label2.TabIndex = 55;
@@ -259,7 +259,7 @@
             this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label11.Image = ((System.Drawing.Image)(resources.GetObject("label11.Image")));
             this.label11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label11.Location = new System.Drawing.Point(79, 469);
+            this.label11.Location = new System.Drawing.Point(83, 444);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(74, 19);
             this.label11.TabIndex = 54;

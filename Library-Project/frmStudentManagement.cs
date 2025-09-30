@@ -20,20 +20,44 @@ namespace Library_Project
         {
             InitializeComponent();
             this.username = username;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+            txtSearch.TextChanged += txtsearch_TextChanged;
+            dgvStudents.CellClick += dgvStudents_CellClick;
+            txtBarcode.KeyDown += txtBarcode_KeyDown;
         }
 
         private void frmStudentManagement_Load(object sender, EventArgs e)
         {
-            LoadTodayStudents();
+            dateTimePicker1.Value = DateTime.Now.Date;
+            LoadStudentsByDate(dateTimePicker1.Value);
             txtBarcode.Focus();
+        }
+        private void LoadStudentsByDate(DateTime date)
+        {
+            try
+            {
+                string dateString = date.ToString("yyyy/MM/dd"); 
+                string query = "SELECT student_ID, name, grade, section, date_in " +
+                               "FROM tbl_students " +
+                               $"WHERE DATE(date_in) = '{dateString}' " +
+                               "ORDER BY date_in DESC";
+
+                DataTable dt = studentmanagement.GetData(query);
+                dgvStudents.DataSource = dt;
+                dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading students: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void LoadTodayStudents()
         {
             try
             {
                 DataTable dt = studentmanagement.GetData(
-                    "SELECT student_id, name, grade, section, date_in " +
-                    "FROM tbl_student " +
+                    "SELECT student_ID, name, grade, section, date_in " +
+                    "FROM tbl_students " +
                     "WHERE DATE(date_in) = CURDATE() " +
                     "ORDER BY date_in DESC"
                 );
@@ -50,17 +74,26 @@ namespace Library_Project
         {
             try
             {
-                DataTable dt = studentmanagement.GetData(
-                    "SELECT student_id, name, grade, section, date_in " +
-                    "FROM tbl_student " +
-                    "WHERE (name LIKE '%" + txtSearch.Text + "%' OR student_id LIKE '%" + txtSearch.Text + "%') " +
-                    "AND DATE(date_in) = CURDATE()"
-                );
+                string keyword = txtSearch.Text.Trim().Replace("'", "''");
+                string dateString = dateTimePicker1.Value.ToString("yyyy/MM/dd");
+
+                string query = "SELECT student_ID, name, grade, section, date_in " +
+                               "FROM tbl_students " +
+                               $"WHERE DATE(date_in) = '{dateString}' ";
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    query += "AND (name LIKE '%" + keyword + "%' OR student_ID LIKE '%" + keyword + "%') ";
+                }
+
+                query += "ORDER BY date_in DESC";
+
+                DataTable dt = studentmanagement.GetData(query);
                 dgvStudents.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Search Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -89,36 +122,40 @@ namespace Library_Project
 
         private void btnupdate_Click(object sender, EventArgs e)
         {
-            if (row >= 0)
-            {
-                string editID = dgvStudents.Rows[row].Cells[0].Value.ToString();
-                string editname = dgvStudents.Rows[row].Cells[1].Value.ToString();
-                string editgrade = dgvStudents.Rows[row].Cells[2].Value.ToString();
-                string editsection = dgvStudents.Rows[row].Cells[3].Value.ToString();
+            int row = dgvStudents.CurrentCell.RowIndex;
 
-                frmUpdateStudent updateForm = new frmUpdateStudent(editID, editname, editgrade, editsection, username);
-                updateForm.FormClosed += (s, args) =>
-                {
-                    frmStudentManagement_Load(sender, e);
-                };
-                updateForm.Show();
+            if (row < 0 || row >= dgvStudents.Rows.Count)
+            {
+                MessageBox.Show("Please select a valid row to update.",
+                               "Invalid Selection",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
             }
+            string editID = dgvStudents.Rows[row].Cells[0].Value.ToString();
+            string editname = dgvStudents.Rows[row].Cells[1].Value.ToString();
+            string editgrade = dgvStudents.Rows[row].Cells[2].Value.ToString();
+            string editsection = dgvStudents.Rows[row].Cells[3].Value.ToString();
+            frmUpdateStudent updatestudentform = new frmUpdateStudent(username, editID, editname, editgrade, editsection);
+            updatestudentform.FormClosed += (s, args) =>
+            {
+                frmStudentManagement_Load(sender, e);
+            };
+            updatestudentform.Show();
         }
         private void btndelete_Click(object sender, EventArgs e)
         {
             if (row >= 0)
             {
-                string id = dgvStudents.Rows[row].Cells["student_id"].Value.ToString();
+                string id = dgvStudents.Rows[row].Cells["student_ID"].Value.ToString();
                 string name = dgvStudents.Rows[row].Cells["name"].Value.ToString();
-
                 DialogResult dr = MessageBox.Show($"Are you sure you want to delete student '{name}'?",
                     "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                 if (dr == DialogResult.Yes)
                 {
                     try
                     {
-                        studentmanagement.executeSQL($"DELETE FROM tbl_student WHERE student_id = '{id}'");
+                        studentmanagement.executeSQL($"DELETE FROM tbl_students WHERE student_ID = '{id}'");
                         if (studentmanagement.rowAffected > 0)
                         {
                             LoadTodayStudents();
@@ -148,27 +185,53 @@ namespace Library_Project
         {
             if (e.KeyCode == Keys.Enter)
             {
-                LogStudentAttendance(txtBarcode.Text.Trim());
-                txtBarcode.Clear();
+                string student_ID = txtBarcode.Text.Trim();
+
+                if (!string.IsNullOrEmpty(student_ID))
+                {
+                    try
+                    {
+                        DataTable check = studentmanagement.GetData(
+                            $"SELECT * FROM tbl_students WHERE student_ID = '{student_ID}'");
+
+                        if (check.Rows.Count > 0)
+                        {
+                            studentmanagement.executeSQL(
+                                $"UPDATE tbl_students SET date_in = NOW() WHERE student_ID = '{student_ID}'");
+                            LogAction("SCAN", "STUDENT MANAGEMENT", $"Student {student_ID} scanned");
+                        }
+                        else
+                        {
+                            studentmanagement.executeSQL(
+                                $"INSERT INTO tbl_students (student_ID, name, grade, section, date_in) " +
+                                $"VALUES ('{student_ID}', 'Unknown', '', '', NOW())");
+                            LogAction("ADD", "STUDENT MANAGEMENT", $"Scanned and added student {student_ID}");
+                        }
+
+                        LoadTodayStudents();
+                        txtBarcode.Clear();
+                        LogStudentAttendance(student_ID);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error Logging Attendance",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                txtBarcode.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true; // prevent beep sound
             }
         }
         private void LogStudentAttendance(string student_ID)
         {
             try
             {
-                DataTable check = studentmanagement.GetData($"SELECT * FROM tbl_student WHERE student_id = '{student_ID}'");
+                studentmanagement.executeSQL(
+                    $"INSERT INTO tbl_students (student_ID, name, grade, section, date_in) " +
+                    $"VALUES ('{student_ID}', '', '', '', NOW())");
 
-                if (check.Rows.Count > 0)
-                {
-                    studentmanagement.executeSQL($"UPDATE tbl_student SET date_in = NOW() WHERE student_id = '{student_ID}'");
-                    LogAction("SCAN", "STUDENT MANAGEMENT", $"Student {student_ID} scanned");
-                }
-                else
-                {
-                    studentmanagement.executeSQL($"INSERT INTO tbl_student (student_id, name, grade, section, date_in) " +
-                                                 $"VALUES ('{student_ID}', 'Unknown', '', '', NOW())");
-                    LogAction("ADD", "STUDENT MANAGEMENT", $"Scanned and added student {student_ID}");
-                }
+                LogAction("SCAN", "STUDENT MANAGEMENT", $"Student {student_ID} scanned");
 
                 LoadTodayStudents();
             }
@@ -191,5 +254,9 @@ namespace Library_Project
             }
         }
 
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            LoadStudentsByDate(dateTimePicker1.Value);
+        }
     }
 }

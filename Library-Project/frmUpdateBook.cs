@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 using ticket_management;
 
@@ -36,6 +37,22 @@ namespace Library_Project
             {
                 dtpDate.Value = DateTime.Now;
             }
+            LoadCurrentQuantity(bookID);
+        }
+        private void LoadCurrentQuantity(string bookID)
+        {
+            try
+            {
+                DataTable dt = bookUpdate.GetData("SELECT quantity FROM tbl_books WHERE BookID = '" + bookID + "'");
+                if (dt.Rows.Count > 0)
+                {
+                    txtQuantity.Text = dt.Rows[0]["quantity"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading quantity: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -67,7 +84,12 @@ namespace Library_Project
                 errorProvider1.SetError(dtpDate, "Date is empty.");
                 errorcount++;
             }
-
+            int quantity = 0;
+            if (string.IsNullOrEmpty(txtQuantity.Text) || !int.TryParse(txtQuantity.Text, out quantity) || quantity < 0)
+            {
+                errorProvider1.SetError(txtQuantity, "Please enter a valid quantity (0 or greater).");
+                errorcount++;
+            }
             if (errorcount == 0)
             {
                 try
@@ -76,19 +98,20 @@ namespace Library_Project
                     if (dr == DialogResult.Yes)
                     {
                         bookUpdate.executeSQL("UPDATE tbl_books SET " +
-                            "title = '" + txtTitle.Text + "', " +
-                            "author = '" + txtAuthor.Text + "', " +
-                            "category = '" + cmbCategory.Text + "', " +
-                            "status = '" + cmbStatus.Text + "', " +
-                            "Added_date = '" + dtpDate.Text + "' " +
-                            "WHERE BookID = '" + txtBookCode.Text + "'");
+                    "title = '" + txtTitle.Text + "', " +
+                    "author = '" + txtAuthor.Text + "', " +
+                    "category = '" + cmbCategory.Text + "', " +
+                    "status = '" + cmbStatus.Text + "', " +
+                    "Added_date = '" + dtpDate.Text + "', " +
+                    "quantity = " + quantity + " " +
+                    "WHERE BookID = '" + txtBookCode.Text + "'");
 
                         if (bookUpdate.rowAffected > 0)
                         {
                             MessageBox.Show("Book updated.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             bookUpdate.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
                                 DateTime.Now.ToString("yyyy/MM/dd") + "', '" +
-                                DateTime.Now.ToShortTimeString() + "', 'UPDATE', 'BOOKS MANAGEMENT', '" +
+                                DateTime.Now.ToShortTimeString() + "', 'UPDATE', 'RESOURCES MANAGEMENT', '" +
                                 txtBookCode.Text + "', '" + username + "')");
 
                             this.Close();
@@ -105,9 +128,6 @@ namespace Library_Project
                 }
             }
         }
-
-        public event EventHandler BookUpdated;
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();

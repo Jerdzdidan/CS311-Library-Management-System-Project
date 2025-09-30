@@ -23,7 +23,6 @@ namespace Library_Project
             this.username = username;
         }
         private int errorcount;
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
@@ -67,7 +66,7 @@ namespace Library_Project
                     DialogResult dr = MessageBox.Show("Are you sure you want to add this account?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        addaccount.executeSQL("INSERT INTO tbl_accounts (username, password, usertype, status, createdby, datecreated) VALUES ('" + txtusername.Text + "','" + txtpassword.Text + "','" + cmbUserType.Text.ToUpper() + "', 'ACTIVE', '" + username + "', '" + DateTime.Now.ToShortDateString() + "')");
+                        addaccount.executeSQL("INSERT INTO tbl_accounts (username, password, usertype, status, createdby, datecreated) VALUES ('" + txtusername.Text + "','" + txtpassword.Text + "','" + cmbUserType.Text.ToUpper() + "', 'ACTIVE', '" + username + "', '" + DateTime.Now.ToString("yyyy/MM/dd") + "')");
                         if (addaccount.rowAffected > 0)
                         {
                             addaccount.executeSQL("INSERT tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
@@ -87,10 +86,6 @@ namespace Library_Project
                 }
             }
         }
-        private void frmAddAccount_Load(object sender, EventArgs e)
-        {
-
-        }
         private void cbkshow_CheckedChanged(object sender, EventArgs e)
         {
             if (cbkshow.Checked)
@@ -102,5 +97,6 @@ namespace Library_Project
                 txtpassword.PasswordChar = '*';
             }
         }
+        private void btnClear_Click(object sender, EventArgs e) => this.Close();
     }
 }

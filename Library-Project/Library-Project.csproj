@@ -98,6 +98,12 @@
     <Compile Include="frmBorrowBooks.Designer.cs">
       <DependentUpon>frmBorrowBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashboard.Designer.cs">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmlogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,12 @@
     </Compile>
     <Compile Include="frmStudentManagement.Designer.cs">
       <DependentUpon>frmStudentManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTransac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTransac.Designer.cs">
+      <DependentUpon>frmTransac.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTransactions.cs">
       <SubType>Form</SubType>
@@ -154,6 +166,9 @@
     <EmbeddedResource Include="frmAddBooks.resx">
       <DependentUpon>frmAddBooks.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAddStudent.resx">
+      <DependentUpon>frmAddStudent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBookLogs.resx">
       <DependentUpon>frmBookLogs.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBorrowBooks.resx">
       <DependentUpon>frmBorrowBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashboard.resx">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmlogin.resx">
       <DependentUpon>frmlogin.cs</DependentUpon>
@@ -172,6 +190,9 @@
     <EmbeddedResource Include="frmStudentManagement.resx">
       <DependentUpon>frmStudentManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTransac.resx">
+      <DependentUpon>frmTransac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTransactions.resx">
       <DependentUpon>frmTransactions.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateBook.resx">
       <DependentUpon>frmUpdateBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateStudent.resx">
+      <DependentUpon>frmUpdateStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

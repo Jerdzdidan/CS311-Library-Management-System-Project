@@ -31,13 +31,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccountsManagement));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnadd = new System.Windows.Forms.Button();
-            this.btndelete = new System.Windows.Forms.Button();
-            this.btnupdate = new System.Windows.Forms.Button();
-            this.btnreset = new System.Windows.Forms.Button();
             this.txtsearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btndelete = new System.Windows.Forms.Button();
+            this.btnupdate = new System.Windows.Forms.Button();
+            this.btnadd = new System.Windows.Forms.Button();
+            this.btnreset = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -53,6 +53,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -70,29 +72,42 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(745, 327);
+            this.dataGridView1.Size = new System.Drawing.Size(1461, 729);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // btnadd
+            // txtsearch
             // 
-            this.btnadd.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btnadd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnadd.FlatAppearance.BorderSize = 0;
-            this.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnadd.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnadd.Image = ((System.Drawing.Image)(resources.GetObject("btnadd.Image")));
-            this.btnadd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnadd.Location = new System.Drawing.Point(24, 75);
-            this.btnadd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(208, 46);
-            this.btnadd.TabIndex = 2;
-            this.btnadd.Text = "&Add Account     ";
-            this.btnadd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnadd.UseVisualStyleBackColor = false;
-            this.btnadd.Click += new System.EventHandler(this.btnadd_Click);
+            this.txtsearch.Location = new System.Drawing.Point(171, 31);
+            this.txtsearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtsearch.Name = "txtsearch";
+            this.txtsearch.Size = new System.Drawing.Size(598, 22);
+            this.txtsearch.TabIndex = 8;
+            this.txtsearch.TextChanged += new System.EventHandler(this.txtsearch_TextChanged_1);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(26, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 21);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Search Account:";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel1.Controls.Add(this.btndelete);
+            this.panel1.Controls.Add(this.btnupdate);
+            this.panel1.Controls.Add(this.btnadd);
+            this.panel1.Controls.Add(this.btnreset);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1508, 116);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(247, 846);
+            this.panel1.TabIndex = 10;
             // 
             // btndelete
             // 
@@ -134,56 +149,45 @@
             this.btnupdate.UseVisualStyleBackColor = false;
             this.btnupdate.Click += new System.EventHandler(this.btnupdate_Click);
             // 
+            // btnadd
+            // 
+            this.btnadd.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnadd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnadd.FlatAppearance.BorderSize = 0;
+            this.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnadd.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnadd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnadd.Image = ((System.Drawing.Image)(resources.GetObject("btnadd.Image")));
+            this.btnadd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnadd.Location = new System.Drawing.Point(24, 75);
+            this.btnadd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnadd.Name = "btnadd";
+            this.btnadd.Size = new System.Drawing.Size(208, 46);
+            this.btnadd.TabIndex = 2;
+            this.btnadd.Text = "&Add Account     ";
+            this.btnadd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnadd.UseVisualStyleBackColor = false;
+            this.btnadd.Click += new System.EventHandler(this.btnadd_Click);
+            // 
             // btnreset
             // 
             this.btnreset.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnreset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnreset.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnreset.FlatAppearance.BorderSize = 0;
             this.btnreset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnreset.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnreset.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnreset.Image = ((System.Drawing.Image)(resources.GetObject("btnreset.Image")));
             this.btnreset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnreset.Location = new System.Drawing.Point(24, 357);
+            this.btnreset.Location = new System.Drawing.Point(0, 800);
             this.btnreset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnreset.Name = "btnreset";
-            this.btnreset.Size = new System.Drawing.Size(208, 46);
+            this.btnreset.Size = new System.Drawing.Size(247, 46);
             this.btnreset.TabIndex = 5;
             this.btnreset.Text = "&Reset       ";
             this.btnreset.UseVisualStyleBackColor = false;
             this.btnreset.Click += new System.EventHandler(this.btnreset_Click);
-            // 
-            // txtsearch
-            // 
-            this.txtsearch.Location = new System.Drawing.Point(171, 31);
-            this.txtsearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtsearch.Name = "txtsearch";
-            this.txtsearch.Size = new System.Drawing.Size(598, 22);
-            this.txtsearch.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 21);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Search Account:";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.btndelete);
-            this.panel1.Controls.Add(this.btnupdate);
-            this.panel1.Controls.Add(this.btnadd);
-            this.panel1.Controls.Add(this.btnreset);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(803, 95);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(247, 420);
-            this.panel1.TabIndex = 10;
             // 
             // panel2
             // 
@@ -193,17 +197,17 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1050, 95);
+            this.panel2.Size = new System.Drawing.Size(1755, 116);
             this.panel2.TabIndex = 11;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 7);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(5, 17);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(131, 84);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -214,8 +218,8 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::Library_Project.Properties.Resources.Au;
-            this.pictureBox2.Location = new System.Drawing.Point(120, 7);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(121, 17);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(131, 84);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -227,7 +231,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(250, 25);
+            this.label2.Location = new System.Drawing.Point(251, 35);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(613, 51);
@@ -241,21 +245,21 @@
             this.panel3.Controls.Add(this.txtsearch);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 95);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Location = new System.Drawing.Point(0, 116);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(803, 420);
+            this.panel3.Size = new System.Drawing.Size(1508, 846);
             this.panel3.TabIndex = 12;
             // 
             // frmAccountsManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 515);
+            this.ClientSize = new System.Drawing.Size(1755, 962);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmAccountsManagement";

@@ -78,6 +78,13 @@ namespace Library_Project
                 errorcount++;
             }
 
+            int quantity = 0;
+            if (string.IsNullOrEmpty(txtQuantity.Text) || !int.TryParse(txtQuantity.Text, out quantity) || quantity <= 0)
+            {
+                errorProvider1.SetError(txtQuantity, "Please enter a valid quantity (must be greater than 0).");
+                errorcount++;
+            }
+
             if (errorcount == 0)
             {
                 try
@@ -86,19 +93,20 @@ namespace Library_Project
                     if (dr == DialogResult.Yes)
                     {
                         addaccount.executeSQL(
-                            "INSERT INTO tbl_books (BookID, title, author, category, status, Added_date) " +
+                            "INSERT INTO tbl_books (BookID, title, author, category, status, Added_date, quantity) " +
                             "VALUES ('" + txtBookCode.Text + "', " +
                             "'" + txtTitle.Text + "', " +
                             "'" + txtAuthor.Text + "', " +
                             "'" + cmbCategory.Text + "', " +
                             "'AVAILABLE', " +
-                            "'" + dtpDate.Value.ToString("yyyy/MM/dd") + "')");
+                            "'" + dtpDate.Value.ToString("yyyy/MM/dd") + "', " +
+                            quantity + ")");
 
                         if (addaccount.rowAffected > 0)
                         {
-                            MessageBox.Show("New Book Added.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("New Book Added with " + quantity + " copies.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             addaccount.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " + "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', " + "'" + DateTime.Now.ToShortTimeString() + "', " +
-                                                  "'ADDED NEW BOOK: " + txtTitle.Text + "', " + "'BOOKS MANAGEMENT', " + "'" + txtBookCode.Text + "', " + "'" + username + "')");
+                                                  "'ADDED NEW BOOK: " + txtTitle.Text + " (Qty: " + quantity + ")', " + "'RESOURCES MANAGEMENT', " + "'" + txtBookCode.Text + "', " + "'" + username + "')");
                             this.Close();
                         }
                     }
@@ -108,6 +116,11 @@ namespace Library_Project
                     MessageBox.Show(error.Message, "ERROR on adding new book", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
