@@ -200,12 +200,14 @@
             // 
             // lstSearchResults
             // 
+            this.lstSearchResults.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lstSearchResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lstSearchResults.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstSearchResults.FormattingEnabled = true;
-            this.lstSearchResults.ItemHeight = 16;
+            this.lstSearchResults.ItemHeight = 19;
             this.lstSearchResults.Location = new System.Drawing.Point(88, 247);
             this.lstSearchResults.Name = "lstSearchResults";
-            this.lstSearchResults.Size = new System.Drawing.Size(279, 82);
+            this.lstSearchResults.Size = new System.Drawing.Size(277, 97);
             this.lstSearchResults.TabIndex = 2;
             this.lstSearchResults.Visible = false;
             this.lstSearchResults.SelectedIndexChanged += new System.EventHandler(this.lstSearchResults_SelectedIndexChanged);
