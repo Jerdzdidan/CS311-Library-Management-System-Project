@@ -31,6 +31,11 @@ namespace Library_Project
             dateTimePicker1.Value = DateTime.Now.Date;
             LoadStudentsByDate(dateTimePicker1.Value);
             txtBarcode.Focus();
+            dgvStudents.Columns[0].HeaderText = "Student Number";
+            dgvStudents.Columns[1].HeaderText = "Namee";
+            dgvStudents.Columns[2].HeaderText = "Grade";
+            dgvStudents.Columns[3].HeaderText = "Section";
+            dgvStudents.Columns[4].HeaderText = "Date In";
         }
         private void LoadStudentsByDate(DateTime date)
         {
