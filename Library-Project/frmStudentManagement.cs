@@ -264,6 +264,27 @@ namespace Library_Project
             LoadStudentsByDate(dateTimePicker1.Value);
         }
 
-      
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            if (dgvStudents.CurrentRow != null)
+            {
+                string studentID = dgvStudents.CurrentRow.Cells["student_ID"].Value.ToString();
+                string name = dgvStudents.CurrentRow.Cells["name"].Value.ToString();
+                string grade = dgvStudents.CurrentRow.Cells["grade"].Value.ToString();
+                string section = dgvStudents.CurrentRow.Cells["section"].Value.ToString();
+
+                frmStudentHistory historyForm = new frmStudentHistory(studentID, name, grade, section);
+                historyForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a student to view history.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

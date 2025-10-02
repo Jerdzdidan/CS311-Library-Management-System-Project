@@ -151,11 +151,12 @@ namespace Library_Project
                     return;
                 }
                 DateTime borrowDate = DateTime.Now;
+                string transacID = "TRS - " + DateTime.Now.ToString("yyyyMMddHHmmss");
                 bookborrow.executeSQL(
-                    "INSERT INTO tbl_transac (bookCode, bookTitle, author, category, borrowdate, status, borrower, borrowerType, grade_section) " +
+                    "INSERT INTO tbl_transac (bookCode, bookTitle, author, category, borrowdate, status, borrower, borrowerType, grade_section, transacID) " +
                     "VALUES ('" + bookCode + "', '" + bookTitle + "', '" + author + "', '" + category + "', " +
                     "'" + borrowDate.ToString("yyyy/MM/dd") + "', " +
-                    "'BORROWED', '" + borrowerName + "', '" + borrowerType + "', '" + grsc + "')"
+                    "'BORROWED', '" + borrowerName + "', '" + borrowerType + "', '" + grsc + "','"+ transacID +"')"
                 );
                 bookborrow.executeSQL("UPDATE tbl_books SET quantity = quantity - 1 WHERE BookID = '" + bookCode + "'");
                 DataTable dtNewQuantity = bookborrow.GetData("SELECT quantity FROM tbl_books WHERE BookID = '" + bookCode + "'");

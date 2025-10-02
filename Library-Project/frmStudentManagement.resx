@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnHistory.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAYpJREFUSEut
+        loFxwjAQBF0CJVACHUAJdAAdhA6gg5QQOiAdJB3YHUAHpAPn1hxiYkUylrmZm9Hfv176l2Socmjbdi1+
+        iF/muzizezqU7Cg24lZcmWhnce+wcigJib9t/oH0hcjiB0tlYAFxZTOCfHPxYrMMStB6mMQzMVlo/o+Y
+        PeBXLDLULs5lcru4RTubEeTjYnzaLIMS0K65zQj4iLFZBnYpvtmMIN+OGJtlUAJ6njxYfMLCZjmUhGq2
+        NgPQ8NmcBnYqRn1HE5M3bzSULGpZX5NJZTW6wXhjdx4KnDHDZsBds5+EtDVUxtgavvSDlpNW8Wk/WgpA
+        s7/7QluOIB83sLb5AJNEkl8IshwBnzh4+Irhy3HbiAbsjPIQ152YgWKoYvDwiRFrBrzeq5gsvQ/FhrPS
+        8CDu+7T7FitySKN+gLqJBnP/o91hEfrP73i0mwSpfEy7muROMmQiB39yriQU8zj4Emjy0BVmQ43NMigB
+        j5GFTuLSMjqV8gzwvebvkxLxtkh4R6/CqvoFP1tmcRxf5F8AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btndelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAYpJREFUSEut

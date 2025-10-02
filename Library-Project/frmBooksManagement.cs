@@ -67,7 +67,6 @@ namespace Library_Project
                 btnAvailable.Enabled = false;
                 btnUnavaliable.Enabled = false;
                 btnDamage.Enabled = false;
-                btnBorrow.Enabled = false;
                 btnReplace.Enabled = false;
                 return;
             }
@@ -89,13 +88,11 @@ namespace Library_Project
             btnAvailable.Enabled = false;
             btnUnavaliable.Enabled = false;
             btnDamage.Enabled = false;
-            btnBorrow.Enabled = false;
             btnReplace.Enabled = false;
 
             switch (status)
             {
                 case "AVAILABLE":
-                    btnBorrow.Enabled = (quantity > 0);
                     btnUnavaliable.Enabled = true;
                     btnDamage.Enabled = true;
                     btnReplace.Enabled = false;
@@ -270,11 +267,6 @@ namespace Library_Project
         {
             UpdateStatus("DAMAGED");
         }
-
-        private void btnBorrowed_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("BORROWED");
-        }
         private void btnReplace_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -321,47 +313,6 @@ namespace Library_Project
                     MessageBox.Show(error.Message, "ERROR on replace", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-        private void btnBorrow_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a book first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
-            string bookCode = row.Cells["BookID"].Value.ToString();
-            string bookTitle = row.Cells["title"].Value.ToString();
-            string author = row.Cells["author"].Value.ToString();
-            string category = row.Cells["category"].Value.ToString();
-            string status = row.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
-
-            int quantity = GetQuantityFromRow(row);
-
-            if (status != "AVAILABLE")
-            {
-                MessageBox.Show($"This book cannot be borrowed.\nCurrent Status: {status}\n\nOnly books with AVAILABLE status can be borrowed.",
-                               "Book Not Available",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (quantity <= 0)
-            {
-                MessageBox.Show("This book is out of stock. No copies are available to borrow.",
-                               "Out of Stock",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Warning);
-                return;
-            }
-            frmBorrowBooks borrowForm = new frmBorrowBooks(bookCode, bookTitle, author, category, username);
-            borrowForm.FormClosed += (s, args) =>
-            {
-                frmBooksManagement_Load_1(sender, e);
-            };
-            borrowForm.ShowDialog();
         }
         private void ApplyRowColor()
         {
@@ -505,7 +456,7 @@ namespace Library_Project
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "ERROR on Refresh", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }   
         }
     }
 }

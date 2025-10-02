@@ -67,7 +67,7 @@ namespace Library_Project
             try
             {
                 DataTable dt = booktransac.GetData(
-                    "SELECT bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
+                    "SELECT transacID, bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
                     "FROM tbl_transac ORDER BY borrowdate DESC"
                 );
                 dataGridView1.DataSource = dt;
@@ -109,7 +109,7 @@ namespace Library_Project
             try
             {
                 string keyword = txtSearch.Text.Trim();
-                string query = "SELECT bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
+                string query = "SELECT transacID, bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
                                 "FROM tbl_transac " +
                                 "WHERE (bookCode LIKE '%" + keyword + "%' " +
                                 "OR bookTitle LIKE '%" + keyword + "%' " +
@@ -125,6 +125,9 @@ namespace Library_Project
 
                 DataTable dt = booktransac.GetData(query);
                 dataGridView1.DataSource = dt;
+
+                if (dataGridView1.Columns.Contains("transacID"))
+                    dataGridView1.Columns["transacID"].Visible = false;
             }
             catch (Exception error)
             {
@@ -140,6 +143,9 @@ namespace Library_Project
             }
 
             DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+            // transacID is INT in DB
+            string transacID = selectedRow.Cells["transacID"].Value.ToString();
             string bookCode = selectedRow.Cells["bookCode"].Value.ToString();
             string status = selectedRow.Cells["status"].Value.ToString();
 
@@ -156,7 +162,6 @@ namespace Library_Project
             {
                 try
                 {
-                    // Get current quantity from tbl_books
                     DataTable dtBook = booktransac.GetData($"SELECT quantity FROM tbl_books WHERE BookID = '{bookCode}'");
 
                     if (dtBook.Rows.Count == 0)
@@ -164,15 +169,19 @@ namespace Library_Project
                         MessageBox.Show("Book not found in tbl_books.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    int currentQty = 0;
-                    int.TryParse(dtBook.Rows[0]["quantity"].ToString(), out currentQty);
+
+                    int currentQty = Convert.ToInt32(dtBook.Rows[0]["quantity"]);
                     int newQty = currentQty + 1;
-                    booktransac.executeSQL($"UPDATE tbl_books SET quantity = '{newQty}', status = 'AVAILABLE' WHERE BookID = '{bookCode}'");
+
+                    // Update book inventory
+                    booktransac.executeSQL($"UPDATE tbl_books SET quantity = {newQty}, status = 'AVAILABLE' WHERE BookID = '{bookCode}'");
                     int affectedBooks = booktransac.rowAffected;
-                    booktransac.executeSQL($"UPDATE tbl_transac SET returndate = '{DateTime.Now:yyyy/MM/dd}', status = 'RETURNED' WHERE bookCode = '{bookCode}' AND status = 'BORROWED'");
+
+                    // Update ONLY the specific transaction by transacID
+                    booktransac.executeSQL($"UPDATE tbl_transac SET returndate = '{DateTime.Now:yyyy/MM/dd}', status = 'RETURNED' WHERE transacID = '{transacID}'");
                     int affectedTransac = booktransac.rowAffected;
 
-                    if (affectedBooks > 0 || affectedTransac > 0)
+                    if (affectedBooks > 0 && affectedTransac > 0)
                     {
                         booktransac.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
                                                $"VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now:hh\\:mm tt}', 'RETURN', " +
@@ -183,7 +192,7 @@ namespace Library_Project
                     }
                     else
                     {
-                        MessageBox.Show("No matching borrowed record found for this book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No matching borrowed record found for this transaction.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception error)
@@ -191,7 +200,6 @@ namespace Library_Project
                     MessageBox.Show(error.Message, "ERROR on book return", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
