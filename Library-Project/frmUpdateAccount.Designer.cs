@@ -37,12 +37,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnupdate = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnupdate = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -53,10 +53,9 @@
             this.cbkshow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbkshow.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbkshow.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cbkshow.Location = new System.Drawing.Point(193, 167);
-            this.cbkshow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbkshow.Location = new System.Drawing.Point(145, 136);
             this.cbkshow.Name = "cbkshow";
-            this.cbkshow.Size = new System.Drawing.Size(162, 27);
+            this.cbkshow.Size = new System.Drawing.Size(130, 23);
             this.cbkshow.TabIndex = 38;
             this.cbkshow.Text = "&Show Password";
             this.cbkshow.UseVisualStyleBackColor = true;
@@ -70,20 +69,20 @@
             this.cmbstatus.Items.AddRange(new object[] {
             "ACTIVE",
             "INACTIVE"});
-            this.cmbstatus.Location = new System.Drawing.Point(420, 128);
-            this.cmbstatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbstatus.Location = new System.Drawing.Point(315, 104);
+            this.cmbstatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbstatus.Name = "cmbstatus";
-            this.cmbstatus.Size = new System.Drawing.Size(279, 30);
+            this.cmbstatus.Size = new System.Drawing.Size(210, 27);
             this.cmbstatus.TabIndex = 37;
             // 
             // txtpassword
             // 
             this.txtpassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpassword.Location = new System.Drawing.Point(72, 129);
-            this.txtpassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtpassword.Location = new System.Drawing.Point(54, 105);
+            this.txtpassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
-            this.txtpassword.Size = new System.Drawing.Size(279, 30);
+            this.txtpassword.Size = new System.Drawing.Size(210, 26);
             this.txtpassword.TabIndex = 34;
             // 
             // cmbusertype
@@ -94,20 +93,20 @@
             this.cmbusertype.Items.AddRange(new object[] {
             "ADMINISTRATOR",
             "STAFF"});
-            this.cmbusertype.Location = new System.Drawing.Point(420, 59);
-            this.cmbusertype.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbusertype.Location = new System.Drawing.Point(315, 48);
+            this.cmbusertype.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbusertype.Name = "cmbusertype";
-            this.cmbusertype.Size = new System.Drawing.Size(279, 30);
+            this.cmbusertype.Size = new System.Drawing.Size(210, 27);
             this.cmbusertype.TabIndex = 31;
             // 
             // txtusername
             // 
             this.txtusername.Enabled = false;
             this.txtusername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtusername.Location = new System.Drawing.Point(72, 59);
-            this.txtusername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtusername.Location = new System.Drawing.Point(54, 48);
+            this.txtusername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtusername.Name = "txtusername";
-            this.txtusername.Size = new System.Drawing.Size(279, 30);
+            this.txtusername.Size = new System.Drawing.Size(210, 26);
             this.txtusername.TabIndex = 30;
             // 
             // panel1
@@ -117,9 +116,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(773, 123);
+            this.panel1.Size = new System.Drawing.Size(580, 100);
             this.panel1.TabIndex = 43;
             // 
             // label6
@@ -127,10 +125,9 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(163, 36);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(122, 29);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(431, 51);
+            this.label6.Size = new System.Drawing.Size(339, 40);
             this.label6.TabIndex = 15;
             this.label6.Text = "UPDATE ACCOUNT";
             // 
@@ -149,11 +146,45 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtpassword);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 123);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(773, 300);
+            this.panel2.Size = new System.Drawing.Size(580, 244);
             this.panel2.TabIndex = 16;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.LightYellow;
+            this.button1.FlatAppearance.BorderSize = 3;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(55, 193);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(212, 31);
+            this.button1.TabIndex = 39;
+            this.button1.Text = "&Cancel";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(51, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 19);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "       Username:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnupdate
             // 
@@ -164,28 +195,16 @@
             this.btnupdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnupdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnupdate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnupdate.Location = new System.Drawing.Point(419, 238);
-            this.btnupdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnupdate.Image = ((System.Drawing.Image)(resources.GetObject("btnupdate.Image")));
+            this.btnupdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnupdate.Location = new System.Drawing.Point(314, 193);
+            this.btnupdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnupdate.Name = "btnupdate";
-            this.btnupdate.Size = new System.Drawing.Size(282, 38);
+            this.btnupdate.Size = new System.Drawing.Size(212, 31);
             this.btnupdate.TabIndex = 32;
             this.btnupdate.Text = "&Update ";
             this.btnupdate.UseVisualStyleBackColor = false;
             this.btnupdate.Click += new System.EventHandler(this.btnupdate_Click_1);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(68, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 23);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "       Username:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
@@ -194,9 +213,10 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(415, 102);
+            this.label3.Location = new System.Drawing.Point(311, 83);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 23);
+            this.label3.Size = new System.Drawing.Size(88, 19);
             this.label3.TabIndex = 36;
             this.label3.Text = "        Status:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -208,9 +228,10 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(68, 103);
+            this.label2.Location = new System.Drawing.Point(51, 84);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 23);
+            this.label2.Size = new System.Drawing.Size(105, 19);
             this.label2.TabIndex = 33;
             this.label2.Text = "       Password:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -222,40 +243,23 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(415, 33);
+            this.label4.Location = new System.Drawing.Point(311, 27);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(134, 23);
+            this.label4.Size = new System.Drawing.Size(107, 19);
             this.label4.TabIndex = 35;
             this.label4.Text = "        Usertype:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.LightYellow;
-            this.button1.FlatAppearance.BorderSize = 3;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(73, 238);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(282, 38);
-            this.button1.TabIndex = 39;
-            this.button1.Text = "&Cancel";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmUpdateAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 423);
+            this.ClientSize = new System.Drawing.Size(580, 344);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmUpdateAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

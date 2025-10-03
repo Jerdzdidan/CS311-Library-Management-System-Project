@@ -52,12 +52,14 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(436, 253);
+            this.label2.Location = new System.Drawing.Point(327, 206);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 23);
+            this.label2.Size = new System.Drawing.Size(91, 19);
             this.label2.TabIndex = 51;
-            this.label2.Text = "Section:";
+            this.label2.Text = "       Section:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel1
@@ -66,9 +68,8 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(797, 123);
+            this.panel1.Size = new System.Drawing.Size(598, 100);
             this.panel1.TabIndex = 50;
             // 
             // label6
@@ -76,10 +77,9 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(132, 45);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(99, 37);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(567, 51);
+            this.label6.Size = new System.Drawing.Size(445, 40);
             this.label6.TabIndex = 39;
             this.label6.Text = "ADD STUDENT ACCOUNT";
             // 
@@ -96,19 +96,17 @@
             "4",
             "5",
             "6"});
-            this.cmbgrade.Location = new System.Drawing.Point(440, 205);
-            this.cmbgrade.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbgrade.Location = new System.Drawing.Point(330, 167);
             this.cmbgrade.Name = "cmbgrade";
-            this.cmbgrade.Size = new System.Drawing.Size(319, 30);
+            this.cmbgrade.Size = new System.Drawing.Size(240, 27);
             this.cmbgrade.TabIndex = 49;
             // 
             // txtstudentno
             // 
             this.txtstudentno.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtstudentno.Location = new System.Drawing.Point(57, 280);
-            this.txtstudentno.Margin = new System.Windows.Forms.Padding(4);
+            this.txtstudentno.Location = new System.Drawing.Point(43, 228);
             this.txtstudentno.Name = "txtstudentno";
-            this.txtstudentno.Size = new System.Drawing.Size(319, 30);
+            this.txtstudentno.Size = new System.Drawing.Size(240, 26);
             this.txtstudentno.TabIndex = 47;
             // 
             // btnClear
@@ -122,10 +120,9 @@
             this.btnClear.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(141, 354);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClear.Location = new System.Drawing.Point(106, 288);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(152, 36);
+            this.btnClear.Size = new System.Drawing.Size(114, 29);
             this.btnClear.TabIndex = 46;
             this.btnClear.Text = "&Clear   ";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -142,10 +139,9 @@
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(490, 354);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Location = new System.Drawing.Point(383, 288);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(152, 36);
+            this.btnAdd.Size = new System.Drawing.Size(114, 29);
             this.btnAdd.TabIndex = 45;
             this.btnAdd.Text = "&Add     ";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -155,10 +151,9 @@
             // txtstudentname
             // 
             this.txtstudentname.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtstudentname.Location = new System.Drawing.Point(57, 207);
-            this.txtstudentname.Margin = new System.Windows.Forms.Padding(4);
+            this.txtstudentname.Location = new System.Drawing.Point(43, 168);
             this.txtstudentname.Name = "txtstudentname";
-            this.txtstudentname.Size = new System.Drawing.Size(320, 30);
+            this.txtstudentname.Size = new System.Drawing.Size(241, 26);
             this.txtstudentname.TabIndex = 44;
             // 
             // label4
@@ -166,12 +161,14 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(53, 178);
+            this.label4.Location = new System.Drawing.Point(40, 145);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 23);
+            this.label4.Size = new System.Drawing.Size(137, 19);
             this.label4.TabIndex = 52;
-            this.label4.Text = "Student Name:";
+            this.label4.Text = "       Student Name:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
@@ -179,12 +176,14 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(53, 253);
+            this.label1.Location = new System.Drawing.Point(40, 206);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 23);
+            this.label1.Size = new System.Drawing.Size(151, 19);
             this.label1.TabIndex = 53;
-            this.label1.Text = "Student Number:";
+            this.label1.Text = "       Student Number:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
@@ -192,12 +191,14 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(436, 178);
+            this.label3.Location = new System.Drawing.Point(327, 145);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 23);
+            this.label3.Size = new System.Drawing.Size(84, 19);
             this.label3.TabIndex = 55;
-            this.label3.Text = "Grade:";
+            this.label3.Text = "       Grade:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cmbsection
@@ -208,10 +209,9 @@
             this.cmbsection.FormattingEnabled = true;
             this.cmbsection.Items.AddRange(new object[] {
             "Pythagoras"});
-            this.cmbsection.Location = new System.Drawing.Point(440, 280);
-            this.cmbsection.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbsection.Location = new System.Drawing.Point(330, 228);
             this.cmbsection.Name = "cmbsection";
-            this.cmbsection.Size = new System.Drawing.Size(319, 30);
+            this.cmbsection.Size = new System.Drawing.Size(240, 27);
             this.cmbsection.TabIndex = 54;
             // 
             // errorProvider1
@@ -220,10 +220,10 @@
             // 
             // frmAddStudent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.ClientSize = new System.Drawing.Size(797, 415);
+            this.ClientSize = new System.Drawing.Size(598, 337);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbsection);
             this.Controls.Add(this.label1);
@@ -236,6 +236,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtstudentname);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmAddStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
