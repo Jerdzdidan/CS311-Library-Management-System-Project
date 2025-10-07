@@ -22,6 +22,7 @@ namespace Library_Project
         {
             InitializeComponent();
             this.username = username;
+            
         }
         private void frmBookLogs_Load(object sender, EventArgs e)
         {
@@ -118,7 +119,7 @@ namespace Library_Project
             LoadAllLogs();
             if (cmbList.Items.Count > 0)
             {
-                cmbList.SelectedIndex = -1; 
+                cmbList.SelectedIndex = -1;
             }
         }
 
@@ -166,6 +167,8 @@ namespace Library_Project
                 MessageBox.Show("Error filtering by date: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+    
     }
 }
 

@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAALJJREFUSEvt
+        kr0NwjAQhV0yAiVjMEa2oE3HGJSMQJmSETJGypSMAO9ZepI5XXwmBU3ySZ8sn+2X+CftbIcjvMJL7jUy
+        GM+w5O34hCF2UQeFahNkvS9qTeEeChlz7xuFr2KGS4vvkGP22JqoBfMiw2BOKNUZ3yD7bC2aW0WTpHd5
+        3Drhs3tB1tiu5gQV7unt5if4Qvg6HpAfO8AwnFuP9AjDNVhzCYW75+39obUGw3f+RkofNjVRWSaWlfQA
+        AAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btnReplace.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAUBJREFUSEvt
@@ -207,6 +216,21 @@
         hJMPfBIoUOeyKDp5uS7eifnMG9kYip+J+cwb2RiKP13mM29kW3UfWQTk8+XujoEYi7zx5oHHrfoGxtnf
         rlMYDzvzpQMWPJtt5CwQ75g4nkUf4rSFc+aJceNGBY5zJqNbNNzBTxDQfJmhc/4e3sKmO3+jtbv+u/fM
         YGhnJvLLIPxVaz/7t/IHqKovqm3Ol9k1K+YAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="label4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAGVJREFUOE9j
+        GJJgORD/JxKvB2KCAKRwPxDXI2F0g0BiIDUgNkEA04AMkA2DGQKziCAAKRo1EMUwmCEUGfgdiAWAmAOI
+        34MEgIAiA7GBUQNxg6FhIHrhgA0TXTiQUnzNB+IhBRgYADsVYSvnnHELAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="label9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAH5JREFUOE/l
+        krENgDAMBD0K47AB4zAGJWXGoGQs8ClxQWFhozQRJ52I4s8TJGRoLnWtywfsMUvTpbCohDNyxoXAoXKL
+        iGQ548KQYBSyr4Xdb/hFF4a8OQrZcOHSnjA1DZulClnPdSlnE9izklRhhFThjz6564+9qQQy7uowiNx9
+        hGmh0xwsdAAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

@@ -23,6 +23,8 @@ namespace Library_Project
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             txtSearch.TextChanged += txtSearch_TextChanged;
             dgvTeachers.CellClick += dgvTeachers_CellClick;
+
+            dgvTeachers.DataBindingComplete += dgvTeachers_DataBindingComplete;
         }
         public void RefreshTeachersPublic()
         {
@@ -216,6 +218,46 @@ namespace Library_Project
                 MessageBox.Show("Please select a teacher to view history.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+        }
+
+        private void dgvTeachers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvTeachers.Rows)
+            {
+                if (row.Cells["subject"].Value != null)
+                {
+                    string userType = row.Cells["subject"].Value.ToString().Trim().ToUpper();
+
+                    if (userType == "MATHEMATICS")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#8DA9FC");
+                    }
+                    else if (userType == "SCIENCE")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#C7FFDE");
+                    }
+                    else if (userType == "ENGLISH")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#E3C7FF");
+                    }
+                    else if (userType == "FILIPINO")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFE2C7");
+                    }
+                    else if (userType == "MAPEH")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFFFC7");
+                    }
+                    else if (userType == "ARALING PANLIPUNAN")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFC7C7");
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = Color.White;
+                    }
+                }
+            }
         }
     }
 }

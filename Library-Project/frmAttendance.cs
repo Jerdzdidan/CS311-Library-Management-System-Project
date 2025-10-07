@@ -27,6 +27,8 @@ namespace Library_Project
             clockTimer.Interval = 1000; // Update every 1 second
             clockTimer.Tick += ClockTimer_Tick;
             clockTimer.Start();
+
+            dgvAttendance.DataBindingComplete += dgvAttendance_DataBindingComplete;
         }
 
         private void frmAttendance_Load(object sender, EventArgs e)
@@ -35,6 +37,7 @@ namespace Library_Project
             cmbUsertype.Items.Add("STUDENT");
             cmbUsertype.Items.Add("TEACHER");
             cmbUsertype.SelectedIndex = -1;
+            
 
             LoadTodayAttendance();
 
@@ -236,6 +239,7 @@ namespace Library_Project
                 DataTable dt = attendance.GetData(query);
                 dgvAttendance.DataSource = dt;
                 dgvAttendance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        
             }
             catch (Exception ex)
             {
@@ -301,15 +305,106 @@ namespace Library_Project
 
             ProcessAttendance(idNumber, name, userType, grade, section, subject);
         }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        { 
-
-        }
+   
         private void ClockTimer_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
             lblDate.Text = DateTime.Now.ToString("dddd, MMMM dd, yyyy");
+        }
+
+        private void LoadAttendanceByDate(DateTime selectedDate)
+        {
+            try
+            {
+                string formattedDate = selectedDate.ToString("yyyy/MM/dd");
+                string query = "SELECT ID_number, username, usertype, Date_in, time_in " +
+                               "FROM tbl_attendance " +
+                               $"WHERE Date_in = '{formattedDate}' " +
+                               "ORDER BY time_in DESC";
+
+                DataTable dt = attendance.GetData(query);
+                dgvAttendance.DataSource = dt;
+                dgvAttendance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+              
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading attendance by date: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDate = dtpDate.Value;
+            LoadAttendanceByDate(selectedDate);
+        }
+
+        private void SearchAttendance(string searchText)
+        {
+            try
+            {
+                string query = "SELECT ID_number, username, usertype, Date_in, time_in " +
+                               "FROM tbl_attendance " +
+                               "WHERE ID_number LIKE @search " +
+                               "OR username LIKE @search " +
+                               "OR usertype LIKE @search " +
+                               "OR Date_in LIKE @search " +
+                               "OR time_in LIKE @search " +
+                               "ORDER BY Date_in DESC, time_in DESC";
+
+                string formattedQuery = query.Replace("@search", $"'%{searchText}%'");
+
+                DataTable dt = attendance.GetData(formattedQuery);
+                dgvAttendance.DataSource = dt;
+                dgvAttendance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error searching attendance: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtsearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = txtsearch.Text.Trim();
+
+            // If empty, reload today's attendance
+            if (string.IsNullOrEmpty(searchText))
+            {
+                LoadTodayAttendance();
+            }
+            else
+            {
+                SearchAttendance(searchText);
+            }
+        }
+
+        private void dgvAttendance_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvAttendance.Rows)
+            {
+                if (row.Cells["usertype"].Value != null)
+                {
+                    string userType = row.Cells["usertype"].Value.ToString().Trim().ToUpper();
+
+                    if (userType == "TEACHER")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FDECEF"); 
+                    }
+                    else if (userType == "STUDENT")
+                    {
+                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#E5F5E0"); 
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = Color.White; 
+                    }
+                }
+            }
         }
     }
 }
