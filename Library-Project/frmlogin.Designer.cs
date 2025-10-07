@@ -76,7 +76,7 @@
             this.chkshow.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkshow.ForeColor = System.Drawing.Color.GhostWhite;
             this.chkshow.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.chkshow.Location = new System.Drawing.Point(178, 333);
+            this.chkshow.Location = new System.Drawing.Point(212, 333);
             this.chkshow.Name = "chkshow";
             this.chkshow.Size = new System.Drawing.Size(111, 19);
             this.chkshow.TabIndex = 4;
@@ -177,7 +177,7 @@
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(147, 136);
+            this.pictureBox5.Location = new System.Drawing.Point(170, 130);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(180, 126);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -189,6 +189,7 @@
             this.panel3.BackColor = System.Drawing.Color.SlateGray;
             this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.btnlogin);
             this.panel3.Controls.Add(this.btnclear);
             this.panel3.Controls.Add(this.pictureBox3);
@@ -199,7 +200,6 @@
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.txtusername);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.label5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";

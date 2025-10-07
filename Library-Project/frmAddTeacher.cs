@@ -117,5 +117,10 @@ namespace Library_Project
             errorProvider1.Clear();
             txtTeacherID.Focus();
         }
+
+        private void frmAddTeacher_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

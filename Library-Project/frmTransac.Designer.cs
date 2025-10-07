@@ -54,13 +54,13 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 62);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 50);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1035, 412);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 335);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -68,20 +68,20 @@
             // 
             this.dtpDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(900, 26);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpDate.Location = new System.Drawing.Point(675, 21);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(153, 22);
+            this.dtpDate.Size = new System.Drawing.Size(116, 20);
             this.dtpDate.TabIndex = 4;
             this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(161, 21);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtSearch.Location = new System.Drawing.Point(121, 17);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(543, 27);
+            this.txtSearch.Size = new System.Drawing.Size(408, 23);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -89,9 +89,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 25);
+            this.label1.Location = new System.Drawing.Point(11, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 19);
+            this.label1.Size = new System.Drawing.Size(113, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Search Transaction:";
             // 
@@ -107,10 +108,9 @@
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 114);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(0, 93);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1305, 488);
+            this.panel1.Size = new System.Drawing.Size(979, 396);
             this.panel1.TabIndex = 8;
             // 
             // panel3
@@ -120,10 +120,9 @@
             this.panel3.Controls.Add(this.btnBack);
             this.panel3.Controls.Add(this.btnrefres);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1069, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
+            this.panel3.Location = new System.Drawing.Point(802, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(236, 488);
+            this.panel3.Size = new System.Drawing.Size(177, 396);
             this.panel3.TabIndex = 12;
             // 
             // btnRetrn
@@ -136,12 +135,12 @@
             this.btnRetrn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRetrn.Image = ((System.Drawing.Image)(resources.GetObject("btnRetrn.Image")));
             this.btnRetrn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRetrn.Location = new System.Drawing.Point(3, 118);
-            this.btnRetrn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRetrn.Location = new System.Drawing.Point(2, 96);
+            this.btnRetrn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRetrn.Name = "btnRetrn";
-            this.btnRetrn.Size = new System.Drawing.Size(259, 60);
+            this.btnRetrn.Size = new System.Drawing.Size(194, 49);
             this.btnRetrn.TabIndex = 11;
-            this.btnRetrn.Text = "        &Return         ";
+            this.btnRetrn.Text = "       &Return            ";
             this.btnRetrn.UseVisualStyleBackColor = false;
             this.btnRetrn.Click += new System.EventHandler(this.btnRetrn_Click);
             // 
@@ -156,13 +155,13 @@
             this.btnBack.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
             this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBack.Location = new System.Drawing.Point(0, 428);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBack.Location = new System.Drawing.Point(0, 347);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(236, 60);
+            this.btnBack.Size = new System.Drawing.Size(177, 49);
             this.btnBack.TabIndex = 8;
-            this.btnBack.Text = "&Back                     ";
-            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBack.Text = "              &Back                     ";
+            this.btnBack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -176,12 +175,12 @@
             this.btnrefres.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnrefres.Image = ((System.Drawing.Image)(resources.GetObject("btnrefres.Image")));
             this.btnrefres.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnrefres.Location = new System.Drawing.Point(3, 188);
-            this.btnrefres.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnrefres.Location = new System.Drawing.Point(2, 153);
+            this.btnrefres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnrefres.Name = "btnrefres";
-            this.btnrefres.Size = new System.Drawing.Size(256, 60);
+            this.btnrefres.Size = new System.Drawing.Size(192, 49);
             this.btnrefres.TabIndex = 10;
-            this.btnrefres.Text = "     &Refresh                 ";
+            this.btnrefres.Text = "        &Refresh                 ";
             this.btnrefres.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnrefres.UseVisualStyleBackColor = false;
             this.btnrefres.Click += new System.EventHandler(this.btnrefres_Click);
@@ -195,10 +194,10 @@
             this.btnReturn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
             this.btnReturn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturn.Location = new System.Drawing.Point(1559, 334);
-            this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReturn.Location = new System.Drawing.Point(1169, 271);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(108, 36);
+            this.btnReturn.Size = new System.Drawing.Size(81, 29);
             this.btnReturn.TabIndex = 7;
             this.btnReturn.Text = "       &Return              ";
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -210,10 +209,10 @@
             this.cmbList.Items.AddRange(new object[] {
             "STUDENT ",
             "TEACHER"});
-            this.cmbList.Location = new System.Drawing.Point(709, 25);
-            this.cmbList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbList.Location = new System.Drawing.Point(532, 20);
+            this.cmbList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbList.Name = "cmbList";
-            this.cmbList.Size = new System.Drawing.Size(185, 24);
+            this.cmbList.Size = new System.Drawing.Size(140, 21);
             this.cmbList.TabIndex = 5;
             this.cmbList.SelectedIndexChanged += new System.EventHandler(this.cmbList_SelectedIndexChanged);
             // 
@@ -227,10 +226,10 @@
             this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(1559, 394);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefresh.Location = new System.Drawing.Point(1169, 320);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(108, 36);
+            this.btnRefresh.Size = new System.Drawing.Size(81, 29);
             this.btnRefresh.TabIndex = 1;
             this.btnRefresh.Text = "&Refresh";
             this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -242,9 +241,8 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1305, 114);
+            this.panel2.Size = new System.Drawing.Size(979, 93);
             this.panel2.TabIndex = 9;
             // 
             // label2
@@ -252,22 +250,21 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(121, 9);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(91, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(673, 90);
+            this.label2.Size = new System.Drawing.Size(541, 73);
             this.label2.TabIndex = 14;
             this.label2.Text = "TRANSACTIONS";
             // 
             // frmTransac
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 602);
+            this.ClientSize = new System.Drawing.Size(979, 489);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmTransac";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

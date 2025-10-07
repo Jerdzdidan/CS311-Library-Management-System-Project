@@ -146,11 +146,10 @@
   </metadata>
   <data name="label2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAADGSURBVEhL7ZXhDYIwEEY7AiMwAiMwgiOwgYzgJjISmzhC/b72zlA4/dEefwwvuSiVvBdqUsLF
-        nhjjhLnLpT+QLxjlKct+QLoNKL4hCK0ImeWWeiDp5eu30CQ/1wEBpS/MIEv70CLLdVCQPQkr5BpQilAT
-        EFkBhaHPf1QFBL8C5JQt2nIFzg8MmDWpbNoCCkSP7DvgEyCQ3bKzwO0J0smJzw4zYvhE3Dq3QI8hxbsA
-        1z5HBoFsTolM+7vAAmJuEUNtZ9AfE8IbOvoSIUvTxl8AAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAHdJREFUSEvt
+        lNEJgDAMRDNaN3eYDFKTci0ijZhQwUIe3IfBe4VUpGQfmLlq8Diw5i5EUCA6MGpYczcqgKhg1LDmbiBZ
+        t55ejAaaOfJC32s0vvvQAoqb7P/OpweIYO33rwUUo3m+j0nBFWjeYxXDwisiyP9P8guITshAvs7ZXdSP
+        AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="label1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
