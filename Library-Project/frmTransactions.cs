@@ -27,16 +27,16 @@
             private void frmTransactions_Load(object sender, EventArgs e)
             {
                 LoadAllTransactions();
-                dataGridView1.Columns[0].HeaderText = "Book Code";
-                dataGridView1.Columns[1].HeaderText = "Book Title";
-                dataGridView1.Columns[2].HeaderText = "Author";
-                dataGridView1.Columns[3].HeaderText = "Catergory";
-                dataGridView1.Columns[4].HeaderText = "Borrowed Date";
-                dataGridView1.Columns[5].HeaderText = "Return Date";
-                dataGridView1.Columns[6].HeaderText = "Status";
-                dataGridView1.Columns[7].HeaderText = "Borrower";
-                dataGridView1.Columns[8].HeaderText = "Borrower Type";
-                dataGridView1.Columns[9].HeaderText = "Grade And Section";
+                dataGridView1.Columns["bookCode"].HeaderText = "Book Code";
+                dataGridView1.Columns["bookTitle"].HeaderText = "Book Title";
+                dataGridView1.Columns["author"].HeaderText = "Author";
+                dataGridView1.Columns["category"].HeaderText = "Category";
+                dataGridView1.Columns["borrowdate"].HeaderText = "Borrowed Date";
+                dataGridView1.Columns["returndate"].HeaderText = "Return Date";
+                dataGridView1.Columns["status"].HeaderText = "Status";
+                dataGridView1.Columns["borrower"].HeaderText = "Borrower";
+                dataGridView1.Columns["borrowerType"].HeaderText = "Borrower Type";
+                dataGridView1.Columns["grade_section"].HeaderText = "Grade and Section";
         }
         private void ApplyRowColorTransactions()
         {
@@ -101,12 +101,6 @@
                     MessageBox.Show(error.Message, "ERROR on datagridview1_CellContentClick", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            private void btnReset_Click(object sender, EventArgs e)
-            {
-                txtSearch.Clear();
-                dtpDate.Value = DateTime.Now;
-                LoadAllTransactions();
-            }
             private void dtpDate_ValueChanged(object sender, EventArgs e)
             {
                 txtSearch_TextChanged(sender, e);
@@ -138,74 +132,6 @@
                     MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        private void btnReturn_Click_1(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a transaction to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-
-            // transacID is INT in DB
-            string transacID = selectedRow.Cells["transacID"].Value.ToString();
-            string bookCode = selectedRow.Cells["bookCode"].Value.ToString();
-            string status = selectedRow.Cells["status"].Value.ToString();
-
-            if (status == "RETURNED")
-            {
-                MessageBox.Show("This book is already returned.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            DialogResult dr = MessageBox.Show("Are you sure you want to return this book?",
-                                              "Confirm Return", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dr == DialogResult.Yes)
-            {
-                try
-                {
-                    DataTable dtBook = booktransac.GetData($"SELECT quantity FROM tbl_books WHERE BookID = '{bookCode}'");
-
-                    if (dtBook.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Book not found in tbl_books.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    int currentQty = Convert.ToInt32(dtBook.Rows[0]["quantity"]);
-                    int newQty = currentQty + 1;
-
-                    // Update book inventory
-                    booktransac.executeSQL($"UPDATE tbl_books SET quantity = {newQty}, status = 'AVAILABLE' WHERE BookID = '{bookCode}'");
-                    int affectedBooks = booktransac.rowAffected;
-
-                    // Update ONLY the specific transaction by transacID
-                    booktransac.executeSQL($"UPDATE tbl_transac SET returndate = '{DateTime.Now:yyyy/MM/dd}', status = 'RETURNED' WHERE transacID = '{transacID}'");
-                    int affectedTransac = booktransac.rowAffected;
-
-                    if (affectedBooks > 0 && affectedTransac > 0)
-                    {
-                        booktransac.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
-                                               $"VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now:hh\\:mm tt}', 'RETURN', " +
-                                               $"'TRANSACTIONS', '{bookCode}', '{username}')");
-
-                        MessageBox.Show("Book successfully returned and quantity increased by 1.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadAllTransactions();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No matching borrowed record found for this transaction.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show(error.Message, "ERROR on book return", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -228,6 +154,17 @@
             catch (Exception ex)
             {
                 MessageBox.Show("Error filtering transactions: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnReset_Click_1(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+            dtpDate.Value = DateTime.Now;
+            LoadAllTransactions();
+            if (cmbList.Items.Count > 0)
+            {
+                cmbList.SelectedIndex = -1;
             }
         }
     }

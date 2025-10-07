@@ -190,6 +190,7 @@ namespace Library_Project
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.SuppressKeyPress = true;
                 string student_ID = txtBarcode.Text.Trim();
 
                 if (!string.IsNullOrEmpty(student_ID))
@@ -203,19 +204,20 @@ namespace Library_Project
                         {
                             studentmanagement.executeSQL(
                                 $"UPDATE tbl_students SET date_in = NOW() WHERE student_ID = '{student_ID}'");
-                            LogAction("SCAN", "STUDENT MANAGEMENT", $"Student {student_ID} scanned");
+
+                            LogAction("SCAN", "STUDENT MANAGEMENT", $"Student {student_ID} scanned and time updated");
                         }
                         else
                         {
                             studentmanagement.executeSQL(
                                 $"INSERT INTO tbl_students (student_ID, name, grade, section, date_in) " +
                                 $"VALUES ('{student_ID}', 'Unknown', '', '', NOW())");
-                            LogAction("ADD", "STUDENT MANAGEMENT", $"Scanned and added student {student_ID}");
-                        }
 
+                            LogAction("ADD", "STUDENT MANAGEMENT", $"New student scanned: {student_ID}");
+                        }
                         LoadTodayStudents();
                         txtBarcode.Clear();
-                        LogStudentAttendance(student_ID);
+                        txtBarcode.Focus();
                     }
                     catch (Exception ex)
                     {
@@ -223,26 +225,6 @@ namespace Library_Project
                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                txtBarcode.Focus();
-                e.Handled = true;
-                e.SuppressKeyPress = true; // prevent beep sound
-            }
-        }
-        private void LogStudentAttendance(string student_ID)
-        {
-            try
-            {
-                studentmanagement.executeSQL(
-                    $"INSERT INTO tbl_students (student_ID, name, grade, section, date_in) " +
-                    $"VALUES ('{student_ID}', '', '', '', NOW())");
-
-                LogAction("SCAN", "STUDENT MANAGEMENT", $"Student {student_ID} scanned");
-
-                LoadTodayStudents();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error Logging Attendance", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void LogAction(string action, string module, string details)
@@ -280,16 +262,6 @@ namespace Library_Project
             {
                 MessageBox.Show("Please select a student to view history.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void txtBarcode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

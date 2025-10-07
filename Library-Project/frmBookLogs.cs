@@ -116,6 +116,10 @@ namespace Library_Project
             txtsearch.Clear();
             dtpDate.Value = DateTime.Now;
             LoadAllLogs();
+            if (cmbList.Items.Count > 0)
+            {
+                cmbList.SelectedIndex = -1; 
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -27,16 +27,22 @@ namespace Library_Project
         private void frmTransac_Load(object sender, EventArgs e)
         {
             LoadAllTransactions();
-            dataGridView1.Columns[0].HeaderText = "Book Code";
-            dataGridView1.Columns[1].HeaderText = "Book Title";
-            dataGridView1.Columns[2].HeaderText = "Author";
-            dataGridView1.Columns[3].HeaderText = "Catergory";
-            dataGridView1.Columns[4].HeaderText = "Borrowed Date";
-            dataGridView1.Columns[5].HeaderText = "Return Date";
-            dataGridView1.Columns[6].HeaderText = "Status";
-            dataGridView1.Columns[7].HeaderText = "Borrower";
-            dataGridView1.Columns[8].HeaderText = "Borrower Type";
-            dataGridView1.Columns[9].HeaderText = "Grade And Section";
+            if (dataGridView1.Columns.Count > 0)
+            {
+                dataGridView1.Columns["bookCode"].HeaderText = "Book Code";
+                dataGridView1.Columns["bookTitle"].HeaderText = "Book Title";
+                dataGridView1.Columns["author"].HeaderText = "Author";
+                dataGridView1.Columns["category"].HeaderText = "Category";
+                dataGridView1.Columns["borrowdate"].HeaderText = "Borrowed Date";
+                dataGridView1.Columns["returndate"].HeaderText = "Return Date";
+                dataGridView1.Columns["status"].HeaderText = "Status";
+                dataGridView1.Columns["borrower"].HeaderText = "Borrower";
+                dataGridView1.Columns["borrowerType"].HeaderText = "Borrower Type";
+                dataGridView1.Columns["grade_section"].HeaderText = "Grade and Section";
+                
+                if (dataGridView1.Columns.Contains("transacID"))
+                    dataGridView1.Columns["transacID"].Visible = false;
+            }
         }
         private void ApplyRowColorTransactions()
         {
@@ -66,10 +72,9 @@ namespace Library_Project
         {
             try
             {
-                DataTable dt = booktransac.GetData(
-                    "SELECT transacID, bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
-                    "FROM tbl_transac ORDER BY borrowdate DESC"
-                );
+                string query = @"SELECT transacID, bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
+                                "FROM tbl_transac ORDER BY borrowdate DESC";
+                DataTable dt = booktransac.GetData(query);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception error)
@@ -98,6 +103,10 @@ namespace Library_Project
             txtSearch.Clear();
             dtpDate.Value = DateTime.Now;
             LoadAllTransactions();
+            if (cmbList.Items.Count > 0)
+            {
+                cmbList.SelectedIndex = -1;
+            }
         }
         private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
@@ -143,8 +152,6 @@ namespace Library_Project
             }
 
             DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-
-            // transacID is INT in DB
             string transacID = selectedRow.Cells["transacID"].Value.ToString();
             string bookCode = selectedRow.Cells["bookCode"].Value.ToString();
             string status = selectedRow.Cells["status"].Value.ToString();
@@ -172,12 +179,8 @@ namespace Library_Project
 
                     int currentQty = Convert.ToInt32(dtBook.Rows[0]["quantity"]);
                     int newQty = currentQty + 1;
-
-                    // Update book inventory
                     booktransac.executeSQL($"UPDATE tbl_books SET quantity = {newQty}, status = 'AVAILABLE' WHERE BookID = '{bookCode}'");
                     int affectedBooks = booktransac.rowAffected;
-
-                    // Update ONLY the specific transaction by transacID
                     booktransac.executeSQL($"UPDATE tbl_transac SET returndate = '{DateTime.Now:yyyy/MM/dd}', status = 'RETURNED' WHERE transacID = '{transacID}'");
                     int affectedTransac = booktransac.rowAffected;
 
@@ -219,7 +222,7 @@ namespace Library_Project
                 string esc = selectedFilter.Replace("'", "''");
                 string query = "SELECT bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
                                "FROM tbl_transac " +
-                               "WHERE status = '" + esc + "' " +
+                               "WHERE borrowerType = '" + esc + "' " +
                                "ORDER BY borrowdate DESC, returndate DESC";
 
                 DataTable dt = booktransac.GetData(query);

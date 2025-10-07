@@ -114,5 +114,15 @@ namespace Library_Project
                 }
             }
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtstudentname.Clear();
+            txtstudentno.Clear();
+            cmbgrade.SelectedIndex = -1;
+            cmbsection.SelectedIndex = -1;
+            errorProvider1.Clear();
+            txtstudentname.Focus();
+        }
     }
 }

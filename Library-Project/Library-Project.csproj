@@ -80,6 +80,12 @@
     <Compile Include="frmAddStudent.Designer.cs">
       <DependentUpon>frmAddStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddTeacher.Designer.cs">
+      <DependentUpon>frmAddTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBookLogs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,18 @@
     <Compile Include="frmStudentManagement.Designer.cs">
       <DependentUpon>frmStudentManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTeacherHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTeacherHistory.Designer.cs">
+      <DependentUpon>frmTeacherHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTeachersManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTeachersManagement.Designer.cs">
+      <DependentUpon>frmTeachersManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTransac.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +182,12 @@
     <Compile Include="frmUpdateStudent.Designer.cs">
       <DependentUpon>frmUpdateStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUpdateTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateTeacher.Designer.cs">
+      <DependentUpon>frmUpdateTeacher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAbout.resx">
@@ -180,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddStudent.resx">
       <DependentUpon>frmAddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddTeacher.resx">
+      <DependentUpon>frmAddTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBookLogs.resx">
       <DependentUpon>frmBookLogs.cs</DependentUpon>
@@ -208,6 +235,12 @@
     <EmbeddedResource Include="frmStudentManagement.resx">
       <DependentUpon>frmStudentManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTeacherHistory.resx">
+      <DependentUpon>frmTeacherHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTeachersManagement.resx">
+      <DependentUpon>frmTeachersManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTransac.resx">
       <DependentUpon>frmTransac.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateStudent.resx">
       <DependentUpon>frmUpdateStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateTeacher.resx">
+      <DependentUpon>frmUpdateTeacher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

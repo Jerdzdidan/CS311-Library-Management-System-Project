@@ -107,6 +107,14 @@ namespace Library_Project
             {
                 cmbsection.SelectedIndex = 1;
             }
+            else if (editsection == "FARADAY")
+            {
+                cmbsection.SelectedIndex = 2;
+            }
+            else if (editsection == "NEWTON")
+            {
+                cmbsection.SelectedIndex = 3;
+            }
             else
             {
                 cmbsection.SelectedIndex = -1;

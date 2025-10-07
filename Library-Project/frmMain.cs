@@ -126,6 +126,15 @@ namespace Library_Project
             resources.Show();
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            RemoveChildren();
+            frmTeachersManagement teachers = new frmTeachersManagement(username);
+            teachers.MdiParent = this;
+            teachers.Dock = DockStyle.Fill;
+            teachers.Show();
+        }
+
         private void btnlogout_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you sure you want to logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
