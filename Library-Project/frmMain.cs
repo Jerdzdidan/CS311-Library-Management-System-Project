@@ -135,6 +135,15 @@ namespace Library_Project
             teachers.Show();
         }
 
+        private void btnAttendance_Click(object sender, EventArgs e)
+        {
+            RemoveChildren();
+            frmAttendance attendance = new frmAttendance(username);
+            attendance.MdiParent = this;
+            attendance.Dock = DockStyle.Fill;
+            attendance.Show();
+        }
+
         private void btnlogout_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Are you sure you want to logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

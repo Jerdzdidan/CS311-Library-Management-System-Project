@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpdateTeacher));
             this.txtTeacherName = new System.Windows.Forms.TextBox();
-            this.txtSubject = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnupdate = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.cmbSubject = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -48,20 +48,11 @@
             // txtTeacherName
             // 
             this.txtTeacherName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeacherName.Location = new System.Drawing.Point(44, 145);
-            this.txtTeacherName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTeacherName.Location = new System.Drawing.Point(59, 178);
+            this.txtTeacherName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTeacherName.Name = "txtTeacherName";
-            this.txtTeacherName.Size = new System.Drawing.Size(392, 26);
+            this.txtTeacherName.Size = new System.Drawing.Size(521, 30);
             this.txtTeacherName.TabIndex = 30;
-            // 
-            // txtSubject
-            // 
-            this.txtSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubject.Location = new System.Drawing.Point(44, 272);
-            this.txtSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(268, 26);
-            this.txtSubject.TabIndex = 34;
             // 
             // panel1
             // 
@@ -71,24 +62,39 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(486, 100);
+            this.panel1.Size = new System.Drawing.Size(648, 123);
             this.panel1.TabIndex = 47;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(201, 60);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(245, 51);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "ACCOUNT";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(78, 9);
+            this.label6.Location = new System.Drawing.Point(104, 11);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(345, 40);
+            this.label6.Size = new System.Drawing.Size(437, 51);
             this.label6.TabIndex = 15;
             this.label6.Text = "UPDATE TEACHER ";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel2.Controls.Add(this.cmbSubject);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.txtTeacherID);
             this.panel2.Controls.Add(this.btnCancel);
@@ -96,11 +102,11 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnupdate);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtSubject);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(486, 403);
+            this.panel2.Size = new System.Drawing.Size(648, 496);
             this.panel2.TabIndex = 46;
             // 
             // label3
@@ -110,10 +116,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(40, 186);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(53, 229);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 19);
+            this.label3.Size = new System.Drawing.Size(192, 23);
             this.label3.TabIndex = 44;
             this.label3.Text = "       Teacher Number:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -122,11 +127,11 @@
             // 
             this.txtTeacherID.Enabled = false;
             this.txtTeacherID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeacherID.Location = new System.Drawing.Point(44, 207);
-            this.txtTeacherID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTeacherID.Location = new System.Drawing.Point(59, 255);
+            this.txtTeacherID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTeacherID.Name = "txtTeacherID";
             this.txtTeacherID.ReadOnly = true;
-            this.txtTeacherID.Size = new System.Drawing.Size(392, 26);
+            this.txtTeacherID.Size = new System.Drawing.Size(521, 30);
             this.txtTeacherID.TabIndex = 45;
             // 
             // btnCancel
@@ -140,10 +145,10 @@
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(56, 335);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Location = new System.Drawing.Point(75, 412);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(124, 31);
+            this.btnCancel.Size = new System.Drawing.Size(165, 38);
             this.btnCancel.TabIndex = 43;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -156,10 +161,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(40, 124);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(53, 153);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 19);
+            this.label1.Size = new System.Drawing.Size(174, 23);
             this.label1.TabIndex = 29;
             this.label1.Text = "       Teacher Name:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -175,10 +179,10 @@
             this.btnupdate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnupdate.Image = ((System.Drawing.Image)(resources.GetObject("btnupdate.Image")));
             this.btnupdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnupdate.Location = new System.Drawing.Point(312, 335);
-            this.btnupdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnupdate.Location = new System.Drawing.Point(416, 412);
+            this.btnupdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnupdate.Name = "btnupdate";
-            this.btnupdate.Size = new System.Drawing.Size(124, 31);
+            this.btnupdate.Size = new System.Drawing.Size(165, 38);
             this.btnupdate.TabIndex = 32;
             this.btnupdate.Text = "&Update ";
             this.btnupdate.UseVisualStyleBackColor = false;
@@ -191,34 +195,39 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(40, 251);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(53, 309);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 19);
+            this.label2.Size = new System.Drawing.Size(116, 23);
             this.label2.TabIndex = 33;
             this.label2.Text = "       Subject:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
+            // cmbSubject
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(151, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(192, 40);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "ACCOUNT";
+            this.cmbSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSubject.FormattingEnabled = true;
+            this.cmbSubject.Items.AddRange(new object[] {
+            "MATHEMATICS",
+            "SCIENCE",
+            "ENGLISH",
+            "FILIPINO",
+            "MAPEH",
+            "ARALING PANLIPUNAN"});
+            this.cmbSubject.Location = new System.Drawing.Point(59, 353);
+            this.cmbSubject.Name = "cmbSubject";
+            this.cmbSubject.Size = new System.Drawing.Size(522, 30);
+            this.cmbSubject.TabIndex = 46;
             // 
             // frmUpdateTeacher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 403);
+            this.ClientSize = new System.Drawing.Size(648, 496);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmUpdateTeacher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -235,7 +244,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtTeacherName;
-        private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel2;
@@ -246,5 +254,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTeacherID;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbSubject;
     }
 }

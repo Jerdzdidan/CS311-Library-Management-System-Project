@@ -90,7 +90,6 @@ namespace Library_Project
                 if (dt == null || lstSearchResults.SelectedIndex >= dt.Rows.Count) return;
 
                 DataRow selectedRow = dt.Rows[lstSearchResults.SelectedIndex];
-
                 string type = selectedRow.Field<string>("Type") ?? "";
                 string name = selectedRow.Field<string>("name") ?? "";
                 txtname.Text = name;
@@ -100,20 +99,21 @@ namespace Library_Project
                     string grade = selectedRow.Field<string>("grade") ?? "";
                     string section = selectedRow.Field<string>("section") ?? "";
                     txtGRSC.Text = grade + (string.IsNullOrEmpty(section) ? "" : "-" + section);
-                    txtSubject.Clear();
 
+                    cmbSubject.SelectedIndex = -1;
                     rbStudent.Checked = true;
                     txtGRSC.Enabled = true;
-                    txtSubject.Enabled = false;
+                    cmbSubject.Enabled = false;
                 }
                 else // TEACHER
                 {
                     txtGRSC.Clear();
-                    txtSubject.Text = selectedRow.Field<string>("grade") ?? "";
+                    string subject = selectedRow.Field<string>("grade") ?? "";
+                    cmbSubject.SelectedItem = subject;
 
                     rbTeacher.Checked = true;
                     txtGRSC.Enabled = false;
-                    txtSubject.Enabled = true;
+                    cmbSubject.Enabled = true;
                 }
 
                 lstSearchResults.Visible = false;
@@ -132,15 +132,22 @@ namespace Library_Project
             txtTitle.Text = bookTitle;
             txtAuthor.Text = author;
             txtCategory.Text = category;
-            txtGRSC.Enabled = false; 
+            txtGRSC.Enabled = false;
+
+            // Example: load subjects into the ComboBox (replace with DB fetch if needed)
+            cmbSubject.Items.Clear();
+            cmbSubject.Items.AddRange(new string[]
+            {
+            "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
+            });
         }
         private void rbStudent_CheckedChanged(object sender, EventArgs e)
         {
             txtGRSC.Enabled = rbStudent.Checked;
-            txtSubject.Enabled = !rbStudent.Checked;
+            cmbSubject.Enabled = !rbStudent.Checked;
 
             if (rbStudent.Checked)
-                txtSubject.Clear();
+                cmbSubject.SelectedIndex = -1;
             else
                 txtGRSC.Clear();
         }

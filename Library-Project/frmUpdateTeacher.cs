@@ -32,13 +32,15 @@ namespace Library_Project
 
                 if (dr == DialogResult.Yes)
                 {
+                    string selectedSubject = cmbSubject.SelectedItem?.ToString() ?? "";
+
                     updateteacher.executeSQL($@"
-                        UPDATE tbl_teacher
-                        SET 
-                            teacher_ID = '{txtTeacherID.Text.Trim()}',
-                            name = '{txtTeacherName.Text.Replace("'", "''")}',
-                            subject = '{txtSubject.Text.Replace("'", "''")}'
-                        WHERE teacher_ID = '{editID}'");
+                UPDATE tbl_teacher
+                SET 
+                    teacher_ID = '{txtTeacherID.Text.Trim()}',
+                    name = '{txtTeacherName.Text.Replace("'", "''")}',
+                    subject = '{selectedSubject.Replace("'", "''")}'
+                WHERE teacher_ID = '{editID}'");
 
                     if (updateteacher.rowAffected > 0)
                     {
@@ -46,13 +48,13 @@ namespace Library_Project
                                         "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         updateteacher.executeSQL($@"
-                            INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby)
-                            VALUES ('{DateTime.Now:yyyy/MM/dd}',
-                                    '{DateTime.Now:hh\\:mm tt}',
-                                    'UPDATE',
-                                    'TEACHER MANAGEMENT',
-                                    '{txtTeacherName.Text.Replace("'", "''")} ({txtTeacherID.Text.Trim()})',
-                                    '{username}')");
+                    INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby)
+                    VALUES ('{DateTime.Now:yyyy/MM/dd}',
+                            '{DateTime.Now:hh\\:mm tt}',
+                            'UPDATE',
+                            'TEACHER MANAGEMENT',
+                            '{txtTeacherName.Text.Replace("'", "''")} ({txtTeacherID.Text.Trim()})',
+                            '{username}')");
 
                         this.Close();
                     }
@@ -81,7 +83,17 @@ namespace Library_Project
         {
             txtTeacherID.Text = editID;
             txtTeacherName.Text = editName;
-            txtSubject.Text = editSubject;
+
+            cmbSubject.Items.Clear();
+            cmbSubject.Items.AddRange(new string[]
+            {
+            "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
+            });
+
+            if (!string.IsNullOrEmpty(editSubject) && cmbSubject.Items.Contains(editSubject))
+                cmbSubject.SelectedItem = editSubject;
+            else
+                cmbSubject.Text = editSubject;
         }
 
     }

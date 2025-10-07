@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherHistory));
             this.dgvHistory = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSubject = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,6 +41,7 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.cmbSubject = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -52,19 +52,19 @@
             this.dgvHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHistory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvHistory.Location = new System.Drawing.Point(20, 143);
-            this.dgvHistory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvHistory.Location = new System.Drawing.Point(27, 176);
+            this.dgvHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvHistory.Name = "dgvHistory";
             this.dgvHistory.RowHeadersWidth = 51;
             this.dgvHistory.RowTemplate.Height = 24;
             this.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistory.Size = new System.Drawing.Size(514, 313);
+            this.dgvHistory.Size = new System.Drawing.Size(685, 385);
             this.dgvHistory.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.txtSubject);
+            this.panel1.Controls.Add(this.cmbSubject);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label5);
@@ -75,20 +75,11 @@
             this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.dgvHistory);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 93);
+            this.panel1.Location = new System.Drawing.Point(0, 114);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(554, 494);
+            this.panel1.Size = new System.Drawing.Size(739, 608);
             this.panel1.TabIndex = 12;
-            // 
-            // txtSubject
-            // 
-            this.txtSubject.Enabled = false;
-            this.txtSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubject.Location = new System.Drawing.Point(20, 97);
-            this.txtSubject.Name = "txtSubject";
-            this.txtSubject.ReadOnly = true;
-            this.txtSubject.Size = new System.Drawing.Size(241, 26);
-            this.txtSubject.TabIndex = 64;
             // 
             // label3
             // 
@@ -98,10 +89,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(16, 75);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(21, 92);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 19);
+            this.label3.Size = new System.Drawing.Size(111, 23);
             this.label3.TabIndex = 63;
             this.label3.Text = "      Subject:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -114,10 +104,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(291, 17);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(388, 21);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 19);
+            this.label4.Size = new System.Drawing.Size(187, 23);
             this.label4.TabIndex = 61;
             this.label4.Text = "      Teacher Number:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -130,10 +119,9 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label5.Image = ((System.Drawing.Image)(resources.GetObject("label5.Image")));
             this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label5.Location = new System.Drawing.Point(16, 15);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(21, 18);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 19);
+            this.label5.Size = new System.Drawing.Size(169, 23);
             this.label5.TabIndex = 60;
             this.label5.Text = "      Teacher Name:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -142,20 +130,22 @@
             // 
             this.txtTeacherID.Enabled = false;
             this.txtTeacherID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeacherID.Location = new System.Drawing.Point(296, 39);
+            this.txtTeacherID.Location = new System.Drawing.Point(395, 48);
+            this.txtTeacherID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTeacherID.Name = "txtTeacherID";
             this.txtTeacherID.ReadOnly = true;
-            this.txtTeacherID.Size = new System.Drawing.Size(240, 26);
+            this.txtTeacherID.Size = new System.Drawing.Size(319, 30);
             this.txtTeacherID.TabIndex = 57;
             // 
             // txtTeacherName
             // 
             this.txtTeacherName.Enabled = false;
             this.txtTeacherName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeacherName.Location = new System.Drawing.Point(20, 39);
+            this.txtTeacherName.Location = new System.Drawing.Point(27, 48);
+            this.txtTeacherName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTeacherName.Name = "txtTeacherName";
             this.txtTeacherName.ReadOnly = true;
-            this.txtTeacherName.Size = new System.Drawing.Size(241, 26);
+            this.txtTeacherName.Size = new System.Drawing.Size(320, 30);
             this.txtTeacherName.TabIndex = 56;
             // 
             // btnBack
@@ -168,10 +158,10 @@
             this.btnBack.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
             this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBack.Location = new System.Drawing.Point(454, 459);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Location = new System.Drawing.Point(605, 565);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(81, 29);
+            this.btnBack.Size = new System.Drawing.Size(108, 36);
             this.btnBack.TabIndex = 8;
             this.btnBack.Text = "&Close";
             this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,10 +177,10 @@
             this.btnReturn.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
             this.btnReturn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturn.Location = new System.Drawing.Point(1169, 271);
-            this.btnReturn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReturn.Location = new System.Drawing.Point(1559, 334);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(81, 29);
+            this.btnReturn.Size = new System.Drawing.Size(108, 36);
             this.btnReturn.TabIndex = 7;
             this.btnReturn.Text = "       &Return              ";
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -205,10 +195,10 @@
             this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(1169, 320);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRefresh.Location = new System.Drawing.Point(1559, 394);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(81, 29);
+            this.btnRefresh.Size = new System.Drawing.Size(108, 36);
             this.btnRefresh.TabIndex = 1;
             this.btnRefresh.Text = "&Refresh";
             this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -220,8 +210,9 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(554, 93);
+            this.panel2.Size = new System.Drawing.Size(739, 114);
             this.panel2.TabIndex = 13;
             // 
             // label2
@@ -229,21 +220,40 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(102, 31);
+            this.label2.Location = new System.Drawing.Point(136, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(356, 40);
+            this.label2.Size = new System.Drawing.Size(449, 51);
             this.label2.TabIndex = 14;
             this.label2.Text = "TEACHER HISTORY";
             // 
+            // cmbSubject
+            // 
+            this.cmbSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSubject.Enabled = false;
+            this.cmbSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSubject.FormattingEnabled = true;
+            this.cmbSubject.Items.AddRange(new object[] {
+            "MATHEMATICS",
+            "SCIENCE",
+            "ENGLISH",
+            "FILIPINO",
+            "MAPEH",
+            "ARALING PANLIPUNAN"});
+            this.cmbSubject.Location = new System.Drawing.Point(25, 130);
+            this.cmbSubject.Name = "cmbSubject";
+            this.cmbSubject.Size = new System.Drawing.Size(322, 30);
+            this.cmbSubject.TabIndex = 64;
+            // 
             // frmTeacherHistory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 587);
+            this.ClientSize = new System.Drawing.Size(739, 722);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmTeacherHistory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -262,7 +272,6 @@
 
         private System.Windows.Forms.DataGridView dgvHistory;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -273,5 +282,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbSubject;
     }
 }

@@ -23,14 +23,15 @@ namespace Library_Project
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             txtSearch.TextChanged += txtSearch_TextChanged;
             dgvTeachers.CellClick += dgvTeachers_CellClick;
-            txtBarcode.KeyDown += txtBarcode_KeyDown;
         }
-
+        public void RefreshTeachersPublic()
+        {
+            LoadTodayTeacher();
+        }
         private void frmTeachersManagement_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now.Date;
             LoadTeachersByDate(dateTimePicker1.Value);
-            txtBarcode.Focus();
 
             dgvTeachers.Columns[0].HeaderText = "Teacher ID";
             dgvTeachers.Columns[1].HeaderText = "Name";
@@ -181,49 +182,6 @@ namespace Library_Project
         {
             txtSearch.Clear();
             LoadTodayTeacher();
-        }
-
-        private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                string teacher_ID = txtBarcode.Text.Trim();
-
-                if (!string.IsNullOrEmpty(teacher_ID))
-                {
-                    try
-                    {
-                        DataTable check = teachersmanagement.GetData(
-                            $"SELECT * FROM tbl_teacher WHERE teacher_ID = '{teacher_ID}'");
-
-                        if (check.Rows.Count > 0)
-                        {
-                            teachersmanagement.executeSQL(
-                                $"UPDATE tbl_teacher SET date_in = NOW() WHERE teacher_ID = '{teacher_ID}'");
-
-                            LogAction("SCAN", "TEACHER MANAGEMENT", $"Teacher {teacher_ID} scanned and time updated");
-                        }
-                        else
-                        {
-                            teachersmanagement.executeSQL(
-                                $"INSERT INTO tbl_teacher (teacher_ID, name, subject, date_in) " +
-                                $"VALUES ('{teacher_ID}', 'Unknown', '', NOW())");
-
-                            LogAction("ADD", "TEACHER MANAGEMENT", $"New teacher scanned: {teacher_ID}");
-                        }
-
-                        LoadTodayTeacher();
-                        txtBarcode.Clear();
-                        txtBarcode.Focus();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error Logging Attendance",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
         }
         private void LogAction(string action, string module, string details)
         {

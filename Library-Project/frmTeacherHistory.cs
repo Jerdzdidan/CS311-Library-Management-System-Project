@@ -29,7 +29,17 @@ namespace Library_Project
         {
             txtTeacherID.Text = teacherID;
             txtTeacherName.Text = teacherName;
-            txtSubject.Text = subject;
+
+            cmbSubject.Items.Clear();
+            cmbSubject.Items.AddRange(new string[]
+            {
+            "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
+            });
+
+            if (!string.IsNullOrEmpty(subject) && cmbSubject.Items.Contains(subject))
+                cmbSubject.SelectedItem = subject;
+            else
+                cmbSubject.Text = subject; // fallback
 
             LoadHistory();
         }

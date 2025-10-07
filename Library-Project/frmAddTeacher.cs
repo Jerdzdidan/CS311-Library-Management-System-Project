@@ -39,9 +39,9 @@ namespace Library_Project
                 errorcount++;
             }
 
-            if (string.IsNullOrEmpty(txtSubject.Text))
+            if (cmbSubject.SelectedIndex == -1)
             {
-                errorProvider1.SetError(txtSubject, "Subject is empty.");
+                errorProvider1.SetError(cmbSubject, "Please select a subject.");
                 errorcount++;
             }
 
@@ -71,11 +71,13 @@ namespace Library_Project
 
                     if (dr == DialogResult.Yes)
                     {
+                        string subject = cmbSubject.SelectedItem.ToString();
+
                         string insertQuery = $@"
                             INSERT INTO tbl_teacher (teacher_ID, name, subject, date_in)
                             VALUES ('{txtTeacherID.Text.Trim()}',
-                                    '{txtTeacherName.Text.Trim()}',
-                                    '{txtSubject.Text.Trim()}',
+                                    '{txtTeacherName.Text.Trim().Replace("'", "''")}',
+                                    '{subject.Replace("'", "''")}',
                                     '{DateTime.Now:yyyy/MM/dd}')";
 
                         addteacher.executeSQL(insertQuery);
@@ -88,7 +90,7 @@ namespace Library_Project
                                         '{DateTime.Now:hh\\:mm tt}',
                                         'ADD',
                                         'TEACHER MANAGEMENT',
-                                        '{txtTeacherName.Text.Trim()} ({txtTeacherID.Text.Trim()})',
+                                        '{txtTeacherName.Text.Trim().Replace("'", "''")} ({txtTeacherID.Text.Trim()})',
                                         '{username}')");
 
                             MessageBox.Show("New teacher added successfully!",
@@ -113,12 +115,26 @@ namespace Library_Project
         {
             txtTeacherID.Clear();
             txtTeacherName.Clear();
-            txtSubject.Clear();
+            cmbSubject.SelectedIndex = -1;
             errorProvider1.Clear();
             txtTeacherID.Focus();
         }
 
         private void frmAddTeacher_Load(object sender, EventArgs e)
+        {
+            cmbSubject.Items.Clear();
+            cmbSubject.Items.AddRange(new string[]
+            {
+            "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
+            });
+        }
+
+        private void txtSubject_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbSection_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

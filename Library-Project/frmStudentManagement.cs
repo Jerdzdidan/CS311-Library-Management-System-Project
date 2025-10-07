@@ -23,14 +23,16 @@ namespace Library_Project
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             txtSearch.TextChanged += txtsearch_TextChanged;
             dgvStudents.CellClick += dgvStudents_CellClick;
-            txtBarcode.KeyDown += txtBarcode_KeyDown;
+        }
+        public void RefreshStudentsPublic()
+        {
+            LoadTodayStudents();
         }
 
         private void frmStudentManagement_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now.Date;
             LoadStudentsByDate(dateTimePicker1.Value);
-            txtBarcode.Focus();
             dgvStudents.Columns[0].HeaderText = "Student Number";
             dgvStudents.Columns[1].HeaderText = "Name";
             dgvStudents.Columns[2].HeaderText = "Grade";
@@ -185,48 +187,6 @@ namespace Library_Project
             txtSearch.Clear();
             LoadTodayStudents();
         }
-
-        private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                string student_ID = txtBarcode.Text.Trim();
-
-                if (!string.IsNullOrEmpty(student_ID))
-                {
-                    try
-                    {
-                        DataTable check = studentmanagement.GetData(
-                            $"SELECT * FROM tbl_students WHERE student_ID = '{student_ID}'");
-
-                        if (check.Rows.Count > 0)
-                        {
-                            studentmanagement.executeSQL(
-                                $"UPDATE tbl_students SET date_in = NOW() WHERE student_ID = '{student_ID}'");
-
-                            LogAction("SCAN", "STUDENT MANAGEMENT", $"Student {student_ID} scanned and time updated");
-                        }
-                        else
-                        {
-                            studentmanagement.executeSQL(
-                                $"INSERT INTO tbl_students (student_ID, name, grade, section, date_in) " +
-                                $"VALUES ('{student_ID}', 'Unknown', '', '', NOW())");
-
-                            LogAction("ADD", "STUDENT MANAGEMENT", $"New student scanned: {student_ID}");
-                        }
-                        LoadTodayStudents();
-                        txtBarcode.Clear();
-                        txtBarcode.Focus();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Error Logging Attendance",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
         private void LogAction(string action, string module, string details)
         {
             try
@@ -262,6 +222,11 @@ namespace Library_Project
             {
                 MessageBox.Show("Please select a student to view history.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -45,21 +45,6 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on frmBooksManagement_Load", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private int GetQuantityFromRow(DataGridViewRow row)
-        {
-            string qtyString = "";
-
-            if (dataGridView1.Columns.Contains("quantity"))
-                qtyString = row.Cells["quantity"].Value?.ToString() ?? "0";
-            else if (row.Cells.Count > 6)
-                qtyString = row.Cells[6].Value?.ToString() ?? "0";
-
-            int qty;
-            if (!int.TryParse(qtyString, out qty))
-                qty = 0;
-
-            return qty;
-        }
         private void UpdateButtonStates()
         {
             if (dataGridView1.SelectedRows.Count == 0)
