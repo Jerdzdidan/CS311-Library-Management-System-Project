@@ -25,104 +25,6 @@ namespace Library_Project
             this.category = category;
             this.username = username;
         }
-        private void txtname_TextChanged(object sender, EventArgs e)
-        {
-            try
-    {
-        string searchText = txtname.Text.Trim().Replace("'", "''");
-        if (searchText.Length < 2)
-        {
-            lstSearchResults.Visible = false;
-            return;
-        }
-
-        string query = @"
-            SELECT 'STUDENT' AS Type, student_ID AS ID, name, grade, section 
-            FROM tbl_students
-            WHERE DATE_FORMAT(STR_TO_DATE(date_in, '%Y/%m/%d'), '%Y-%m-%d') = CURDATE()
-              AND name LIKE '%" + searchText + @"%'
-
-            UNION ALL
-
-            SELECT 'TEACHER' AS Type, teacher_ID AS ID, name, subject AS grade, '' AS section
-            FROM tbl_teacher
-            WHERE DATE_FORMAT(STR_TO_DATE(date_in, '%Y/%m/%d'), '%Y-%m-%d') = CURDATE()
-              AND name LIKE '%" + searchText + @"%'
-
-            LIMIT 10;";
-
-        DataTable dt = bookborrow.GetData(query);
-
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            lstSearchResults.Items.Clear();
-            foreach (DataRow row in dt.Rows)
-            {
-                string type = row["Type"].ToString();
-                string name = row["name"].ToString();
-
-                if (type == "STUDENT")
-                    lstSearchResults.Items.Add($"{name} ({row["grade"]}-{row["section"]})");
-                else
-                    lstSearchResults.Items.Add($"{name} [Teacher - {row["grade"]}]");
-            }
-
-            lstSearchResults.Tag = dt;
-            lstSearchResults.Visible = true;
-        }
-        else
-        {
-            lstSearchResults.Visible = false;
-        }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error searching: " + ex.Message);
-    }
-        }
-        private void lstSearchResults_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lstSearchResults.SelectedIndex < 0) return;
-
-            try
-            {
-                DataTable dt = lstSearchResults.Tag as DataTable;
-                if (dt == null || lstSearchResults.SelectedIndex >= dt.Rows.Count) return;
-
-                DataRow selectedRow = dt.Rows[lstSearchResults.SelectedIndex];
-                string type = selectedRow.Field<string>("Type") ?? "";
-                string name = selectedRow.Field<string>("name") ?? "";
-                txtname.Text = name;
-
-                if (type == "STUDENT")
-                {
-                    string grade = selectedRow.Field<string>("grade") ?? "";
-                    string section = selectedRow.Field<string>("section") ?? "";
-                    txtGRSC.Text = grade + (string.IsNullOrEmpty(section) ? "" : "-" + section);
-
-                    cmbSubject.SelectedIndex = -1;
-                    rbStudent.Checked = true;
-                    txtGRSC.Enabled = true;
-                    cmbSubject.Enabled = false;
-                }
-                else // TEACHER
-                {
-                    txtGRSC.Clear();
-                    string subject = selectedRow.Field<string>("grade") ?? "";
-                    cmbSubject.SelectedItem = subject;
-
-                    rbTeacher.Checked = true;
-                    txtGRSC.Enabled = false;
-                    cmbSubject.Enabled = true;
-                }
-
-                lstSearchResults.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Selection error: " + ex.Message);
-            }
-        }
         private void btnCancel_Click(object sender, EventArgs e) => this.Close();
 
         private void frmBorrowBooks_Load(object sender, EventArgs e)
@@ -132,15 +34,160 @@ namespace Library_Project
             txtTitle.Text = bookTitle;
             txtAuthor.Text = author;
             txtCategory.Text = category;
-            txtGRSC.Enabled = false;
 
-            // Example: load subjects into the ComboBox (replace with DB fetch if needed)
+            txtGRSC.Enabled = false;
             cmbSubject.Items.Clear();
             cmbSubject.Items.AddRange(new string[]
             {
-            "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
+                "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
             });
+
+            txtBarcode.KeyDown += txtBarcode_KeyDown;
+            txtBarcode.Focus();
         }
+
+        private void txtname_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string searchText = txtname.Text.Trim().Replace("'", "''");
+                if (searchText.Length < 2)
+                    return;
+
+                string query = @"
+                    SELECT 'STUDENT' AS Type, student_ID AS ID, name, grade, section 
+                    FROM tbl_students
+                    WHERE name LIKE '%" + searchText + @"%'
+                    UNION ALL
+                    SELECT 'TEACHER' AS Type, teacher_ID AS ID, name, subject AS grade, '' AS section
+                    FROM tbl_teacher
+                    WHERE name LIKE '%" + searchText + @"%'
+                    LIMIT 1;";
+
+                DataTable dt = bookborrow.GetData(query);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    string type = row["Type"].ToString();
+
+                    txtBarcode.Text = row["ID"].ToString(); // autofill barcode/ID
+                    txtname.Text = row["name"].ToString();
+
+                    if (type == "STUDENT")
+                    {
+                        rbStudent.Checked = true;
+                        txtGRSC.Text = $"{row["grade"]}-{row["section"]}";
+                        txtGRSC.Enabled = true;
+                        cmbSubject.Enabled = false;
+                        cmbSubject.SelectedIndex = -1;
+                    }
+                    else if (type == "TEACHER")
+                    {
+                        rbTeacher.Checked = true;
+                        cmbSubject.Enabled = true;
+                        cmbSubject.SelectedItem = row["grade"].ToString();
+                        txtGRSC.Enabled = false;
+                        txtGRSC.Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while searching borrower: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // prevent ding sound
+                string scannedID = txtBarcode.Text.Trim();
+                if (!string.IsNullOrEmpty(scannedID))
+                {
+                    AutoFillBorrowerData(scannedID);
+                }
+            }
+        }
+        private void AutoFillBorrowerData(string scannedID)
+        {
+            try
+            {
+                string cleanID = scannedID.Replace("'", "''");
+                string today = DateTime.Now.ToString("yyyy/MM/dd");
+
+                // Check if borrower has attendance today
+                DataTable attendanceToday = bookborrow.GetData(
+                    $"SELECT ID_number, username, usertype FROM tbl_attendance " +
+                    $"WHERE ID_number = '{cleanID}' AND Date_in = '{today}'");
+
+                if (attendanceToday.Rows.Count == 0)
+                {
+                    MessageBox.Show("This ID does not have attendance today. Please check the Attendance form first.",
+                                    "No Attendance Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtBarcode.Clear();
+                    txtBarcode.Focus();
+                    return;
+                }
+
+                string userType = attendanceToday.Rows[0]["usertype"].ToString().Trim().ToUpper();
+                string name = attendanceToday.Rows[0]["username"].ToString();
+
+                // ✅ Fill borrower name
+                txtname.Text = name;
+
+                if (userType == "STUDENT")
+                {
+                    // Fetch student grade and section
+                    DataTable student = bookborrow.GetData(
+                        $"SELECT grade, section FROM tbl_students WHERE student_ID = '{cleanID}'");
+
+                    if (student.Rows.Count > 0)
+                    {
+                        string grade = student.Rows[0]["grade"].ToString();
+                        string section = student.Rows[0]["section"].ToString();
+
+                        rbStudent.Checked = true;
+                        txtGRSC.Enabled = true;
+                        cmbSubject.Enabled = false;
+                        txtGRSC.Text = $"{grade}-{section}";
+                    }
+                }
+                else if (userType == "TEACHER")
+                {
+                    // Fetch teacher subject
+                    DataTable teacher = bookborrow.GetData(
+                        $"SELECT subject FROM tbl_teacher WHERE teacher_ID = '{cleanID}'");
+
+                    if (teacher.Rows.Count > 0)
+                    {
+                        string subject = teacher.Rows[0]["subject"].ToString();
+
+                        rbTeacher.Checked = true;
+                        txtGRSC.Enabled = false;
+                        cmbSubject.Enabled = true;
+                        cmbSubject.SelectedItem = subject;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Unknown user type. Only STUDENT or TEACHER allowed.",
+                                    "Invalid Type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Reset barcode box
+                txtBarcode.Clear();
+                txtBarcode.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while scanning barcode: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBarcode.Clear();
+                txtBarcode.Focus();
+            }
+        }
+
         private void rbStudent_CheckedChanged(object sender, EventArgs e)
         {
             txtGRSC.Enabled = rbStudent.Checked;
@@ -161,24 +208,21 @@ namespace Library_Project
 
                 if (string.IsNullOrWhiteSpace(borrowerName))
                 {
-                    MessageBox.Show("Please enter borrower name.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please scan or enter borrower details.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (rbStudent.Checked && string.IsNullOrWhiteSpace(grsc))
                 {
-                    MessageBox.Show("Please enter Grade & Section for student borrowers.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please enter Grade & Section for students.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // === 🧠 TEACHER RULES: Allow 3 books, 5 days to return ===
-                if (borrowerType.ToUpper() == "TEACHER")
+                // 🧠 TEACHER RULES: up to 3 books, 5 days
+                if (borrowerType == "TEACHER")
                 {
-                    // escape single quotes in name
                     string escName = borrowerName.Replace("'", "''");
-
-                    string countQuery = "SELECT * FROM tbl_transac WHERE borrower = '" + escName +
-                                        "' AND borrowerType = 'TEACHER' AND status = 'BORROWED'";
+                    string countQuery = $"SELECT * FROM tbl_transac WHERE borrower = '{escName}' AND borrowerType = 'TEACHER' AND status = 'BORROWED'";
                     int borrowedCount = bookborrow.GetData(countQuery).Rows.Count;
 
                     if (borrowedCount >= 3)
@@ -187,11 +231,10 @@ namespace Library_Project
                         return;
                     }
 
-                    // Proceed with teacher borrowing (rest of your code)
                     DateTime borrowDate = DateTime.Now;
                     DateTime returnDate = borrowDate.AddDays(5);
-                    string transacID = "TRS - " + DateTime.Now.ToString("yyyyMMddHHmmss");
-                    
+                    string transacID = "TRS-" + DateTime.Now.ToString("yyyyMMddHHmmss");
+
                     bookborrow.executeSQL($@"
                         INSERT INTO tbl_transac 
                         (bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section, transacID)
@@ -199,73 +242,73 @@ namespace Library_Project
                                 '{borrowDate:yyyy/MM/dd}', '{returnDate:yyyy/MM/dd}', 
                                 'BORROWED', '{escName}', 'TEACHER', 'N/A', '{transacID}')");
 
-                    // Decrease book quantity
-                    bookborrow.executeSQL($"UPDATE tbl_books SET quantity = quantity - 1 WHERE BookID = '{bookCode}'");
+                    bookborrow.executeSQL($@"
+                                            UPDATE tbl_books 
+                                            SET quantity = quantity - 1,
+                                                status = CASE 
+                                                            WHEN quantity - 1 <= 0 THEN 'BORROWED'
+                                                            ELSE 'AVAILABLE'
+                                                         END
+                                            WHERE BookID = '{bookCode}'");
 
-                    // Log
                     bookborrow.executeSQL($@"
                         INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby)
                         VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now:hh\\:mm tt}', 'BORROW', 'BORROW BOOKS', '{bookCode}', '{username}')");
 
-                    MessageBox.Show($"Book borrowed successfully!\n\nReturn on or before {returnDate:MMMM dd, yyyy}",
+                    MessageBox.Show($"Book borrowed successfully!\n\nReturn on or before {returnDate:yyyy MM, dd}",
                                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     this.Close();
                     return;
                 }
 
-                // === 🧠 STUDENT RULES: 1 book at a time ===
-                string checkQuery = "SELECT bookCode FROM tbl_transac WHERE borrower = '" + borrowerName + "' AND status = 'BORROWED' LIMIT 1";
+                // 🧠 STUDENT RULES: 1 book at a time, 3 days
+                string checkQuery = $"SELECT bookCode FROM tbl_transac WHERE borrower = '{borrowerName}' AND status = 'BORROWED' LIMIT 1";
                 DataTable dtBorrowed = bookborrow.GetData(checkQuery);
 
-                if (dtBorrowed != null && dtBorrowed.Rows.Count > 0)
+                if (dtBorrowed.Rows.Count > 0)
                 {
                     string borrowedBook = dtBorrowed.Rows[0]["bookCode"].ToString();
                     MessageBox.Show(
-                        "This borrower already has a borrowed book (Book Code: " + borrowedBook + ").\n\n" +
-                        "Please return it before borrowing another.\n\n" +
-                        "Borrowing limit: 1 book at a time\n" +
-                        "Return period: 3 days",
-                        "Borrow Limit Reached",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
+                        $"This borrower already has a borrowed book (Book Code: {borrowedBook}).\n\n" +
+                        "Borrowing limit: 1 book at a time\nReturn period: 3 days",
+                        "Borrow Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Check book quantity
-                DataTable dtQuantity = bookborrow.GetData("SELECT quantity FROM tbl_books WHERE BookID = '" + bookCode + "'");
-                int currentQuantity = 0;
-                if (dtQuantity.Rows.Count > 0)
+                // Check if book available
+                DataTable dtQuantity = bookborrow.GetData($"SELECT quantity FROM tbl_books WHERE BookID = '{bookCode}'");
+                if (dtQuantity.Rows.Count == 0 || Convert.ToInt32(dtQuantity.Rows[0]["quantity"]) <= 0)
                 {
-                    int.TryParse(dtQuantity.Rows[0]["quantity"].ToString(), out currentQuantity);
-                }
-
-                if (currentQuantity <= 0)
-                {
-                    MessageBox.Show("This book is out of stock. No copies available to borrow.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("This book is out of stock.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Proceed with student borrowing
+                // Insert student borrow record
                 DateTime borrowDateStudent = DateTime.Now;
-                string transacIDStudent = "TRS - " + DateTime.Now.ToString("yyyyMMddHHmmss");
+                string transacIDStudent = "TRS-" + DateTime.Now.ToString("yyyyMMddHHmmss");
 
-                bookborrow.executeSQL(
-                    "INSERT INTO tbl_transac (bookCode, bookTitle, author, category, borrowdate, status, borrower, borrowerType, grade_section, transacID) " +
-                    "VALUES ('" + bookCode + "', '" + bookTitle + "', '" + author + "', '" + category + "', " +
-                    "'" + borrowDateStudent.ToString("yyyy/MM/dd") + "', " +
-                    "'BORROWED', '" + borrowerName + "', '" + borrowerType + "', '" + grsc + "','" + transacIDStudent + "')"
-                );
+                bookborrow.executeSQL($@"
+                    INSERT INTO tbl_transac 
+                    (bookCode, bookTitle, author, category, borrowdate, status, borrower, borrowerType, grade_section, transacID)
+                    VALUES ('{bookCode}', '{bookTitle}', '{author}', '{category}', 
+                            '{borrowDateStudent:yyyy/MM/dd}', 'BORROWED', '{borrowerName}', 
+                            '{borrowerType}', '{grsc}', '{transacIDStudent}')");
 
-                bookborrow.executeSQL("UPDATE tbl_books SET quantity = quantity - 1 WHERE BookID = '" + bookCode + "'");
+                                // 🔹 Update quantity and status
+                                bookborrow.executeSQL($@"
+                    UPDATE tbl_books 
+                    SET quantity = quantity - 1,
+                        status = CASE 
+                                    WHEN quantity - 1 <= 0 THEN 'BORROWED'
+                                    ELSE 'AVAILABLE'
+                                 END
+                    WHERE BookID = '{bookCode}'");
 
-                // Log
-                bookborrow.executeSQL(
-                    "INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) " +
-                    "VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd") + "', '" + DateTime.Now.ToShortTimeString() + "', " +
-                    "'BORROW', 'BORROW BOOKS', '" + bookCode + "', '" + username + "')"
-                );
+                                // 🔹 Log action
+                                bookborrow.executeSQL($@"
+                    INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby)
+                    VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now.ToShortTimeString()}', 
+                            'BORROW', 'BORROW BOOKS', '{bookCode}', '{username}')");
 
                 MessageBox.Show("Book borrowed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();

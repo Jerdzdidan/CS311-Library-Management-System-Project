@@ -42,18 +42,42 @@ namespace Library_Project
         {
             try
             {
-                DataTable dt = login.GetData("SELECT * FROM tbl_accounts WHERE username = '" + txtusername.Text + "'AND password = '" + txtpassword.Text + "'AND status = 'ACTIVE'");
-                if (dt.Rows.Count > 0)
+                if (string.IsNullOrWhiteSpace(txtusername.Text))
                 {
-                    frmMain mainForm = new frmMain(txtusername.Text, dt.Rows[0].Field<string>("usertype"));
-                    mainForm.Show();
-                    this.Hide();
+                    MessageBox.Show("Please enter your username.", "Missing Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtusername.Focus();
+                    return;
                 }
-                else
+                if (string.IsNullOrWhiteSpace(txtpassword.Text))
                 {
-                    MessageBox.Show("Incorrect username or password or account is inactive.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please enter your password.", "Missing Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtpassword.Focus();
+                    return;
                 }
+                string queryUser = $"SELECT * FROM tbl_accounts WHERE username = '{txtusername.Text}'";
+                DataTable dtUser = login.GetData(queryUser);
 
+                if (dtUser.Rows.Count == 0)
+                {
+                    MessageBox.Show("Username not found. Please check and try again.", "Invalid Username", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtusername.Focus();
+                    return;
+                }
+                if (dtUser.Rows[0]["status"].ToString() != "ACTIVE")
+                {
+                    MessageBox.Show("Your account is inactive. Please contact the administrator.", "Account Inactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                string storedPassword = dtUser.Rows[0]["password"].ToString();
+                if (storedPassword != txtpassword.Text)
+                {
+                    MessageBox.Show("Incorrect password. Please try again.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtpassword.Focus();
+                    return;
+                }
+                frmMain mainForm = new frmMain(txtusername.Text, dtUser.Rows[0].Field<string>("usertype"));
+                mainForm.Show();
+                this.Hide();
             }
             catch (Exception error)
             {
@@ -68,7 +92,5 @@ namespace Library_Project
                 btnlogin_Click(sender, e);
             }
         }
-
-        
     }
 }

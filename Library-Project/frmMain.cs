@@ -30,7 +30,6 @@ namespace Library_Project
         {
             if (usertype.ToUpper() == "STAFF")
             {
-                btntransac.Enabled = true;
                 btnresources.Enabled = true;
                 btnlogout.Enabled = true;
                 btnlogs.Enabled = true;
@@ -41,7 +40,6 @@ namespace Library_Project
             }
             else
             {
-                btntransac.Enabled = true;
                 btnresources.Enabled = true;
                 btnlogout.Enabled = true;
                 btnlogs.Enabled = true;
@@ -89,14 +87,6 @@ namespace Library_Project
             about.MdiParent = this;
             about.Dock = DockStyle.Fill;
             about.Show();
-        }
-        private void btntransac_Click(object sender, EventArgs e)
-        {
-            RemoveChildren();
-            frmTransactions transac = new frmTransactions(username);
-            transac.MdiParent = this;
-            transac.Dock = DockStyle.Fill;
-            transac.Show();
         }
 
         private void btnStudentsManagement_Click(object sender, EventArgs e)

@@ -16,14 +16,15 @@ namespace Library_Project
         Class1 teachersmanagement = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
         private int row;
+        private int currentPage = 1;
+        private int pageSize = 15;
         public frmTeachersManagement(string username)
         {
             InitializeComponent();
             this.username = username;
-            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
-            txtSearch.TextChanged += txtSearch_TextChanged;
-            dgvTeachers.CellClick += dgvTeachers_CellClick;
 
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            dgvTeachers.CellClick += dgvTeachers_CellClick_1;
             dgvTeachers.DataBindingComplete += dgvTeachers_DataBindingComplete;
         }
         public void RefreshTeachersPublic()
@@ -32,13 +33,50 @@ namespace Library_Project
         }
         private void frmTeachersManagement_Load(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = DateTime.Now.Date;
-            LoadTeachersByDate(dateTimePicker1.Value);
+            LoadTeachers();
 
-            dgvTeachers.Columns[0].HeaderText = "Teacher ID";
-            dgvTeachers.Columns[1].HeaderText = "Name";
-            dgvTeachers.Columns[2].HeaderText = "Subject";
-            dgvTeachers.Columns[3].HeaderText = "Date In";
+            if (dgvTeachers.Columns.Count >= 4)
+            {
+                dgvTeachers.Columns[0].HeaderText = "Teacher ID";
+                dgvTeachers.Columns[1].HeaderText = "Name";
+                dgvTeachers.Columns[2].HeaderText = "Subject";
+                dgvTeachers.Columns[3].HeaderText = "Date In";
+            }
+        }
+        private void LoadTeachers()
+        {
+            try
+            {
+                int offset = (currentPage - 1) * pageSize;
+                string searchCondition = "";
+                string keyword = txtSearch.Text.Trim().Replace("'", "''");
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    searchCondition = $" WHERE (name LIKE '%{keyword}%' OR teacher_ID LIKE '%{keyword}%' OR subject LIKE '%{keyword}%')";
+                }
+
+                // Load one extra record to detect next page
+                string query = $"SELECT teacher_ID, name, subject, date_in FROM tbl_teacher {searchCondition} ORDER BY name ASC LIMIT {pageSize + 1} OFFSET {offset}";
+                DataTable dt = teachersmanagement.GetData(query);
+
+                bool hasNextPage = dt.Rows.Count > pageSize;
+                if (hasNextPage)
+                    dt.Rows.RemoveAt(dt.Rows.Count - 1); // Remove extra row
+
+                dgvTeachers.DataSource = dt;
+                dgvTeachers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // 🔹 Update pagination controls
+                btnPrev.Enabled = currentPage > 1;
+                btnNext.Enabled = hasNextPage;
+
+                lblPageInfo.Text = $"Page {currentPage}" + (hasNextPage ? " →" : "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading teachers: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void LoadTeachersByDate(DateTime date)
         {
@@ -80,29 +118,8 @@ namespace Library_Project
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                string keyword = txtSearch.Text.Trim().Replace("'", "''");
-                string dateString = dateTimePicker1.Value.ToString("yyyy/MM/dd");
-
-                string query = "SELECT teacher_ID, name, subject, date_in " +
-                               "FROM tbl_teacher " +
-                               $"WHERE DATE(date_in) = '{dateString}' ";
-
-                if (!string.IsNullOrEmpty(keyword))
-                {
-                    query += "AND (name LIKE '%" + keyword + "%' OR teacher_ID LIKE '%" + keyword + "%') ";
-                }
-
-                query += "ORDER BY date_in DESC";
-
-                DataTable dt = teachersmanagement.GetData(query);
-                dgvTeachers.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Search Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            currentPage = 1;
+            LoadTeachers();
         }
 
         private void dgvTeachers_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -122,7 +139,8 @@ namespace Library_Project
             frmAddTeacher addForm = new frmAddTeacher(username);
             addForm.FormClosed += (s, args) =>
             {
-                LoadTodayTeacher();
+                currentPage = 1;
+                LoadTeachers();
                 LogAction("ADD", "TEACHER MANAGEMENT", "Added a new teacher record");
             };
             addForm.ShowDialog();
@@ -136,13 +154,17 @@ namespace Library_Project
                 return;
             }
 
-            string editID = dgvTeachers.CurrentRow.Cells[0].Value.ToString();
-            string editName = dgvTeachers.CurrentRow.Cells[1].Value.ToString();
-            string editSubject = dgvTeachers.CurrentRow.Cells[2].Value.ToString();
+            string editID = dgvTeachers.CurrentRow.Cells["teacher_ID"].Value.ToString();
+            string editName = dgvTeachers.CurrentRow.Cells["name"].Value.ToString();
+            string editSubject = dgvTeachers.CurrentRow.Cells["subject"].Value.ToString();
 
             frmUpdateTeacher updateForm = new frmUpdateTeacher(username, editID, editName, editSubject);
-            updateForm.FormClosed += (s, args) => LoadTodayTeacher();
-            updateForm.Show();
+            updateForm.FormClosed += (s, args) =>
+            {
+                LoadTeachers(); // keep same page
+                LogAction("UPDATE", "TEACHER MANAGEMENT", $"Updated teacher {editName}");
+            };
+            updateForm.ShowDialog();
         }
 
         private void btndelete_Click(object sender, EventArgs e)
@@ -153,7 +175,7 @@ namespace Library_Project
                 string name = dgvTeachers.Rows[row].Cells["name"].Value.ToString();
 
                 DialogResult dr = MessageBox.Show($"Are you sure you want to delete teacher '{name}'?",
-                    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dr == DialogResult.Yes)
                 {
@@ -163,14 +185,14 @@ namespace Library_Project
 
                         if (teachersmanagement.rowAffected > 0)
                         {
-                            LoadTodayTeacher();
+                            LoadTeachers();
                             LogAction("DELETE", "TEACHER MANAGEMENT", $"Deleted teacher {name}");
                             MessageBox.Show("Teacher deleted successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error deleting teacher: " + ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -183,7 +205,8 @@ namespace Library_Project
         private void btnreset_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
-            LoadTodayTeacher();
+            currentPage = 1;
+            LoadTeachers();
         }
         private void LogAction(string action, string module, string details)
         {
@@ -197,10 +220,6 @@ namespace Library_Project
             {
                 MessageBox.Show(ex.Message, "Log Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            LoadTeachersByDate(dateTimePicker1.Value);
         }
         private void btnHistory_Click(object sender, EventArgs e)
         {
@@ -217,7 +236,6 @@ namespace Library_Project
             {
                 MessageBox.Show("Please select a teacher to view history.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
         private void dgvTeachers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -226,38 +244,61 @@ namespace Library_Project
             {
                 if (row.Cells["subject"].Value != null)
                 {
-                    string userType = row.Cells["subject"].Value.ToString().Trim().ToUpper();
+                    string subject = row.Cells["subject"].Value.ToString().Trim().ToUpper();
 
-                    if (userType == "MATHEMATICS")
+                    switch (subject)
                     {
-                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#8DA9FC");
-                    }
-                    else if (userType == "SCIENCE")
-                    {
-                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#C7FFDE");
-                    }
-                    else if (userType == "ENGLISH")
-                    {
-                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#E3C7FF");
-                    }
-                    else if (userType == "FILIPINO")
-                    {
-                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFE2C7");
-                    }
-                    else if (userType == "MAPEH")
-                    {
-                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFFFC7");
-                    }
-                    else if (userType == "ARALING PANLIPUNAN")
-                    {
-                        row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFC7C7");
-                    }
-                    else
-                    {
-                        row.DefaultCellStyle.BackColor = Color.White;
+                        case "MATHEMATICS":
+                            row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#8DA9FC");
+                            break;
+                        case "SCIENCE":
+                            row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#C7FFDE");
+                            break;
+                        case "ENGLISH":
+                            row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#E3C7FF");
+                            break;
+                        case "FILIPINO":
+                            row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFE2C7");
+                            break;
+                        case "MAPEH":
+                            row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFFFC7");
+                            break;
+                        case "ARALING PANLIPUNAN":
+                            row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#FFC7C7");
+                            break;
+                        default:
+                            row.DefaultCellStyle.BackColor = Color.White;
+                            break;
                     }
                 }
             }
+        }
+
+        private void dgvTeachers_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                row = e.RowIndex;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Cell Click Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadTeachers();
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currentPage++;
+            LoadTeachers();
         }
     }
 }

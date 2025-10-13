@@ -53,18 +53,20 @@
             // txtusername
             // 
             this.txtusername.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtusername.Location = new System.Drawing.Point(104, 268);
+            this.txtusername.Location = new System.Drawing.Point(139, 330);
+            this.txtusername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtusername.Name = "txtusername";
-            this.txtusername.Size = new System.Drawing.Size(223, 23);
+            this.txtusername.Size = new System.Drawing.Size(296, 27);
             this.txtusername.TabIndex = 2;
             // 
             // txtpassword
             // 
             this.txtpassword.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpassword.Location = new System.Drawing.Point(104, 304);
+            this.txtpassword.Location = new System.Drawing.Point(139, 374);
+            this.txtpassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
-            this.txtpassword.Size = new System.Drawing.Size(223, 23);
+            this.txtpassword.Size = new System.Drawing.Size(296, 27);
             this.txtpassword.TabIndex = 3;
             this.txtpassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpassword_KeyPress);
             // 
@@ -76,9 +78,10 @@
             this.chkshow.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkshow.ForeColor = System.Drawing.Color.GhostWhite;
             this.chkshow.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.chkshow.Location = new System.Drawing.Point(212, 333);
+            this.chkshow.Location = new System.Drawing.Point(283, 410);
+            this.chkshow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkshow.Name = "chkshow";
-            this.chkshow.Size = new System.Drawing.Size(111, 19);
+            this.chkshow.Size = new System.Drawing.Size(137, 23);
             this.chkshow.TabIndex = 4;
             this.chkshow.Text = "&Show Password";
             this.chkshow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -98,9 +101,10 @@
             this.btnlogin.ForeColor = System.Drawing.Color.GhostWhite;
             this.btnlogin.Image = ((System.Drawing.Image)(resources.GetObject("btnlogin.Image")));
             this.btnlogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlogin.Location = new System.Drawing.Point(228, 389);
+            this.btnlogin.Location = new System.Drawing.Point(304, 479);
+            this.btnlogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnlogin.Name = "btnlogin";
-            this.btnlogin.Size = new System.Drawing.Size(99, 30);
+            this.btnlogin.Size = new System.Drawing.Size(132, 37);
             this.btnlogin.TabIndex = 5;
             this.btnlogin.Text = "&Login   ";
             this.btnlogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -120,9 +124,10 @@
             this.btnclear.ForeColor = System.Drawing.Color.GhostWhite;
             this.btnclear.Image = ((System.Drawing.Image)(resources.GetObject("btnclear.Image")));
             this.btnclear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnclear.Location = new System.Drawing.Point(69, 389);
+            this.btnclear.Location = new System.Drawing.Point(92, 479);
+            this.btnclear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnclear.Name = "btnclear";
-            this.btnclear.Size = new System.Drawing.Size(95, 30);
+            this.btnclear.Size = new System.Drawing.Size(127, 37);
             this.btnclear.TabIndex = 6;
             this.btnclear.Text = "&Clear  ";
             this.btnclear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -135,9 +140,10 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(42, 33);
+            this.label3.Location = new System.Drawing.Point(56, 41);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(309, 40);
+            this.label3.Size = new System.Drawing.Size(390, 51);
             this.label3.TabIndex = 7;
             this.label3.Text = "Arellano University";
             // 
@@ -145,9 +151,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 34.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(72, 33);
+            this.label4.Location = new System.Drawing.Point(96, 41);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 53);
+            this.label4.Size = new System.Drawing.Size(0, 67);
             this.label4.TabIndex = 8;
             // 
             // label5
@@ -156,9 +163,10 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(62, 73);
+            this.label5.Location = new System.Drawing.Point(83, 90);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(265, 66);
+            this.label5.Size = new System.Drawing.Size(343, 84);
             this.label5.TabIndex = 16;
             this.label5.Text = "  Library Management\r\n            System";
             // 
@@ -166,9 +174,10 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(81, 155);
+            this.pictureBox3.Location = new System.Drawing.Point(108, 191);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(111, 84);
+            this.pictureBox3.Size = new System.Drawing.Size(148, 103);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 15;
             this.pictureBox3.TabStop = false;
@@ -177,9 +186,10 @@
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(170, 130);
+            this.pictureBox5.Location = new System.Drawing.Point(227, 160);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(180, 126);
+            this.pictureBox5.Size = new System.Drawing.Size(240, 155);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 25;
             this.pictureBox5.TabStop = false;
@@ -202,17 +212,19 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(390, 447);
+            this.panel3.Size = new System.Drawing.Size(520, 550);
             this.panel3.TabIndex = 20;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(69, 297);
+            this.pictureBox2.Location = new System.Drawing.Point(92, 366);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox2.Size = new System.Drawing.Size(40, 37);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
@@ -221,26 +233,28 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(68, 261);
+            this.pictureBox1.Location = new System.Drawing.Point(91, 321);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.Size = new System.Drawing.Size(40, 37);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
             // frmlogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(390, 447);
+            this.ClientSize = new System.Drawing.Size(520, 550);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "frmlogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login Form";
+            this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel3.ResumeLayout(false);

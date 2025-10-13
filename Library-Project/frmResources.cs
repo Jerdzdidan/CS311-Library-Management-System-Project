@@ -16,6 +16,9 @@ namespace Library_Project
         Class1 resources = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
         private int row;
+
+        private int currentPage = 1;
+        private int pageSize = 10;
         public frmResources(string username)
         {
             InitializeComponent();
@@ -57,11 +60,9 @@ namespace Library_Project
                                MessageBoxIcon.Warning);
                 return;
             }
+
             frmBorrowBooks borrowForm = new frmBorrowBooks(bookCode, bookTitle, author, category, username);
-            borrowForm.FormClosed += (s, args) =>
-            {
-                frmResources_Load(sender, e);
-            };
+            borrowForm.FormClosed += (s, args) => { LoadBooks(); };
             borrowForm.ShowDialog();
         }
 
@@ -70,9 +71,8 @@ namespace Library_Project
             try
             {
                 dtpFilterDate.ValueChanged += dateTimePicker1_ValueChanged;
-                DataTable dt = resources.GetData("SELECT * FROM tbl_books ORDER BY BookID");
-                dataGridView1.DataSource = dt;
-                ApplyRowColor();
+                LoadBooks();
+
                 dataGridView1.Columns[0].HeaderText = "Book ID";
                 dataGridView1.Columns[1].HeaderText = "Title";
                 dataGridView1.Columns[2].HeaderText = "Author";
@@ -83,7 +83,7 @@ namespace Library_Project
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "ERROR on frmBooksManagement_Load", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error.Message, "ERROR on frmResources_Load", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private int GetQuantityFromRow(DataGridViewRow row)
@@ -104,18 +104,8 @@ namespace Library_Project
 
         private void txtsrch_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                string searchText = txtSearch.Text.Trim();
-                string query = @"SELECT * FROM tbl_books WHERE BookID LIKE '%" + searchText + @"%' OR title LIKE '%" + searchText + @"%' OR author LIKE '%" + searchText + @"%' 
-                                OR category LIKE '%" + searchText + @"%' ORDER BY BookID";
-                DataTable dt = resources.GetData(query);
-                dataGridView1.DataSource = dt;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "ERROR on txtSearch", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            currentPage = 1;
+            LoadBooks();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -123,7 +113,7 @@ namespace Library_Project
             try
             {
                 string selectedDate = dtpFilterDate.Value.ToString("yyyy/MM/dd");
-                string query = "SELECT * FROM tbl_books WHERE DATE(Added_date) = '" + selectedDate + "' ORDER BY BookID";
+                string query = $"SELECT * FROM tbl_books WHERE DATE(Added_date) = '{selectedDate}' ORDER BY BookID LIMIT {pageSize}";
                 DataTable dt = resources.GetData(query);
 
                 dataGridView1.DataSource = dt;
@@ -206,8 +196,9 @@ namespace Library_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            frmResources_Load(sender, e);
-            txtsrch.Clear();
+            currentPage = 1;
+            txtSearch.Clear();
+            LoadBooks();
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
@@ -220,6 +211,57 @@ namespace Library_Project
             };
 
             transacfrom.Show();
+        }
+        private void LoadBooks()
+        {
+            try
+            {
+                int offset = (currentPage - 1) * pageSize;
+                string searchText = txtSearch.Text.Trim().Replace("'", "''");
+                string whereClause = "";
+
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    whereClause = $" WHERE (BookID LIKE '%{searchText}%' OR title LIKE '%{searchText}%' OR author LIKE '%{searchText}%' OR category LIKE '%{searchText}%')";
+                }
+
+                // ✅ Fetch one extra record to check for next page
+                string query = $"SELECT * FROM tbl_books {whereClause} ORDER BY BookID ASC LIMIT {pageSize + 1} OFFSET {offset}";
+                DataTable dt = resources.GetData(query);
+
+                bool hasNextPage = dt.Rows.Count > pageSize;
+                if (hasNextPage)
+                    dt.Rows.RemoveAt(dt.Rows.Count - 1); // remove the extra row
+
+                dataGridView1.DataSource = dt;
+                ApplyRowColor();
+
+                // ✅ Enable / Disable buttons properly
+                btnPrev.Enabled = currentPage > 1;
+                btnNext.Enabled = hasNextPage;
+
+                // ✅ Update label info
+                lblPageInfo.Text = $"Page {currentPage}" + (hasNextPage ? " →" : "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading resources: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currentPage++;
+            LoadBooks();
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadBooks();
+            }
         }
     }
 }

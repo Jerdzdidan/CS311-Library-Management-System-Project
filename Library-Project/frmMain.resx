@@ -181,16 +181,6 @@
         s0BhhrT6LMO2szdmAKhrMlLPw0GVAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btntransac.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAQBJREFUSEvt
-        kwsNwkAQRCuhEpCAAyoBCUjAAXUADpBAHYADcAIOyrzNNFxo+aZpaMJLJuzs7bZ35Tb78xV1XU+lnbSy
-        n9jvn2iZ9K6JQfGGnO0NJecSnOxpfEWV9F6k3CKeszY83sFMimMm/l55NCSQY80WX3TVsVBKgT2FXZTR
-        kECOBcf8l7CIxRQl2Q0PTk+Cv9ejkxS2+M66YdCbm9t1tP/0dp0lToSI27dLSR5aSfHN9cu3xR+eKJ2T
-        DTEQk7MdGO/m3YnfRpORp7f3iY/pjkaheJwTH4omIx+1tvjuOVHy3YlvmESjUNz7xIeiychHrS2emv/E
-        t/SDEz9ysuwKkgkuGBvRigYAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="btnlogout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAJVJREFUSEvd

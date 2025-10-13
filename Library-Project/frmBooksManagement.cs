@@ -15,6 +15,9 @@ namespace Library_Project
     {
         Class1 books = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
+        private int currentPage = 1;
+        private string currentFilter = "";
+        private int pageSize = 10;
         public frmBooksManagement(string username)
         {
             InitializeComponent();
@@ -28,10 +31,8 @@ namespace Library_Project
             try
             {
                 dtpFilterDate.ValueChanged += dtpFilterDate_ValueChanged;
-                DataTable dt = books.GetData("SELECT * FROM tbl_books ORDER BY BookID");
-                dataGridView1.DataSource = dt;
-                ApplyRowColor();          
-                UpdateButtonStates();
+                LoadBooks();
+
                 dataGridView1.Columns[0].HeaderText = "Book ID";
                 dataGridView1.Columns[1].HeaderText = "Title";
                 dataGridView1.Columns[2].HeaderText = "Author";
@@ -45,12 +46,51 @@ namespace Library_Project
                 MessageBox.Show(error.Message, "ERROR on frmBooksManagement_Load", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void LoadBooks()
+        {
+            try
+            {
+                int offset = (currentPage - 1) * pageSize;
+                string searchText = txtSearch.Text.Trim().Replace("'", "''");
+                string whereClause = "WHERE 1=1";
+
+                // ✅ Apply search filter
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    whereClause += $" AND (BookID LIKE '%{searchText}%' OR title LIKE '%{searchText}%' OR author LIKE '%{searchText}%' OR category LIKE '%{searchText}%')";
+                }
+
+                // ✅ Apply status filter (from combo box)
+                if (!string.IsNullOrEmpty(currentFilter) && currentFilter != "ALL")
+                {
+                    whereClause += $" AND status = '{currentFilter}'";
+                }
+
+                string query = $"SELECT * FROM tbl_books {whereClause} ORDER BY BookID LIMIT {pageSize + 1} OFFSET {offset}";
+                DataTable dt = books.GetData(query);
+
+                bool hasNextPage = dt.Rows.Count > pageSize;
+                if (hasNextPage)
+                    dt.Rows.RemoveAt(dt.Rows.Count - 1);
+
+                dataGridView1.DataSource = dt;
+                ApplyRowColor();
+                UpdateButtonStates();
+
+                btnPrev.Enabled = currentPage > 1;
+                btnNext.Enabled = hasNextPage;
+                lblPageInfo.Text = $"Page {currentPage}" + (hasNextPage ? " →" : "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading books: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void UpdateButtonStates()
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 btnAvailable.Enabled = false;
-                btnUnavaliable.Enabled = false;
                 btnDamage.Enabled = false;
                 btnReplace.Enabled = false;
                 return;
@@ -71,23 +111,15 @@ namespace Library_Project
                 int.TryParse(selectedRow.Cells[6].Value?.ToString(), out quantity);
 
             btnAvailable.Enabled = false;
-            btnUnavaliable.Enabled = false;
             btnDamage.Enabled = false;
             btnReplace.Enabled = false;
 
             switch (status)
             {
                 case "AVAILABLE":
-                    btnUnavaliable.Enabled = true;
                     btnDamage.Enabled = true;
                     btnReplace.Enabled = false;
                     btnAvailable.Enabled = false;
-                    break;
-
-                case "UNAVAILABLE":
-                    btnAvailable.Enabled = true;  
-                    btnDamage.Enabled = true;
-                    btnReplace.Enabled = true;    
                     break;
 
                 case "DAMAGED":
@@ -133,20 +165,10 @@ namespace Library_Project
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                string searchText = txtSearch.Text.Trim();
-                string query = @"SELECT * FROM tbl_books WHERE BookID LIKE '%" + searchText + @"%' OR title LIKE '%" + searchText + @"%' OR author LIKE '%" + searchText + @"%' 
-                                OR category LIKE '%" + searchText + @"%' ORDER BY BookID";
-                DataTable dt = books.GetData(query);
-                dataGridView1.DataSource = dt;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "ERROR on txtSearch", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            currentPage = 1;
+            LoadBooks();
         }
-            private void btnDeleteBook_Click(object sender, EventArgs e)
+        private void btnDeleteBook_Click(object sender, EventArgs e)
             {
                 if (dataGridView1.SelectedRows.Count == 0)
                 {
@@ -189,53 +211,32 @@ namespace Library_Project
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a book to update the status.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnAvailable.Enabled = false;
+                btnDamage.Enabled = false;
+                btnReplace.Enabled = false;
                 return;
             }
 
-            DataGridViewRow row = dataGridView1.SelectedRows[0];
-            string bookID = row.Cells["BookID"].Value?.ToString() ?? string.Empty;
-            string currentStatus = row.Cells["status"].Value?.ToString() ?? string.Empty;
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            string status = selectedRow.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
 
-            if (currentStatus == "REPLACED")
+            btnAvailable.Enabled = false;
+            btnDamage.Enabled = false;
+            btnReplace.Enabled = false;
+
+            switch (status)
             {
-                MessageBox.Show("You cannot change the status of a replaced book.", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (currentStatus == "DAMAGED" && newStatus == "AVAILABLE")
-            {
-                MessageBox.Show("A damaged book cannot be made available directly. Consider replacing it instead.", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (currentStatus == newStatus)
-            {
-                MessageBox.Show($"The book is already marked as {newStatus}.", "No Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            DialogResult dr = MessageBox.Show($"Are you sure you want to change status from {currentStatus} to {newStatus}?", "Confirm Status Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                try
-                {
-                    books.executeSQL("UPDATE tbl_books SET status = '" + newStatus + "' WHERE BookID = '" + bookID + "'");
-
-                    if (books.rowAffected > 0)
-                    {
-                        MessageBox.Show($"Book status updated to {newStatus}.", "Status Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        frmBooksManagement_Load_1(null, null);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No book updated. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show(error.Message, "ERROR on status update", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                case "AVAILABLE":
+                    btnDamage.Enabled = true;
+                    break;
+                case "UNAVAILABLE":
+                    btnAvailable.Enabled = true;
+                    btnDamage.Enabled = true;
+                    btnReplace.Enabled = true;
+                    break;
+                case "DAMAGED":
+                    btnReplace.Enabled = true;
+                    break;
             }
         }
         private void btnAvailable_Click(object sender, EventArgs e)
@@ -301,59 +302,16 @@ namespace Library_Project
         }
         private void ApplyRowColor()
         {
-            if (dataGridView1.Rows.Count == 0) return;
-
             foreach (DataGridViewRow r in dataGridView1.Rows)
             {
                 if (r.IsNewRow) continue;
-
-                DataGridViewCell statusCell = null;
-                DataGridViewCell quantityCell = null;
-
-                if (dataGridView1.Columns.Contains("status"))
-                    statusCell = r.Cells["status"];
-                else if (dataGridView1.Columns.Count > 4)
-                    statusCell = r.Cells[4];
-
-                if (dataGridView1.Columns.Contains("quantity"))
-                    quantityCell = r.Cells["quantity"];
-                else if (dataGridView1.Columns.Count > 6)
-                    quantityCell = r.Cells[6];
-
-                string status = statusCell?.Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
-                int quantity = 0;
-                int.TryParse(quantityCell?.Value?.ToString(), out quantity);
-
+                string status = r.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? "";
                 switch (status)
                 {
-                    case "AVAILABLE":
-                    case "REPLACED":
-                        if (quantity > 0)
-                        {
-                            r.DefaultCellStyle.BackColor = Color.Honeydew;
-                            r.DefaultCellStyle.ForeColor = Color.Black;
-                        }
-                        else
-                        {
-                            r.DefaultCellStyle.BackColor = Color.LemonChiffon;
-                            r.DefaultCellStyle.ForeColor = Color.Black;
-                        }
-                        break;
-
-                    case "BORROWED":
-                        r.DefaultCellStyle.BackColor = Color.Moccasin;
-                        r.DefaultCellStyle.ForeColor = Color.Black;
-                        break;
-
-                    case "DAMAGED":
-                        r.DefaultCellStyle.BackColor = Color.LightPink;
-                        r.DefaultCellStyle.ForeColor = Color.Black;
-                        break;
-
-                    default:
-                        r.DefaultCellStyle.BackColor = Color.White;
-                        r.DefaultCellStyle.ForeColor = Color.Black;
-                        break;
+                    case "AVAILABLE": r.DefaultCellStyle.BackColor = Color.Honeydew; break;
+                    case "DAMAGED": r.DefaultCellStyle.BackColor = Color.LightPink; break;
+                    case "BORROWED": r.DefaultCellStyle.BackColor = Color.Moccasin; break;
+                    default: r.DefaultCellStyle.BackColor = Color.White; break;
                 }
             }
         }
@@ -409,19 +367,18 @@ namespace Library_Project
             try
             {
                 string selectedStatus = cmbList.SelectedItem?.ToString()?.Trim();
+                currentPage = 1; // Reset pagination to first page
 
                 if (string.IsNullOrWhiteSpace(selectedStatus) || selectedStatus == "ALL")
                 {
-                    frmBooksManagement_Load_1(null, null);
-                    return;
+                    currentFilter = "";
+                }
+                else
+                {
+                    currentFilter = selectedStatus;
                 }
 
-                string query = "SELECT * FROM tbl_books WHERE status = '" + selectedStatus + "' ORDER BY BookID";
-                DataTable dt = books.GetData(query);
-
-                dataGridView1.DataSource = dt;
-                ApplyRowColor();
-                UpdateButtonStates();
+                LoadBooks();
             }
             catch (Exception ex)
             {
@@ -431,17 +388,31 @@ namespace Library_Project
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            try
+            currentPage = 1;
+            currentFilter = "";
+            cmbList.SelectedIndex = -1; // ✅ clear combo box
+            txtSearch.Clear();
+            LoadBooks();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currentPage++;
+            LoadBooks();
+        }
+
+        private void lblPageInfo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
             {
-                frmBooksManagement_Load_1(sender, e);
-                txtSearch.Clear();
-                if (cmbList.Items.Count > 0)
-                    cmbList.SelectedIndex = -1;
+                currentPage--;
+                LoadBooks();
             }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "ERROR on Refresh", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }   
         }
     }
 }

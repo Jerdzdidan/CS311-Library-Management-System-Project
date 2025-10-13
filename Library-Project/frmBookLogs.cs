@@ -18,32 +18,83 @@ namespace Library_Project
     {
         Class1 booklogs = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
+        private int currentPage = 1;
+        private int pageSize = 20;
+        private bool hasNextPage = false;
         public frmBookLogs(string username)
         {
             InitializeComponent();
             this.username = username;
-            
+
+            txtsearch.TextChanged += (s, e) => { currentPage = 1; LoadAllLogs(); };
+            cmbList.SelectedIndexChanged += (s, e) => { currentPage = 1; LoadAllLogs(); };
+            dtpDate.ValueChanged += (s, e) => { currentPage = 1; LoadAllLogs(); };
         }
         private void frmBookLogs_Load(object sender, EventArgs e)
         {
+            dtpDate.Value = DateTime.Now;
             LoadAllLogs();
-            dataGridView1.Columns[0].HeaderText = "Date Log";
-            dataGridView1.Columns[1].HeaderText = "Time Log";
-            dataGridView1.Columns[2].HeaderText = "Action";
-            dataGridView1.Columns[3].HeaderText = "Module";
-            dataGridView1.Columns[4].HeaderText = "Performed To";
-            dataGridView1.Columns[5].HeaderText = "Performed By";
+            SetupHeaders();
+        }
+        private void SetupHeaders()
+        {
+            if (dataGridView1.Columns.Count >= 6)
+            {
+                dataGridView1.Columns[0].HeaderText = "Date";
+                dataGridView1.Columns[1].HeaderText = "Time";
+                dataGridView1.Columns[2].HeaderText = "Action";
+                dataGridView1.Columns[3].HeaderText = "Module";
+                dataGridView1.Columns[4].HeaderText = "Performed To";
+                dataGridView1.Columns[5].HeaderText = "Performed By";
+            }
         }
         private void LoadAllLogs()
         {
             try
             {
-                DataTable dt = booklogs.GetData("SELECT datelog, timelog, action, module, performedto, performedby FROM tbl_logs ORDER BY datelog DESC, timelog DESC");
+                int offset = (currentPage - 1) * pageSize;
+
+                string keyword = txtsearch.Text.Trim().Replace("'", "''");
+                string selectedDate = dtpDate.Value.ToString("yyyy/MM/dd");
+                string selectedFilter = cmbList.SelectedItem?.ToString();
+
+                List<string> filters = new List<string>
+                {
+                    $"datelog = '{selectedDate}'" // Always show logs for selected date (today by default)
+                };
+
+                if (!string.IsNullOrEmpty(keyword))
+                    filters.Add($"(performedto LIKE '%{keyword}%' OR performedby LIKE '%{keyword}%' OR action LIKE '%{keyword}%' OR module LIKE '%{keyword}%')");
+
+                if (!string.IsNullOrEmpty(selectedFilter))
+                    filters.Add($"(action = '{selectedFilter}' OR module = '{selectedFilter}')");
+
+                string whereClause = "WHERE " + string.Join(" AND ", filters);
+
+                string query = $@"
+                    SELECT datelog, timelog, action, module, performedto, performedby
+                    FROM tbl_logs
+                    {whereClause}
+                    ORDER BY datelog DESC, timelog DESC
+                    LIMIT {pageSize + 1} OFFSET {offset};
+                ";
+
+                DataTable dt = booklogs.GetData(query);
+
+                hasNextPage = dt.Rows.Count > pageSize;
+                if (hasNextPage)
+                    dt.Rows.RemoveAt(dt.Rows.Count - 1); // remove extra row
+
                 dataGridView1.DataSource = dt;
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                btnPrev.Enabled = currentPage > 1;
+                btnNext.Enabled = hasNextPage;
+                lblPageInfo.Text = $"Page {currentPage}" + (hasNextPage ? " →" : "");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("LoadAllLogs error: " + ex.Message);
+                MessageBox.Show("Error loading logs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private int row;
@@ -52,38 +103,11 @@ namespace Library_Project
             try
             {
                 if (e.RowIndex >= 0)
-                {
                     row = e.RowIndex;
-                }
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "ERROR on datagridview1_CellContentClick", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void btnsearch_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string sql = "SELECT * FROM tbl_logs WHERE 1=1 ";
-                string keyword = txtsearch.Text.Trim();
-                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
-                               "FROM tbl_logs " +
-                               "WHERE performedto LIKE '%" + keyword + "%' " +
-                               "OR performedby LIKE '%" + keyword + "%' " +
-                               "OR action LIKE '%" + keyword + "%' " +
-                               "OR module LIKE '%" + keyword + "%' " +
-                               "ORDER BY datelog DESC, timelog DESC";
-
-                string selectedDate = dtpDate.Value.ToString("yyyy/dd/MM");
-                sql += "AND datelog = '" + selectedDate + "' ";
-                sql += "ORDER BY datelog DESC, timelog DESC";
-                DataTable dt = booklogs.GetData(query);
-                dataGridView1.DataSource = dt;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error.Message, "ERROR on DataGridView Cell Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void txtsearch_TextChanged(object sender, EventArgs e)
@@ -91,8 +115,7 @@ namespace Library_Project
             try
             {
                 string keyword = txtsearch.Text.Trim();
-                string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
-                               "FROM tbl_logs ";
+                string query = "SELECT datelog, timelog, action, module, performedto, performedby FROM tbl_logs ";
 
                 if (!string.IsNullOrEmpty(keyword))
                 {
@@ -109,18 +132,16 @@ namespace Library_Project
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "ERROR on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error.Message, "Error on search", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnReset_Click_1(object sender, EventArgs e)
         {
             txtsearch.Clear();
+            cmbList.SelectedIndex = -1;
             dtpDate.Value = DateTime.Now;
+            currentPage = 1;
             LoadAllLogs();
-            if (cmbList.Items.Count > 0)
-            {
-                cmbList.SelectedIndex = -1;
-            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,6 +154,7 @@ namespace Library_Project
                     LoadAllLogs();
                     return;
                 }
+
                 string esc = selectedFilter.Replace("'", "''");
                 string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
                                "FROM tbl_logs " +
@@ -152,7 +174,7 @@ namespace Library_Project
         {
             try
             {
-                string selectedDate = dtpDate.Value.ToString("yyyy-MM-dd"); // correct format
+                string selectedDate = dtpDate.Value.ToString("yyyy/MM/dd");
 
                 string query = "SELECT datelog, timelog, action, module, performedto, performedby " +
                                "FROM tbl_logs " +
@@ -168,7 +190,28 @@ namespace Library_Project
             }
         }
 
-    
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (hasNextPage)
+            {
+                currentPage++;
+                LoadAllLogs();
+            }
+        }
+
+        private void lblPageInfo_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadAllLogs();
+            }
+        }
     }
 }
 

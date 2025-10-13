@@ -133,6 +133,23 @@ namespace Library_Project
             this.Close();
         }
 
-     
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateBookCodeWithCategory();
+        }
+        private void UpdateBookCodeWithCategory()
+        {
+            if (!string.IsNullOrEmpty(txtBookCode.Text) && cmbCategory.SelectedIndex >= 0)
+            {
+                // Split old Book Code
+                string[] parts = txtBookCode.Text.Split('-');
+                if (parts.Length >= 4)
+                {
+                    string newCategory = cmbCategory.Text.ToUpper();
+                    parts[1] = newCategory; // Replace the category part
+                    txtBookCode.Text = string.Join("-", parts); // Recombine
+                }
+            }
+        }
     }
 }

@@ -33,13 +33,13 @@ namespace Library_Project
             cmbSubject.Items.Clear();
             cmbSubject.Items.AddRange(new string[]
             {
-            "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
+                "MATHEMATICS", "SCIENCE", "ENGLISH", "FILIPINO", "MAPEH", "ARALING PANLIPUNAN"
             });
 
             if (!string.IsNullOrEmpty(subject) && cmbSubject.Items.Contains(subject))
                 cmbSubject.SelectedItem = subject;
             else
-                cmbSubject.Text = subject; // fallback
+                cmbSubject.Text = subject; // fallback in case subject isn't in the list
 
             LoadHistory();
         }
@@ -48,30 +48,37 @@ namespace Library_Project
             try
             {
                 string query = $@"
-            SELECT bookCode AS 'Book Code',
-                   bookTitle AS 'Book Title',
-                   category AS 'Category',
-                   'BORROWED' AS 'Action',
-                   borrowdate AS 'Date'
-            FROM tbl_transac
-            WHERE borrower = '{teacherName}'
+                    SELECT bookCode AS 'Book Code',
+                           bookTitle AS 'Book Title',
+                           category AS 'Category',
+                           'BORROWED' AS 'Action',
+                           borrowdate AS 'Date'
+                    FROM tbl_transac
+                    WHERE borrower = '{teacherName}'
 
-            UNION ALL
+                    UNION ALL
 
-            SELECT bookCode AS 'Book Code',
-                   bookTitle AS 'Book Title',
-                   category AS 'Category',
-                   'RETURNED' AS 'Action',
-                   returndate AS 'Date'
-            FROM tbl_transac
-            WHERE borrower = '{teacherName}' AND returndate IS NOT NULL
+                    SELECT bookCode AS 'Book Code',
+                           bookTitle AS 'Book Title',
+                           category AS 'Category',
+                           'RETURNED' AS 'Action',
+                           returndate AS 'Date'
+                    FROM tbl_transac
+                    WHERE borrower = '{teacherName}' AND returndate IS NOT NULL
 
-            ORDER BY Date DESC;
-        ";
+                    ORDER BY Date DESC;
+                ";
+
+                // Fetch data from database
+                DataTable dt = teacherhistory.GetData(query);
+
+                // Display data in DataGridView
+                dgvHistory.DataSource = dt;
+                dgvHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "ERROR on LoadHistory", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error loading teacher history: " + ex.Message, "ERROR on LoadHistory", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
