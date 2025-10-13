@@ -32,10 +32,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnReplace = new System.Windows.Forms.Button();
-            this.btnAvailable = new System.Windows.Forms.Button();
-            this.btnDamage = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddBook = new System.Windows.Forms.Button();
             this.btnUpdateBook = new System.Windows.Forms.Button();
@@ -54,7 +50,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -73,7 +68,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1373, 694);
+            this.dataGridView1.Size = new System.Drawing.Size(1373, 720);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
@@ -102,77 +97,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "      Search Resources:";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnReplace);
-            this.groupBox1.Controls.Add(this.btnAvailable);
-            this.groupBox1.Controls.Add(this.btnDamage);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(20, 31);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(235, 274);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Book Status";
-            // 
-            // btnReplace
-            // 
-            this.btnReplace.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReplace.FlatAppearance.BorderSize = 0;
-            this.btnReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReplace.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReplace.Image = ((System.Drawing.Image)(resources.GetObject("btnReplace.Image")));
-            this.btnReplace.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReplace.Location = new System.Drawing.Point(7, 199);
-            this.btnReplace.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReplace.Name = "btnReplace";
-            this.btnReplace.Size = new System.Drawing.Size(208, 46);
-            this.btnReplace.TabIndex = 10;
-            this.btnReplace.Text = " &Replaced             ";
-            this.btnReplace.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReplace.UseVisualStyleBackColor = true;
-            this.btnReplace.Click += new System.EventHandler(this.btnReplace_Click);
-            // 
-            // btnAvailable
-            // 
-            this.btnAvailable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAvailable.FlatAppearance.BorderSize = 0;
-            this.btnAvailable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAvailable.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAvailable.Image = ((System.Drawing.Image)(resources.GetObject("btnAvailable.Image")));
-            this.btnAvailable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAvailable.Location = new System.Drawing.Point(7, 57);
-            this.btnAvailable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAvailable.Name = "btnAvailable";
-            this.btnAvailable.Size = new System.Drawing.Size(208, 46);
-            this.btnAvailable.TabIndex = 6;
-            this.btnAvailable.Text = "&Available            ";
-            this.btnAvailable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAvailable.UseVisualStyleBackColor = true;
-            this.btnAvailable.Click += new System.EventHandler(this.btnAvailable_Click);
-            // 
-            // btnDamage
-            // 
-            this.btnDamage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDamage.FlatAppearance.BorderSize = 0;
-            this.btnDamage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDamage.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDamage.Image = ((System.Drawing.Image)(resources.GetObject("btnDamage.Image")));
-            this.btnDamage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDamage.Location = new System.Drawing.Point(7, 124);
-            this.btnDamage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDamage.Name = "btnDamage";
-            this.btnDamage.Size = new System.Drawing.Size(208, 46);
-            this.btnDamage.TabIndex = 4;
-            this.btnDamage.Text = "&Damage              ";
-            this.btnDamage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDamage.UseVisualStyleBackColor = true;
-            this.btnDamage.Click += new System.EventHandler(this.btnDamage_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnAddBook);
@@ -180,7 +104,7 @@
             this.groupBox2.Controls.Add(this.btnDeleteBook);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(20, 335);
+            this.groupBox2.Location = new System.Drawing.Point(29, 231);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
@@ -246,23 +170,19 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel2.Controls.Add(this.lblPageInfo);
             this.panel2.Controls.Add(this.btnRefresh);
-            this.panel2.Controls.Add(this.btnPrev);
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.btnNext);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(1408, 116);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(277, 781);
+            this.panel2.Size = new System.Drawing.Size(277, 850);
             this.panel2.TabIndex = 12;
             // 
             // lblPageInfo
             // 
             this.lblPageInfo.AutoSize = true;
-            this.lblPageInfo.Location = new System.Drawing.Point(117, 605);
+            this.lblPageInfo.Location = new System.Drawing.Point(1096, 818);
             this.lblPageInfo.Name = "lblPageInfo";
             this.lblPageInfo.Size = new System.Drawing.Size(44, 16);
             this.lblPageInfo.TabIndex = 37;
@@ -278,7 +198,7 @@
             this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(33, 729);
+            this.btnRefresh.Location = new System.Drawing.Point(29, 793);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(208, 46);
@@ -289,7 +209,7 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(43, 653);
+            this.btnPrev.Location = new System.Drawing.Point(1191, 808);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(96, 37);
             this.btnPrev.TabIndex = 36;
@@ -299,7 +219,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(145, 653);
+            this.btnNext.Location = new System.Drawing.Point(1293, 808);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(96, 37);
             this.btnNext.TabIndex = 35;
@@ -310,9 +230,12 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightYellow;
+            this.panel3.Controls.Add(this.lblPageInfo);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.btnPrev);
             this.panel3.Controls.Add(this.cmbList);
+            this.panel3.Controls.Add(this.btnNext);
             this.panel3.Controls.Add(this.dtpFilterDate);
             this.panel3.Controls.Add(this.dataGridView1);
             this.panel3.Controls.Add(this.txtSearch);
@@ -321,7 +244,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 116);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1408, 781);
+            this.panel3.Size = new System.Drawing.Size(1408, 850);
             this.panel3.TabIndex = 13;
             // 
             // label4
@@ -357,7 +280,7 @@
             this.cmbList.Items.AddRange(new object[] {
             "ALL",
             "AVAILABLE",
-            "UNAVAILABLE",
+            "BORROWED",
             "DAMAGED"});
             this.cmbList.Location = new System.Drawing.Point(961, 27);
             this.cmbList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -418,7 +341,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1685, 897);
+            this.ClientSize = new System.Drawing.Size(1685, 966);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -430,10 +353,8 @@
             this.Text = "Resource Management";
             this.Load += new System.EventHandler(this.frmBooksManagement_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -448,15 +369,11 @@
         private System.Windows.Forms.Button btnAddBook;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnDeleteBook;
-        private System.Windows.Forms.Button btnDamage;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnAvailable;
         private System.Windows.Forms.Button btnUpdateBook;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnReplace;
         private System.Windows.Forms.DateTimePicker dtpFilterDate;
         private System.Windows.Forms.ComboBox cmbList;
         private System.Windows.Forms.Button btnRefresh;

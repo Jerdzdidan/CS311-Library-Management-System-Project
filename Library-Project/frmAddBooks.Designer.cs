@@ -97,7 +97,7 @@
             // 
             // txtBarcode
             // 
-            this.txtBarcode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtBarcode.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtBarcode.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarcode.Location = new System.Drawing.Point(55, 171);
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -306,6 +306,7 @@
             this.Name = "frmAddBooks";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add resources";
+            this.Load += new System.EventHandler(this.frmAddBooks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

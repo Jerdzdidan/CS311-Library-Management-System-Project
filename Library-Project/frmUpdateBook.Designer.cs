@@ -80,9 +80,8 @@
             this.cmbStatus.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
-            "REPLACE",
             "AVAILABLE",
-            "UNAVAILABLE",
+            "BORROWED",
             "DAMAGED"});
             this.cmbStatus.Location = new System.Drawing.Point(467, 270);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(4);
@@ -225,9 +224,9 @@
             this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label9.Location = new System.Drawing.Point(467, 325);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 19);
+            this.label9.Size = new System.Drawing.Size(145, 19);
             this.label9.TabIndex = 49;
-            this.label9.Text = "       Date:";
+            this.label9.Text = "       Date Published:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label10

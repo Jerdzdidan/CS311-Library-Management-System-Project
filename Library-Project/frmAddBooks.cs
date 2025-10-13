@@ -121,5 +121,10 @@ namespace Library_Project
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
+
+        private void frmAddBooks_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtBarcode;
+        }
     }
 }

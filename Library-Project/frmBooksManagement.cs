@@ -75,7 +75,6 @@ namespace Library_Project
 
                 dataGridView1.DataSource = dt;
                 ApplyRowColor();
-                UpdateButtonStates();
 
                 btnPrev.Enabled = currentPage > 1;
                 btnNext.Enabled = hasNextPage;
@@ -85,50 +84,6 @@ namespace Library_Project
             {
                 MessageBox.Show("Error loading books: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private void UpdateButtonStates()
-        {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                btnAvailable.Enabled = false;
-                btnDamage.Enabled = false;
-                btnReplace.Enabled = false;
-                return;
-            }
-
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            string status = string.Empty;
-            int quantity = 0;
-
-            if (dataGridView1.Columns.Contains("status"))
-                status = selectedRow.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
-            else if (selectedRow.Cells.Count > 4)
-                status = selectedRow.Cells[4].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
-
-            if (dataGridView1.Columns.Contains("quantity"))
-                int.TryParse(selectedRow.Cells["quantity"].Value?.ToString(), out quantity);
-            else if (selectedRow.Cells.Count > 6)
-                int.TryParse(selectedRow.Cells[6].Value?.ToString(), out quantity);
-
-            btnAvailable.Enabled = false;
-            btnDamage.Enabled = false;
-            btnReplace.Enabled = false;
-
-            switch (status)
-            {
-                case "AVAILABLE":
-                    btnDamage.Enabled = true;
-                    btnReplace.Enabled = false;
-                    btnAvailable.Enabled = false;
-                    break;
-
-                case "DAMAGED":
-                    btnReplace.Enabled = true;  
-                    break;
-
-                default:
-                    break;
-            }                  
         }
         private void btnAddBook_Click(object sender, EventArgs e)
         {
@@ -150,16 +105,13 @@ namespace Library_Project
 
             string bookID = dataGridView1.Rows[row].Cells[0].Value.ToString();
             string title = dataGridView1.Rows[row].Cells[1].Value.ToString();
-            string author = dataGridView1.Rows[row].Cells[2].Value.ToString(); ;
+            string author = dataGridView1.Rows[row].Cells[2].Value.ToString();
             string category = dataGridView1.Rows[row].Cells[3].Value.ToString();
             string status = dataGridView1.Rows[row].Cells[4].Value.ToString();
             string Added_date = dataGridView1.Rows[row].Cells[5].Value.ToString();
-            frmUpdateBook updateBook = new frmUpdateBook(bookID, title, author, category, status, Added_date, username);
 
-            updateBook.FormClosed += (s, args) =>
-            {
-                frmBooksManagement_Load_1(sender, e);
-            };
+            frmUpdateBook updateBook = new frmUpdateBook(bookID, title, author, category, status, Added_date, username);
+            updateBook.FormClosed += (s, args) => frmBooksManagement_Load_1(sender, e);
             updateBook.Show();
         }
 
@@ -169,89 +121,43 @@ namespace Library_Project
             LoadBooks();
         }
         private void btnDeleteBook_Click(object sender, EventArgs e)
-            {
-                if (dataGridView1.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Please select a book to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                DataGridViewRow row = dataGridView1.SelectedRows[0];
-                string bookID = row.Cells["BookID"].Value?.ToString() ?? string.Empty;
-
-                DialogResult dr = MessageBox.Show("Are you sure you want to delete this book?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dr == DialogResult.Yes)
-                {
-                    try
-                    {
-                        books.executeSQL("DELETE FROM tbl_books WHERE BookID = '" + bookID + "'");
-
-                        if (books.rowAffected > 0)
-                        {
-                            books.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
-                                DateTime.Now.ToString("yyyy/MM/dd") + "' , '" +
-                                DateTime.Now.ToShortTimeString() + "', 'DELETE', 'RESOURCES MANAGEMENT', '" +
-                                bookID + "', '" + username + "')");
-
-                            MessageBox.Show("Book deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            frmBooksManagement_Load_1(sender, e);
-                        }
-                        else
-                        {
-                            MessageBox.Show("No book deleted. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    catch (Exception error)
-                    {
-                        MessageBox.Show(error.Message, "ERROR on delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        private void UpdateStatus(string newStatus)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                btnAvailable.Enabled = false;
-                btnDamage.Enabled = false;
-                btnReplace.Enabled = false;
+                MessageBox.Show("Please select a book to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            string status = selectedRow.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? string.Empty;
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            string bookID = row.Cells["BookID"].Value?.ToString() ?? string.Empty;
 
-            btnAvailable.Enabled = false;
-            btnDamage.Enabled = false;
-            btnReplace.Enabled = false;
-
-            switch (status)
+            DialogResult dr = MessageBox.Show("Are you sure you want to delete this book?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
             {
-                case "AVAILABLE":
-                    btnDamage.Enabled = true;
-                    break;
-                case "UNAVAILABLE":
-                    btnAvailable.Enabled = true;
-                    btnDamage.Enabled = true;
-                    btnReplace.Enabled = true;
-                    break;
-                case "DAMAGED":
-                    btnReplace.Enabled = true;
-                    break;
+                try
+                {
+                    books.executeSQL("DELETE FROM tbl_books WHERE BookID = '" + bookID + "'");
+
+                    if (books.rowAffected > 0)
+                    {
+                        books.executeSQL("INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby) VALUES ('" +
+                            DateTime.Now.ToString("yyyy/MM/dd") + "' , '" +
+                            DateTime.Now.ToShortTimeString() + "', 'DELETE', 'RESOURCES MANAGEMENT', '" +
+                            bookID + "', '" + username + "')");
+
+                        MessageBox.Show("Book deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        frmBooksManagement_Load_1(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No book deleted. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message, "ERROR on delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-        }
-        private void btnAvailable_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("AVAILABLE");
-        }
-
-        private void btnUnavaliable_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("UNAVAILABLE");
-        }
-
-        private void btnDamage_Click(object sender, EventArgs e)
-        {
-            UpdateStatus("DAMAGED");
         }
         private void btnReplace_Click(object sender, EventArgs e)
         {
@@ -317,19 +223,17 @@ namespace Library_Project
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            UpdateButtonStates();
             row = e.RowIndex;
         }
 
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ApplyRowColor();
-            UpdateButtonStates();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            UpdateButtonStates();
+            
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -355,7 +259,6 @@ namespace Library_Project
 
                 dataGridView1.DataSource = dt;
                 ApplyRowColor();
-                UpdateButtonStates();
             }
             catch (Exception error)
             {
