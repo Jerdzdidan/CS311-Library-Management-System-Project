@@ -51,9 +51,8 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 123);
+            this.panel1.Size = new System.Drawing.Size(600, 100);
             this.panel1.TabIndex = 61;
             // 
             // label6
@@ -61,20 +60,18 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(132, 46);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(99, 37);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(577, 51);
+            this.label6.Size = new System.Drawing.Size(453, 40);
             this.label6.TabIndex = 39;
             this.label6.Text = "ADD TEACHER ACCOUNT";
             // 
             // txtTeacherName
             // 
             this.txtTeacherName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTeacherName.Location = new System.Drawing.Point(57, 193);
-            this.txtTeacherName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTeacherName.Location = new System.Drawing.Point(43, 157);
             this.txtTeacherName.Name = "txtTeacherName";
-            this.txtTeacherName.Size = new System.Drawing.Size(320, 30);
+            this.txtTeacherName.Size = new System.Drawing.Size(241, 26);
             this.txtTeacherName.TabIndex = 56;
             // 
             // errorProvider1
@@ -84,10 +81,9 @@
             // txtBarcode
             // 
             this.txtBarcode.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBarcode.Location = new System.Drawing.Point(436, 193);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarcode.Location = new System.Drawing.Point(327, 157);
             this.txtBarcode.Name = "txtBarcode";
-            this.txtBarcode.Size = new System.Drawing.Size(319, 30);
+            this.txtBarcode.Size = new System.Drawing.Size(240, 26);
             this.txtBarcode.TabIndex = 65;
             // 
             // label2
@@ -97,9 +93,10 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(432, 166);
+            this.label2.Location = new System.Drawing.Point(324, 135);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(192, 23);
+            this.label2.Size = new System.Drawing.Size(154, 19);
             this.label2.TabIndex = 66;
             this.label2.Text = "       Teacher Number:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -111,9 +108,10 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(53, 240);
+            this.label1.Location = new System.Drawing.Point(40, 195);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 23);
+            this.label1.Size = new System.Drawing.Size(130, 19);
             this.label1.TabIndex = 64;
             this.label1.Text = "       Subject Code:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -125,9 +123,10 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(53, 164);
+            this.label4.Location = new System.Drawing.Point(40, 133);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(174, 23);
+            this.label4.Size = new System.Drawing.Size(140, 19);
             this.label4.TabIndex = 63;
             this.label4.Text = "       Teacher Name:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -143,10 +142,9 @@
             this.btnClear.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(436, 263);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClear.Location = new System.Drawing.Point(327, 223);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(152, 36);
+            this.btnClear.Size = new System.Drawing.Size(114, 29);
             this.btnClear.TabIndex = 58;
             this.btnClear.Text = "&Clear   ";
             this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -164,10 +162,9 @@
             this.btnAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(603, 261);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Location = new System.Drawing.Point(452, 223);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(152, 36);
+            this.btnAdd.Size = new System.Drawing.Size(114, 29);
             this.btnAdd.TabIndex = 57;
             this.btnAdd.Text = "&Add     ";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -186,17 +183,18 @@
             "FILIPINO",
             "MAPEH",
             "ARALING PANLIPUNAN"});
-            this.cmbSubject.Location = new System.Drawing.Point(57, 278);
+            this.cmbSubject.Location = new System.Drawing.Point(43, 226);
+            this.cmbSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbSubject.Name = "cmbSubject";
-            this.cmbSubject.Size = new System.Drawing.Size(320, 30);
+            this.cmbSubject.Size = new System.Drawing.Size(241, 27);
             this.cmbSubject.TabIndex = 67;
             // 
             // frmAddTeacher
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
-            this.ClientSize = new System.Drawing.Size(800, 359);
+            this.ClientSize = new System.Drawing.Size(600, 292);
             this.Controls.Add(this.cmbSubject);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBarcode);
@@ -207,7 +205,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtTeacherName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmAddTeacher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -34,6 +34,8 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnRetrn = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -43,12 +45,15 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -103,8 +108,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightYellow;
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.btnPrev);
             this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.btnNext);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.btnReturn);
             this.panel1.Controls.Add(this.cmbList);
@@ -116,19 +124,44 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 93);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1034, 396);
+            this.panel1.Size = new System.Drawing.Size(1034, 427);
             this.panel1.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Location = new System.Drawing.Point(685, 21);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 16);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "      Date:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Image = ((System.Drawing.Image)(resources.GetObject("label9.Image")));
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.Location = new System.Drawing.Point(477, 21);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 16);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "     Type:";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel3.Controls.Add(this.btnRetrn);
+            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.btnBack);
-            this.panel3.Controls.Add(this.btnrefres);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(880, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(154, 396);
+            this.panel3.Size = new System.Drawing.Size(154, 427);
             this.panel3.TabIndex = 12;
             // 
             // btnRetrn
@@ -141,12 +174,12 @@
             this.btnRetrn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnRetrn.Image = ((System.Drawing.Image)(resources.GetObject("btnRetrn.Image")));
             this.btnRetrn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRetrn.Location = new System.Drawing.Point(2, 52);
+            this.btnRetrn.Location = new System.Drawing.Point(5, 20);
             this.btnRetrn.Margin = new System.Windows.Forms.Padding(2);
             this.btnRetrn.Name = "btnRetrn";
-            this.btnRetrn.Size = new System.Drawing.Size(173, 49);
+            this.btnRetrn.Size = new System.Drawing.Size(129, 49);
             this.btnRetrn.TabIndex = 11;
-            this.btnRetrn.Text = "       &Return            ";
+            this.btnRetrn.Text = "    &Return";
             this.btnRetrn.UseVisualStyleBackColor = false;
             this.btnRetrn.Click += new System.EventHandler(this.btnRetrn_Click);
             // 
@@ -161,7 +194,7 @@
             this.btnBack.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
             this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBack.Location = new System.Drawing.Point(0, 347);
+            this.btnBack.Location = new System.Drawing.Point(0, 378);
             this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(154, 49);
@@ -181,12 +214,12 @@
             this.btnrefres.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnrefres.Image = ((System.Drawing.Image)(resources.GetObject("btnrefres.Image")));
             this.btnrefres.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnrefres.Location = new System.Drawing.Point(2, 109);
+            this.btnrefres.Location = new System.Drawing.Point(5, 73);
             this.btnrefres.Margin = new System.Windows.Forms.Padding(2);
             this.btnrefres.Name = "btnrefres";
-            this.btnrefres.Size = new System.Drawing.Size(173, 49);
+            this.btnrefres.Size = new System.Drawing.Size(129, 49);
             this.btnrefres.TabIndex = 10;
-            this.btnrefres.Text = "          &Refresh                 ";
+            this.btnrefres.Text = "      &Refresh ";
             this.btnrefres.UseVisualStyleBackColor = false;
             this.btnrefres.Click += new System.EventHandler(this.btnrefres_Click);
             // 
@@ -262,37 +295,67 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "TRANSACTIONS";
             // 
-            // label9
+            // label5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Image = ((System.Drawing.Image)(resources.GetObject("label9.Image")));
-            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label9.Location = new System.Drawing.Point(477, 21);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 16);
-            this.label9.TabIndex = 32;
-            this.label9.Text = "     Type:";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(679, 399);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 19);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "Page:";
             // 
-            // label3
+            // btnPrev
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(685, 21);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 16);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "      Date:";
+            this.btnPrev.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrev.FlatAppearance.BorderSize = 0;
+            this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrev.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrev.Image = ((System.Drawing.Image)(resources.GetObject("btnPrev.Image")));
+            this.btnPrev.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrev.Location = new System.Drawing.Point(723, 393);
+            this.btnPrev.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(72, 30);
+            this.btnPrev.TabIndex = 42;
+            this.btnPrev.Text = "&Next  ";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNext.Location = new System.Drawing.Point(793, 393);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(72, 30);
+            this.btnNext.TabIndex = 41;
+            this.btnNext.Text = "  &Prev";
+            this.btnNext.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnrefres);
+            this.groupBox1.Controls.Add(this.btnRetrn);
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox1.Location = new System.Drawing.Point(9, 43);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(139, 140);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Action buttons:";
             // 
             // frmTransac
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 489);
+            this.ClientSize = new System.Drawing.Size(1034, 520);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -308,6 +371,7 @@
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -330,5 +394,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
