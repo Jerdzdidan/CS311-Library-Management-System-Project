@@ -116,15 +116,6 @@ namespace Library_Project
             resources.Show();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            RemoveChildren();
-            frmTeachersManagement teachers = new frmTeachersManagement(username);
-            teachers.MdiParent = this;
-            teachers.Dock = DockStyle.Fill;
-            teachers.Show();
-        }
-
         private void btnAttendance_Click(object sender, EventArgs e)
         {
             RemoveChildren();
@@ -132,6 +123,15 @@ namespace Library_Project
             attendance.MdiParent = this;
             attendance.Dock = DockStyle.Fill;
             attendance.Show();
+        }
+
+        private void btnTeacher_Click_1(object sender, EventArgs e)
+        {
+            RemoveChildren();
+            frmTeachersManagement teachers = new frmTeachersManagement(username);
+            teachers.MdiParent = this;
+            teachers.Dock = DockStyle.Fill;
+            teachers.Show();
         }
 
         private void btnlogout_Click(object sender, EventArgs e)

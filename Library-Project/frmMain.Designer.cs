@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAttendance = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTeacher = new System.Windows.Forms.Button();
             this.btnResource = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnStudentsManagement = new System.Windows.Forms.Button();
@@ -55,7 +55,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
             this.panel1.Controls.Add(this.btnAttendance);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnTeacher);
             this.panel1.Controls.Add(this.btnResource);
             this.panel1.Controls.Add(this.btnDashboard);
             this.panel1.Controls.Add(this.btnStudentsManagement);
@@ -92,25 +92,25 @@
             this.btnAttendance.UseVisualStyleBackColor = true;
             this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
             // 
-            // button1
+            // btnTeacher
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(35, 388);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 46);
-            this.button1.TabIndex = 14;
-            this.button1.Tag = "";
-            this.button1.Text = "Teachers Management   ";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnTeacher.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTeacher.FlatAppearance.BorderSize = 0;
+            this.btnTeacher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTeacher.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeacher.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnTeacher.Image = ((System.Drawing.Image)(resources.GetObject("btnTeacher.Image")));
+            this.btnTeacher.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTeacher.Location = new System.Drawing.Point(35, 388);
+            this.btnTeacher.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTeacher.Name = "btnTeacher";
+            this.btnTeacher.Size = new System.Drawing.Size(300, 46);
+            this.btnTeacher.TabIndex = 14;
+            this.btnTeacher.Tag = "";
+            this.btnTeacher.Text = "Teachers Management   ";
+            this.btnTeacher.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTeacher.UseVisualStyleBackColor = true;
+            this.btnTeacher.Click += new System.EventHandler(this.btnTeacher_Click_1);
             // 
             // btnResource
             // 
@@ -372,7 +372,7 @@
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnResource;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTeacher;
         private System.Windows.Forms.Button btnAttendance;
     }
 }
