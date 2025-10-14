@@ -203,14 +203,14 @@ namespace Library_Project
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            frmTransac transacfrom = new frmTransac(username);
+            frmTransac transacForm = new frmTransac(username);
 
-            transacfrom.FormClosed += (s, args) =>
+            transacForm.FormClosed += (s, args) =>
             {
-                frmResources_Load(sender, e);
+                LoadBooks(); // ✅ directly reload the books, don't call frmResources_Load
             };
 
-            transacfrom.Show();
+            transacForm.ShowDialog();
         }
         private void LoadBooks()
         {

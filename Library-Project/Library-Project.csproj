@@ -288,5 +288,11 @@
   <ItemGroup>
     <None Include="Resources\updateres.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning Look Here Sticker.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning Look Here Sticker rot.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

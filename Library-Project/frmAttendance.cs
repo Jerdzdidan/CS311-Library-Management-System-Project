@@ -111,8 +111,6 @@ namespace Library_Project
         private void ClearForm()
         {
             txtID.Clear();
-            txtName.Clear();
-            txtUsertype.Clear();
             txtID.Focus();
         }
         private void LoadTodayAttendance()
@@ -185,8 +183,6 @@ namespace Library_Project
                     string grade = student.Rows[0]["grade"].ToString();
                     string section = student.Rows[0]["section"].ToString();
 
-                    txtName.Text = name;
-                    txtUsertype.Text = "STUDENT";
 
                     ProcessAttendance(cleanID, name, "STUDENT", grade, section);
                     return;
@@ -200,9 +196,7 @@ namespace Library_Project
                 {
                     string name = teacher.Rows[0]["name"].ToString();
                     string subject = teacher.Rows[0]["subject"].ToString();
-
-                    txtName.Text = name;
-                    txtUsertype.Text = "TEACHER";
+                    
 
                     ProcessAttendance(cleanID, name, "TEACHER", "", "", subject);
                     return;

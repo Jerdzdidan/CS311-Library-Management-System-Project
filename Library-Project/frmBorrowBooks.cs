@@ -255,7 +255,7 @@ namespace Library_Project
                         INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby)
                         VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now:hh\\:mm tt}', 'BORROW', 'BORROW BOOKS', '{bookCode}', '{username}')");
 
-                    MessageBox.Show($"Book borrowed successfully!\n\nReturn on or before {returnDate:yyyy MM, dd}",
+                    MessageBox.Show($"Book borrowed successfully!\n\nReturn on or before {returnDate:yyyy/MM/dd}",
                                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                     return;

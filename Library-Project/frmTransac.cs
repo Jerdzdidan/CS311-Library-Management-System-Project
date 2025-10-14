@@ -15,18 +15,17 @@ namespace Library_Project
     {
         Class1 booktransac = new Class1("127.0.0.1", "cs311_library_proj", "benidigs", "aquino");
         private string username;
+        private int row;
+        private int currentPage = 1;
+        private int pageSize = 15;
         public frmTransac(string username)
         {
             InitializeComponent();
             this.username = username;
-            dataGridView1.DataBindingComplete += (s, e) =>
-            {
-                ApplyRowColorTransactions();
-            };
         }
         private void frmTransac_Load(object sender, EventArgs e)
         {
-            LoadAllTransactions();
+            LoadTransactions();
             if (dataGridView1.Columns.Count > 0)
             {
                 dataGridView1.Columns["bookCode"].HeaderText = "Book Code";
@@ -39,51 +38,108 @@ namespace Library_Project
                 dataGridView1.Columns["borrower"].HeaderText = "Borrower";
                 dataGridView1.Columns["borrowerType"].HeaderText = "Borrower Type";
                 dataGridView1.Columns["grade_section"].HeaderText = "Grade and Section";
-                
+
                 if (dataGridView1.Columns.Contains("transacID"))
                     dataGridView1.Columns["transacID"].Visible = false;
             }
         }
-        private void ApplyRowColorTransactions()
-        {
-            if (dataGridView1.Rows.Count == 0) return;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.IsNewRow) continue;
-                string status = row.Cells["status"].Value?.ToString() ?? "";
-                switch (status.ToUpperInvariant())
-                {
-                    case "BORROWED":
-                        row.DefaultCellStyle.BackColor = Color.MistyRose;  
-                        row.DefaultCellStyle.ForeColor = Color.Black;
-                        break;
-                    case "RETURNED":
-                        row.DefaultCellStyle.BackColor = Color.Honeydew;  
-                        row.DefaultCellStyle.ForeColor = Color.Black;
-                        break;
-                    default:
-                        row.DefaultCellStyle.BackColor = Color.White;
-                        row.DefaultCellStyle.ForeColor = Color.Black;
-                        break;
-                }
-            }
-        }
-        private void LoadAllTransactions()
+        private void LoadTransactions()
         {
             try
             {
-                string query = @"SELECT transacID, bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
-                                "FROM tbl_transac ORDER BY borrowdate DESC";
+                int offset = (currentPage - 1) * pageSize;
+                string keyword = txtSearch.Text.Trim().Replace("'", "''");
+
+                // Build WHERE clause
+                string whereClause = "";
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    whereClause = " WHERE (bookCode LIKE '%" + keyword + "%' " +
+                                  "OR bookTitle LIKE '%" + keyword + "%' " +
+                                  "OR author LIKE '%" + keyword + "%' " +
+                                  "OR status LIKE '%" + keyword + "%' " +
+                                  "OR category LIKE '%" + keyword + "%' " +
+                                  "OR borrower LIKE '%" + keyword + "%' " +
+                                  "OR borrowerType LIKE '%" + keyword + "%' " +
+                                  "OR grade_section LIKE '%" + keyword + "%' " +
+                                  "OR borrowdate LIKE '%" + keyword + "%' " +
+                                  "OR returndate LIKE '%" + keyword + "%')";
+                }
+
+                // Add borrowerType filter from combobox
+                if (!string.IsNullOrWhiteSpace(cmbList.Text))
+                {
+                    string esc = cmbList.Text.Replace("'", "''");
+                    if (string.IsNullOrEmpty(whereClause))
+                        whereClause = " WHERE borrowerType = '" + esc + "'";
+                    else
+                        whereClause += " AND borrowerType = '" + esc + "'";
+                }
+
+                // Add date filter if DateTimePicker is checked
+                if (dtpDate.Checked)
+                {
+                    string selectedDate = dtpDate.Value.ToString("yyyy/MM/dd");
+                    if (string.IsNullOrEmpty(whereClause))
+                        whereClause = " WHERE DATE(borrowdate) = '" + selectedDate + "'";
+                    else
+                        whereClause += " AND DATE(borrowdate) = '" + selectedDate + "'";
+                }
+
+                // Fetch one extra row to detect if there's a next page
+                string query = $@"SELECT transacID, bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section
+                                  FROM tbl_transac
+                                  {whereClause}
+                                  ORDER BY borrowdate DESC
+                                  LIMIT {pageSize + 1} OFFSET {offset}";
+
                 DataTable dt = booktransac.GetData(query);
+
+                bool hasNextPage = (dt != null && dt.Rows.Count > pageSize);
+                if (hasNextPage)
+                    dt.Rows.RemoveAt(dt.Rows.Count - 1);
+
                 dataGridView1.DataSource = dt;
+
+                if (dataGridView1.Columns.Contains("transacID"))
+                    dataGridView1.Columns["transacID"].Visible = false;
+
+                // Apply row colors based on status
+                ApplyRowColors();
+
+                // Update pagination controls
+                btnPrev.Enabled = currentPage > 1;
+                btnNext.Enabled = hasNextPage;
+                lblPageInfo.Text = $"Page {currentPage}" + (hasNextPage ? " →" : "");
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "ERROR loading transactions", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private int row;
-
+        private void ApplyRowColors()
+        {
+            foreach (DataGridViewRow r in dataGridView1.Rows)
+            {
+                if (r.IsNewRow) continue;
+                string status = r.Cells["status"].Value?.ToString()?.ToUpperInvariant() ?? "";
+                switch (status)
+                {
+                    case "BORROWED":
+                        r.DefaultCellStyle.BackColor = Color.Moccasin;
+                        break;
+                    case "RETURNED":
+                        r.DefaultCellStyle.BackColor = Color.Honeydew;
+                        break;
+                    case "OVERDUE":
+                        r.DefaultCellStyle.BackColor = Color.LightPink;
+                        break;
+                    default:
+                        r.DefaultCellStyle.BackColor = Color.White;
+                        break;
+                }
+            }
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -102,45 +158,31 @@ namespace Library_Project
         {
             txtSearch.Clear();
             dtpDate.Value = DateTime.Now;
-            LoadAllTransactions();
+            dtpDate.Checked = false;
+            currentPage = 1;
             if (cmbList.Items.Count > 0)
             {
                 cmbList.SelectedIndex = -1;
             }
+            LoadTransactions();
         }
         private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
-            txtSearch_TextChanged(sender, e);
+            currentPage = 1;
+            LoadTransactions();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                string keyword = txtSearch.Text.Trim();
-                string query = "SELECT transacID, bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
-                                "FROM tbl_transac " +
-                                "WHERE (bookCode LIKE '%" + keyword + "%' " +
-                                "OR bookTitle LIKE '%" + keyword + "%' " +
-                                "OR author LIKE '%" + keyword + "%' " +
-                                "OR status LIKE '%" + keyword + "%' " +
-                                "OR category LIKE '%" + keyword + "%' " +
-                                "OR borrower LIKE '%" + keyword + "%' " +
-                                "OR borrowerType LIKE '%" + keyword + "%' " +
-                                "OR grade_section LIKE '%" + keyword + "%' " +
-                                "OR borrowdate LIKE '%" + keyword + "%' " +
-                                "OR returndate LIKE '%" + keyword + "%') " +
-                                "ORDER BY borrowdate DESC";
-
-                DataTable dt = booktransac.GetData(query);
-                dataGridView1.DataSource = dt;
-
-                if (dataGridView1.Columns.Contains("transacID"))
-                    dataGridView1.Columns["transacID"].Visible = false;
+                currentPage = 1;
+                LoadTransactions();
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "ERROR on live search", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
         private void btnRetrn_Click(object sender, EventArgs e)
@@ -179,8 +221,10 @@ namespace Library_Project
 
                     int currentQty = Convert.ToInt32(dtBook.Rows[0]["quantity"]);
                     int newQty = currentQty + 1;
+
                     booktransac.executeSQL($"UPDATE tbl_books SET quantity = {newQty}, status = 'AVAILABLE' WHERE BookID = '{bookCode}'");
                     int affectedBooks = booktransac.rowAffected;
+
                     booktransac.executeSQL($"UPDATE tbl_transac SET returndate = '{DateTime.Now:yyyy/MM/dd}', status = 'RETURNED' WHERE transacID = '{transacID}'");
                     int affectedTransac = booktransac.rowAffected;
 
@@ -191,7 +235,7 @@ namespace Library_Project
                                                $"'TRANSACTIONS', '{bookCode}', '{username}')");
 
                         MessageBox.Show("Book successfully returned and quantity increased by 1.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadAllTransactions();
+                        LoadTransactions();
                     }
                     else
                     {
@@ -213,25 +257,28 @@ namespace Library_Project
         {
             try
             {
-                string selectedFilter = cmbList.SelectedItem?.ToString();
-                if (string.IsNullOrWhiteSpace(selectedFilter))
-                {
-                    LoadAllTransactions();
-                    return;
-                }
-                string esc = selectedFilter.Replace("'", "''");
-                string query = "SELECT bookCode, bookTitle, author, category, borrowdate, returndate, status, borrower, borrowerType, grade_section " +
-                               "FROM tbl_transac " +
-                               "WHERE borrowerType = '" + esc + "' " +
-                               "ORDER BY borrowdate DESC, returndate DESC";
-
-                DataTable dt = booktransac.GetData(query);
-                dataGridView1.DataSource = dt;
+                currentPage = 1;
+                LoadTransactions();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error filtering transactions: " + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadTransactions();
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            currentPage++;
+            LoadTransactions();
         }
     }
 }
