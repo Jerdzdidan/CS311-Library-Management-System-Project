@@ -75,36 +75,40 @@ namespace Library_Project
 
             try
             {
-                DialogResult dr = MessageBox.Show("Are you sure you want to add this book?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                string bookID = txtBarcode.Text.Trim().Replace("'", "''");
+
+                // ✅ Check for duplicate barcode
+                DataTable existing = addaccount.GetData($"SELECT * FROM tbl_books WHERE LOWER(BookID) = LOWER('{bookID}')");
+                if (existing.Rows.Count > 0)
+                {
+                    string existingTitle = existing.Rows[0]["title"].ToString();
+                    MessageBox.Show($"This barcode already exists and is assigned to:\n\n📚 {existingTitle}",
+                                    "Duplicate Barcode", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                DialogResult dr = MessageBox.Show("Are you sure you want to add this book?",
+                                                  "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
-                    // Use the scanned barcode as the BookID
-                    string bookID = txtBarcode.Text.Trim();
-
-                    // Check if barcode already exists
-                    DataTable existing = addaccount.GetData($"SELECT * FROM tbl_books WHERE BookID = '{bookID}'");
-                    if (existing.Rows.Count > 0)
-                    {
-                        MessageBox.Show("A book with this barcode already exists.", "Duplicate Barcode", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    // Insert new book record
+                    // ✅ Insert new book record
                     addaccount.executeSQL($@"
-                        INSERT INTO tbl_books (BookID, title, author, category, status, Added_date, quantity)
-                        VALUES ('{bookID}', '{txtTitle.Text}', '{txtAuthor.Text}', '{cmbCategory.Text}', 
-                                'AVAILABLE', '{DateTime.Now:yyyy/MM/dd}', {quantity})");
+                INSERT INTO tbl_books (BookID, title, author, category, status, Added_date, quantity)
+                VALUES ('{bookID}', '{txtTitle.Text.Replace("'", "''")}', 
+                        '{txtAuthor.Text.Replace("'", "''")}', '{cmbCategory.Text.Replace("'", "''")}', 
+                        'AVAILABLE', '{DateTime.Now:yyyy/MM/dd}', {quantity})");
 
                     if (addaccount.rowAffected > 0)
                     {
-                        MessageBox.Show($"Book successfully added with {quantity} copies.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Book successfully added with {quantity} copies.",
+                                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Log
+                        // ✅ Log action
                         addaccount.executeSQL($@"
-                            INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby)
-                            VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now:hh\\:mm tt}',
-                                    'ADDED NEW BOOK: {txtTitle.Text} (Qty: {quantity})',
-                                    'BOOK MANAGEMENT', '{bookID}', '{username}')");
+                    INSERT INTO tbl_logs (datelog, timelog, action, module, performedto, performedby)
+                    VALUES ('{DateTime.Now:yyyy/MM/dd}', '{DateTime.Now:hh\\:mm tt}',
+                            'ADDED NEW BOOK: {txtTitle.Text} (Qty: {quantity})',
+                            'BOOK MANAGEMENT', '{bookID}', '{username}')");
 
                         this.Close();
                     }

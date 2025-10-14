@@ -91,7 +91,7 @@
             // 
             this.lblPageInfo.AutoSize = true;
             this.lblPageInfo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPageInfo.Location = new System.Drawing.Point(1398, 799);
+            this.lblPageInfo.Location = new System.Drawing.Point(1373, 800);
             this.lblPageInfo.Name = "lblPageInfo";
             this.lblPageInfo.Size = new System.Drawing.Size(54, 22);
             this.lblPageInfo.TabIndex = 19;
@@ -139,18 +139,19 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.txtID);
-            this.panel2.Location = new System.Drawing.Point(26, 320);
+            this.panel2.Location = new System.Drawing.Point(33, 337);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(579, 223);
+            this.panel2.Size = new System.Drawing.Size(556, 217);
             this.panel2.TabIndex = 6;
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTime.Location = new System.Drawing.Point(502, 28);
+            this.lblTime.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTime.Location = new System.Drawing.Point(519, 28);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(0, 19);
             this.lblTime.TabIndex = 10;
@@ -158,9 +159,10 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
+            this.lblDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDate.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblDate.Location = new System.Drawing.Point(69, 28);
+            this.lblDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDate.Location = new System.Drawing.Point(86, 28);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(0, 19);
             this.lblDate.TabIndex = 9;
@@ -171,7 +173,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(93, 54);
+            this.label5.Location = new System.Drawing.Point(77, 44);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(398, 53);
@@ -181,7 +183,7 @@
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(102, 145);
+            this.txtID.Location = new System.Drawing.Point(86, 135);
             this.txtID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(374, 27);
@@ -221,7 +223,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(157, 97);
+            this.label4.Location = new System.Drawing.Point(170, 88);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(312, 53);
@@ -231,12 +233,13 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Library_Project.Properties.Resources.Warning_Look_Here_Sticker;
-            this.pictureBox1.Location = new System.Drawing.Point(185, 141);
+            this.pictureBox1.Location = new System.Drawing.Point(201, 157);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(247, 174);
+            this.pictureBox1.Size = new System.Drawing.Size(233, 151);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label1
             // 
@@ -270,7 +273,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(98, 123);
+            this.label3.Location = new System.Drawing.Point(82, 113);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 19);
             this.label3.TabIndex = 7;

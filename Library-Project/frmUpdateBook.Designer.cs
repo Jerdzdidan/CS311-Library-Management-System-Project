@@ -81,7 +81,6 @@
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
             "AVAILABLE",
-            "BORROWED",
             "DAMAGED"});
             this.cmbStatus.Location = new System.Drawing.Point(467, 270);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(4);

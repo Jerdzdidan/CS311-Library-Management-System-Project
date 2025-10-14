@@ -17,7 +17,7 @@ namespace Library_Project
         private string username;
         private int row;
         private int currentPage = 1;
-        private int pageSize = 15;
+        private int pageSize = 10;
         public frmTransac(string username)
         {
             InitializeComponent();

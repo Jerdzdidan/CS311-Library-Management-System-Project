@@ -20,7 +20,7 @@ namespace Library_Project
         private Timer clockTimer;
         private Label lblToast;
         private int currentPage = 1;
-        private int pageSize = 20;
+        private int pageSize = 10;
         public frmAttendance(string username)
         {
             InitializeComponent();
@@ -291,6 +291,15 @@ namespace Library_Project
         private void lblPageInfo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                pictureBox1.Refresh();
+            }
         }
     }
 }

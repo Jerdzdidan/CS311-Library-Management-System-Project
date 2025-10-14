@@ -120,16 +120,16 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnPrev.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAADpJREFUSEtj
-        GAWjgC6AA4i/Q5i0ASDD/0NpmoFRS0gCNLcEZDjNLBg1HCugqeEgQPOiYhSMAnyAgQEA2OofaYEJ6mMA
-        AAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAEhJREFUSEtj
+        GAWjYMBAPxDXQ5jUByDD/0OxBEiAmgDZcAOQADXBqOE4ASi10NQCEBi1hCSAbAnVMxoMgCwpgDBHwSig
+        LWBgAAC/Jxzg20sEOAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnNext.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAEhJREFUSEtj
-        GAWjYMBAPxDXQ5jUByDD/0OxBEiAmgDZcAOQADXBqOE4ASi10NQCEBi1hCSAbAnVMxoMgCwpgDBHwSig
-        LWBgAAC/Jxzg20sEOAAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAADpJREFUSEtj
+        GAWjgC6AA4i/Q5i0ASDD/0NpmoFRS0gCNLcEZDjNLBg1HCugqeEgQPOiYhSMAnyAgQEA2OofaYEJ6mMA
+        AAAASUVORK5CYII=
 </value>
   </data>
   <data name="label9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
